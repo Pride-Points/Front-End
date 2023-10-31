@@ -1,9 +1,10 @@
 // ... (código anterior)
 import React, { useState } from "react";
-import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
-import Footer from "./components/Footer/Footer";
+import Header from "../components/Header/Header";
+import Home from "../components/Home/Home";
+import Footer from "../components/Footer/Footer";
 import Modal from "react-modal";
+
 
 
 const customStyles = {
@@ -17,7 +18,7 @@ const customStyles = {
   },
 };
 
-function App() {
+function LandingPage() {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => setIsOpen(true);
@@ -41,4 +42,4 @@ function App() {
   );
 }
 
-export default App;
+export default LandingPage;
