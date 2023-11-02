@@ -6,21 +6,26 @@ import ImgUser from "../../assets/img-user.png";
 import ImgBusiness from "../../assets/img-business.png";
 import CardSectionDefault from "./CardSectionDefault";
 import Card from "./Card";
+import { Element } from 'react-scroll';
 
 
 function Home() {
   return (
     <main>
       <MainSection />
-      <WelcomeSection />
-      <UserSectionDefault
-        title="Para você!"
-        description="Descubra, Avalie, Celebre! Explore estabelecimentos diversificados com total aceitação na nossa plataforma 
+      <Element name="WelcomeSection">
+        <WelcomeSection />
+      </Element>
+      <Element name="ParaVoce">
+        <UserSectionDefault
+          title="Para você!"
+          description="Descubra, Avalie, Celebre! Explore estabelecimentos diversificados com total aceitação na nossa plataforma 
       e ganhe beneficíos exclusivos. Sua jornada de experiências autênticas começa aqui."
-        textButton="Encontre"
-        imgSrc={ImgUser}
-        imgPosition="right"
-      />
+          textButton="Encontre"
+          imgSrc={ImgUser}
+          imgPosition="right"
+        />
+      </Element>
 
       <CardSectionDefault text={"Porquê sua opinião importa?"}>
         <Card
@@ -42,14 +47,16 @@ function Home() {
           }
         />
       </CardSectionDefault>
+      <Element name="ParaSeuNegocio">
+        <UserSectionDefault
+          title="Para seu estabelecimento!"
+          description="Junte-se a nós para alcançar um público diverso e mostrar seu compromisso com a inclusão. Receba feedback valioso diretamente da comunidade LGBTQIA+ para aprimorar sua experiência"
+          textButton="Cadastre-se"
+          imgSrc={ImgBusiness}
+          imgPosition="left"
+        />
+      </Element>
 
-      <UserSectionDefault
-        title="Para seu estabelecimento!"
-        description="Junte-se a nós para alcançar um público diverso e mostrar seu compromisso com a inclusão. Receba feedback valioso diretamente da comunidade LGBTQIA+ para aprimorar sua experiência"
-        textButton="Cadastre-se"
-        imgSrc={ImgBusiness}
-        imgPosition="left"
-      />
 
       <CardSectionDefault text={"Benefícios para seu negócio"}>
         <Card
@@ -71,7 +78,6 @@ function Home() {
           }
         />
       </CardSectionDefault >
-
     </main>
   );
 }
