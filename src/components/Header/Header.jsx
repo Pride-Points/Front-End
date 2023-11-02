@@ -2,6 +2,7 @@
 // Pq -> porque o header vai ter funções (abrir modal por exemplo)
 import "./header.css";
 import Logo from "../../assets/logo.png";
+import { Link } from 'react-router-dom';
 
 function Header({ openModal }) {
   return (
@@ -25,7 +26,7 @@ function Header({ openModal }) {
       </div>
 
       <div className="right">
-        <a href="/login">Login</a>
+      <a ><Link className="login" to="/login">login</Link></a>
 
         <button onClick={() => openModal((prev) => !prev)}>Cadastre-se</button>
       </div>

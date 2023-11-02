@@ -1,0 +1,52 @@
+.modal-cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-cadastro h1{
+    font-size: 40px;
+    margin-bottom: 45px;
+}
+
+.close{
+    display: flex;
+    width: 100%;
+    align-items: end;
+    justify-content: end;
+    cursor: pointer;
+}
+
+.container-cards{
+    display: flex;
+    flex-direction: row;
+    gap: 120.91px;
+}
+
+.card-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 222.55px;
+    height: 300px;
+    text-align: center;
+
+    border: 4px solid #B638D3;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.border-color{
+    border: 4px solid #EF2A82;
+}
+
+.card-modal h2{
+    font-size: 20px;
+}
+
+.link-style{
+    text-decoration: none;
+    color: inherit;
+}
