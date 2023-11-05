@@ -5,6 +5,7 @@ import 'aos/dist/aos.css'; // You can also use <link> for styles
 AOS.init();
 
 function MainSection() {
+
   return (
     <div className="mainSection">
       <div className="text">

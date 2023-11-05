@@ -34,7 +34,6 @@ function App() {
         style={customStyles}
         onRequestClose={closeModal}
       >
-        aaaaaaaaa
       </Modal>
 
     </div>
