@@ -12,7 +12,6 @@
 
 .header {
   position: relative;
-  /* Adicione posição relativa para elementos filhos posicionados */
   height: 10%;
   width: 407px;
   padding: 15px;

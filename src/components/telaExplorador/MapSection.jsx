@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-function MapSection() {
+const MapSection = () => {
+    useEffect(() => {
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lZGVqIiwiYSI6ImNsb25idmgzYjEyZDkycW9hYzM2OG5zYngifQ.L1ccu-Db-bbQwF6Ei8tuLQ'; // Substitua 'SEU_TOKEN_MAPBOX' pelo seu token
+
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11', // Pode mudar o estilo do mapa
+            center: [ -46.655589, -23.562195], // Coordenadas iniciais (longitude, latitude)
+            zoom: 20 // Zoom inicial
+        });
+
+        // Adicione marcadores, linhas, etc. conforme a necessidade
+
+        // Limpar recursos do mapa quando o componente for desmontado
+        return () => map.remove();
+    }, []); // O array vazio [] como segundo argumento garante que o useEffect seja executado apenas uma vez
+
     return (
-        <section className='container-map'>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14629.600080127026!2d-46.66138561188431!3d-23.554072540830866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59caaaacb22d%3A0xf14864d2aa14537e!2zQ29uc29sYcOnw6NvLCBTw6NvIFBhdWxvIC0gU1A!5e0!3m2!1spt-BR!2sbr!4v1696469180384!5m2!1spt-BR!2sbr"
-                width="1080"
-                height="741"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Google Maps"
-            ></iframe>
-        </section>
+        <div id='map' style={{ width: '171%'}}></div>
     );
-}
+};
 
 export default MapSection;
