@@ -1,9 +1,8 @@
 import React from 'react';
-import './menuLateral.css'; 
 import Logo from '../../assets/logo.png'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faCalendarAlt, faStar, faCog, faQuestionCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-
+import "./menuLateral.css";
 function Sidebar() {
   return (
     <div className="sidebar">

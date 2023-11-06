@@ -2,14 +2,14 @@ import React from 'react';
 import './header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { userImage } from '../../assets/img-user.png';
 
-function Header() {
+
+function HeaderConfig() {
   return (
     <div className="header">
       <div className="user-info">
         <b id="nome-usuario">Isabela Saori</b>
-        <a><img src={userImage} alt="Seu Nome" /></a>
+        <a><img alt="Seu Nome" />img</a>
       </div>
       <div className="user-icon">
         <FontAwesomeIcon icon={faUser} />
@@ -18,4 +18,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderConfig;

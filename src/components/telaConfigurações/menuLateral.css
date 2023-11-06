@@ -28,6 +28,7 @@ body {
 /* Estilo para menu lateral */
 
 .sidebar {
+    
     position: fixed;
     z-index: 3;
     top: 0;
@@ -49,9 +50,9 @@ body {
 }
 
 .sidebar-logo {
-    margin-top: 20px;
-    text-align: center;
-
+    width: 100px;
+    height: 100px;
+    background-color: red;
 }
 
 .sidebar-menu {

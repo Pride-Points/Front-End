@@ -5,10 +5,6 @@ import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
 import Modal from "react-modal";
 
-import Header from './components/telaConfigurações/header'; 
-import Sidebar from './components/telaConfigurações/menuLateral'; 
-import ConteudoPrincipal from './components/telaConfigurações/conteudoPrincipal'; 
-import Forms from './components/telaConfigurações/forms'; 
 
 
 const customStyles = {
