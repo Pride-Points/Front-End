@@ -18,13 +18,13 @@ function Card(props){
             <img src={props.imgFirstCard} width="150px" height="150px" />
           </div>
           </Link>
-          <Link to="">
-            
-          </Link>
+          <Link to="/cadastro-empresa" className="link-style">
           <div className="card-modal border-color">
             <h2>{props.tituloSecondCard}</h2>
             <img src={props.imgSecondCard} width="150px" height="150px" />
           </div>
+          </Link>
+
         </div>
       </div>
     );
