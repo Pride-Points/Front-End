@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import LandingPage from "./pages/LandingPage";
 import CadastroUsuario from "./pages/CadastroUsuario";
+import CadastroEmpresa from "./pages/CadastroEmpresa";
+import Login from "./components/Login/Login";
 
 
 const Rotas = () => {
@@ -11,7 +13,8 @@ const Rotas = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/cadastro" element={<CadastroUsuario />} />
-
+        <Route path="/cadastro-empresa" element={<CadastroEmpresa />}/>
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </Router>
    )

@@ -37,17 +37,19 @@
 }
 
 .input label{
-    font-size: 16;
+    font-size: 16px;
     font-style: medium;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .input input{
-    width: 527.52px;
+    width: 520.52px;
     height: 64px;
     border-radius: 6px;
     border: 1px solid black;
+    font-size: 18px;
+    padding: 12px;
 }
 
 .buttonClass{

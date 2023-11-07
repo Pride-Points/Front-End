@@ -45,12 +45,13 @@ function CadastroDire(props) {
       <div className='containerCadastro'>
         <div className='tituloAndSubtitulo'>
           <h1>{props.titulo}</h1>
-          <p>{props.subtitulo}</p>
+          <p dangerouslySetInnerHTML={{ __html: props.subtitulo }}></p>
         </div>
         {inputs}
         <div className='buttonClass'>
           <button onClick={props.onButtonClick}>{props.tituloBotao}</button>
-          <p>Já possui conta? <a><Link className="login" to="/login">Faça Login</Link></a></p>
+          <p>{props.textoFinalUm} {props.tagTextoFinal} <br/><br/>
+          {props.alterarSenha}</p>
         </div>
       </div>
     </div>

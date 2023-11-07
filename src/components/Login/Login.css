@@ -1,0 +1,9 @@
+.Login{
+    display: flex;
+    flex-direction: row;
+}
+
+.cadastro{
+    cursor: pointer;
+    color: blue;
+}

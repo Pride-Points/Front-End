@@ -6,7 +6,7 @@ import logoPride from "../../assets/logo.png";
 import barraProgressoInicio from "../../assets/progress-inicio.png";
 import barraProgressoDois from "../../assets/progress-dois.png";
 import imgFormUser from "../../assets/img-form-usuario.png";
-
+import { Link } from 'react-router-dom';
 function Cadastro(props) {
   
   const [mostrarSegundaParteCad, setMostrarSegundaParteCad] = useState(false);
@@ -16,6 +16,8 @@ function Cadastro(props) {
   };
 
   const renderizarComponente = () => {
+
+  const minhaTag = <Link className="login" to="/login">Faça login</Link>
     if (mostrarSegundaParteCad) {
       return (
         <CadastroDire
@@ -27,6 +29,8 @@ function Cadastro(props) {
           titulo={props.tituloDois}
           tituloBotao={props.tituloBotaoDois}
           subtitulo={props.subtituloDois}
+          textoFinalUm="Já possui conta?"
+          tagTextoFinal={minhaTag}
         />
       );
     } else {
@@ -41,6 +45,8 @@ function Cadastro(props) {
           subtitulo={props.subtituloUm}
           tituloBotao={props.tituloBotaoUm}
           onButtonClick={handleContinuarClick}
+          textoFinalUm="Já possui conta?"
+          tagTextoFinal={minhaTag}
         />
       );
     }
