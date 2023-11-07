@@ -49,10 +49,9 @@ body {
 
 }
 
-.sidebar-logo {
-    width: 100px;
-    height: 100px;
-    background-color: red;
+.sidebar-logo img{
+    width: 100%;
+    
 }
 
 .sidebar-menu {
@@ -106,10 +105,12 @@ body {
     text-decoration: none;
     color: black;
     transition: color 0.3s;
+    margin-right: 10px;
+
 }
 
-.bottom-options a i {
-    margin-right: 10px;
+.bottom-options icon{
+    background-color: green;
 }
 
 .bottom-options a:hover {

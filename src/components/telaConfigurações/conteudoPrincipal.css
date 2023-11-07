@@ -6,9 +6,11 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+
 
 }
+
+/* Estilo para o conteúdo principal */
 .content {
     margin-top: 60px;
     padding: 20px;
@@ -78,8 +80,58 @@ body {
 }
 
 
-.container-baixo iframe {
-    width: 100%;
-    height: 100vh;
-}
 
+.container-baixo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* formulário */
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  form {
+    width: 685px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column; /* Coloca a label acima da entrada */
+    align-items: flex-start; /* Alinha a label à esquerda */
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px; /* Adiciona espaço entre a label e a entrada */
+  }
+  button {
+    background-color: #5800D6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px; /* Adiciona mais espaço acima do botão */
+    margin: 0 auto; /* Centraliza horizontalmente o botão */
+    width: 10vw;
+    height: 6vh;
+   
+  }
