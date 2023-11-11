@@ -5,12 +5,9 @@ import Home from "../components/Home/Home";
 import Footer from "../components/Footer/Footer";
 import Card from "../components/Card/Card";
 import Modal from "react-modal";
-import imgUser from "../assets/img-usuario.png"
-import imgNegocio from "../assets/img-negocio.png"
+import imgUser from "../assets/img-usuario.png";
+import imgNegocio from "../assets/img-negocio.png";
 import ScrollToTop from "react-scroll-up";
-
-
-
 
 const customStyles = {
   content: {
@@ -35,16 +32,19 @@ function LandingPage() {
   return (
     <div className="App">
       <Header openModal={openModal} />
-      <ScrollToTop showUnder={300} style={{
-  position: 'fixed',
-  bottom: 50,
-  right: 30,
-  cursor: 'pointer',
-  transitionDuration: '0.2s',
-  transitionTimingFunction: 'linear',
-  transitionDelay: '0s',
-  zIndex: 999
-}}>
+      <ScrollToTop
+        showUnder={300}
+        style={{
+          position: "fixed",
+          bottom: 50,
+          right: 30,
+          cursor: "pointer",
+          transitionDuration: "0.2s",
+          transitionTimingFunction: "linear",
+          transitionDelay: "0s",
+          zIndex: 999,
+        }}
+      >
         <span>UP</span>
       </ScrollToTop>
       <Home />
@@ -56,15 +56,14 @@ function LandingPage() {
         onRequestClose={closeModal}
       >
         <Card
-        isOpen={closeModal}
-        titulo="Cadastre-se como"
-        tituloFirstCard="Um participante comum"
-        imgFirstCard={imgUser}
-        tituloSecondCard="Um participante dono de um negócio"
-        imgSecondCard={imgNegocio}
+          isOpen={closeModal}
+          titulo="Cadastre-se como"
+          tituloFirstCard="Um participante comum"
+          imgFirstCard={imgUser}
+          tituloSecondCard="Um participante dono de um negócio"
+          imgSecondCard={imgNegocio}
         />
       </Modal>
-
     </div>
   );
 }
