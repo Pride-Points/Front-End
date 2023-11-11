@@ -1,0 +1,56 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.container h1{
+    margin-bottom: 2px;
+}
+
+.container p{
+    margin-bottom: 15.51px;
+}
+
+.container hr{
+    margin-bottom: 16.49px;
+}
+
+.container button{
+    background-color: #4200A1;
+    color: #ffff;
+    width: 412px;
+    font-size: 25px;
+    font-weight: bold;
+    height: 64px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.container-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-input label{
+    font-size: 16px;
+    margin-bottom: 14px;
+}
+
+.container-input input{
+    width: 412px;
+    height: 64px;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 18px;
+    margin-bottom: 28px;
+}
+
+.cancelar{
+    text-align: center;
+    margin-top: 16px;
+    color: blue;
+    cursor: pointer;
+}

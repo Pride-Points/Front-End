@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+/* Estilo para a barra de rolagem */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #FFB6C1;
+    border-radius: 6px;
+   
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+
+}
+
+/* Estilo para menu lateral */
+
+.sidebar {
+    
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    color: #222;
+    border-right: #222 2px solid;
+    overflow-y: auto;
+    border-right: 1px solid #E6EDFF;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: bold;
+    overflow-x: hidden;
+
+
+}
+
+.sidebar-logo {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 15px;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+}
+
+.sidebar-menu i {
+    width: 15px;
+    height: 15px;
+    align-items: center;
+}
+
+.sidebar-menu a span {
+    margin-left: 10px;
+}
+
+.sidebar-menu a:hover {
+    color: #5800D6
+}
+
+
+.bottom-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 15px;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.bottom-options a {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+}
+
+.bottom-options a i {
+    margin-right: 10px;
+}
+
+.bottom-options a:hover {
+    color: #5800D6;
+}
+
+.btn-sair a {
+    color: red;
+}
+
+.btn-sair i {
+    color: red;
+}
+
+.btn-sair a:hover {
+    color: red;
+}

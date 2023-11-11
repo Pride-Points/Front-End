@@ -1,0 +1,147 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-map {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.header {
+  position: relative;
+  height: 10%;
+  width: 407px;
+  padding: 15px;
+  background-color: #fff;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  /* altura da linha do border */
+  background-image: linear-gradient(to right,
+      rgba(230, 6, 0, 1) 0%,
+      rgba(255, 155, 0, 1) 16.666%,
+      rgba(255, 226, 0, 1) 33.333%,
+      rgba(98, 170, 20, 1) 50%,
+      rgba(0, 83, 226, 1) 66.666%,
+      rgba(55, 44, 184, 1) 83.333%,
+      rgba(119, 0, 136, 1) 100%);
+  transition: background-image 1s;
+}
+
+.logo-pride {
+  margin-right: 10px;
+  width: 30%;
+}
+
+.icon-back {
+  height: 100%;
+  width: 100%;
+}
+
+.button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search-container {
+  position: relative;
+  width: 315px;
+  margin: 24px;
+}
+
+.search-input {
+  padding: 15px;
+  width: 100%;
+  padding-right: 77px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  height: 45px;
+}
+
+.search-input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.search-input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.locais {
+  text-decoration: underline;
+  width: 15%;
+  font-size: 20px;
+}
+
+.star-container {
+  font-size: 20px;
+  margin-left: 45%;
+}
+
+.star-filled {
+  color: gold;
+}
+
+.comments-description{
+  width: 90%;
+  border-radius: 10px;
+  display: flex;
+  margin: 11px;
+  border: 1px solid black;
+  padding: 3%;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.description {
+  height: 475px;
+  overflow-y: auto;
+}
+
+.comments-description p {
+  margin-top: 7px;
+}
+
+
+.container-coments h3{
+  color: rgba(30, 30, 30, 0.60);
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: 10px;
+}

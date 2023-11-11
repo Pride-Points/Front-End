@@ -26,6 +26,7 @@ header .center ul li {
   color: #fff;
   font-size: 16px;
   font-weight: 400;
+  cursor: pointer;
 }
 
 header .right{
@@ -52,4 +53,7 @@ header .right button{
   cursor: pointer;
 }
 
+.login{
+  text-decoration: none;
+}
 

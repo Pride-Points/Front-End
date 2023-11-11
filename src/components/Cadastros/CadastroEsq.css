@@ -1,0 +1,19 @@
+.CadastroEsq{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../../assets/Background-Cadastro.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 50%;
+    height: 100vh;
+}
+
+.imgUm{
+    margin-top: 45px;
+}
+
+.imgDois{
+    margin-top: 134px;
+}

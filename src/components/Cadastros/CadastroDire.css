@@ -1,0 +1,75 @@
+.CadastroDire{
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+}
+
+.imgBack{
+    display: flex;
+    width: 100%;
+    align-items: start;
+    margin-top: 73px;
+    margin-left: 34px;
+    cursor: pointer;
+}
+
+
+.containerCadastro{
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloAndSubtitulo h1{
+    font-size: 30px;
+    margin-bottom: 17px;
+}
+.tituloAndSubtitulo p{
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+}
+
+.input label{
+    font-size: 16px;
+    font-style: medium;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input input{
+    width: 520.52px;
+    height: 64px;
+    border-radius: 6px;
+    border: 1px solid black;
+    font-size: 18px;
+    padding: 12px;
+}
+
+.buttonClass{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.buttonClass button{
+    background-color: #4200A1;
+    color: #ffff;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 17px;
+    height: 64px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.buttonClass p{
+    margin-top: 13px;
+}
