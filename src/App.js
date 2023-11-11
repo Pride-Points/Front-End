@@ -1,9 +1,9 @@
-// ... (código anterior)
 import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
 import Modal from "react-modal";
+
 
 
 const customStyles = {
@@ -34,7 +34,6 @@ function App() {
         style={customStyles}
         onRequestClose={closeModal}
       >
-        aaaaaaaaa
       </Modal>
 
     </div>
