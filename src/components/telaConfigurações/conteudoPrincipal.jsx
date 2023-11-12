@@ -2,23 +2,34 @@ import React from 'react';
 import './conteudoPrincipal.css';
 import { useState } from 'react';
 import IconImage from '../../assets/ion_image-outline.png';
+import IconEdit from '../../assets/tabler_edit.png';
+import IconBlock from '../../assets/block.png';
 
 
 function ConteudoPrincipal() {
   const [modalVisible, setModalVisible] = useState(false);
   const [isSecondPartVisible, setIsSecondPartVisible] = useState(false);
 
-  const openModalForm = () => {
-    setModalVisible(true);
-    setIsSecondPartVisible(false); // Certifique-se de que a primeira parte seja exibida ao abrir o modal
-  };
 
   const openModal = () => {
     setModalVisible(true);
+    setIsSecondPartVisible(false);
   };
 
   const closeModal = () => {
     setModalVisible(false);
+  };
+
+  const handleNext = () => {
+    setIsSecondPartVisible(true);
+  };
+
+  const handleBack = () => {
+    setIsSecondPartVisible(false);
+  };
+
+  const handleSave = () => {
+    closeModal();
   };
 
   return (
@@ -67,78 +78,113 @@ function ConteudoPrincipal() {
 
           <div class="container-baixo">
             <div className="form-container">
-
-       
-            {isSecondPartVisible ? ( // Verifica se a segunda parte deve ser exibida
               <form>
-                {/* Adicione os campos de email, senha atual, nova senha e confirmação de senha aqui */}
-                <h1>Edite seus dados (Parte 2)</h1>
+                {isSecondPartVisible ? (
+                  <>
+                    <h1>Edite seus dados (Parte 2)</h1>
+                    <div className="form-group">
+                      <label htmlFor="email">Email</label>
+                      <div className="input-container">
+                        <input type="email" id="email" name="email" />
+                        <img src={IconEdit} className="edit-icon" />
+                      </div>
+
+
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="senha-atual">Senha Atual</label>
+                      <div className="input-container">
+                      <input type="password" id="senha-atual" name="senha-atual" />
+                        <img src={IconEdit} className="edit-icon" />
+                      </div>
+                     
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="nova-senha">Nova Senha</label>
+                      <div className="input-container">
+                      <input type="password" id="nova-senha" name="nova-senha" />
+                        <img src={IconEdit} className="edit-icon" />
+                      </div>
+                    
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="confirmacao-senha">Confirmação de Senha</label>
+                      <div className="input-container">
+                      <input type="password" id="confirmacao-senha" name="confirmacao-senha" />
+                        <img src={IconEdit} className="edit-icon" />
+                      </div>
+                  
+                      
+                    </div>
+
+
+                  </>
+                ) : (
+                  <>
+                    <h1>Edite seus dados (Parte 1)</h1>
+                    <div className="form-group">
+                      <label htmlFor="nome">Nome</label>
+                      <div className="input-container">
+                        <input type="text" id="nome" name="nome" />
+                        <img src={IconEdit} className="edit-icon" />
+                      </div>
+
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="cpf">CPF</label>
+                      <div className="input-container" id='input_cpf'>
+                        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" />
+                        <img src={IconBlock} className="edit-icon" />
+                      </div>
+
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="genero">Gênero</label>
+                      <div className="input-container">
+                        <input type="text" id="genero" name="genero" placeholder="Masculino/Feminino" />
+                        <img src={IconEdit} className="edit-icon" />
+                      </div>
+
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="orientacao-sexual">Orientação Sexual</label>
+                      <div className="input-container">
+                        <input type="text" id="orientacao-sexual" name="orientacao-sexual" />
+                        <img src={IconEdit} className="edit-icon" />
+                      </div>
+
+                    </div>
+                  </>
+                )}
+
+
+                {/* Adicione os outros campos aqui conforme necessário */}
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" id="email" name="email" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="senha-atual">Senha Atual</label>
-                  <input type="password" id="senha-atual" name="senha-atual" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="nova-senha">Nova Senha</label>
-                  <input type="password" id="nova-senha" name="nova-senha" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="confirmacao-senha">Confirmação de Senha</label>
-                  <input type="password" id="confirmacao-senha" name="confirmacao-senha" />
+                  <div className="button-container">
+                    {isSecondPartVisible ? (
+                      <>
+                        <button type="button" onClick={handleBack}>
+                          Voltar
+                        </button>
+                        <button type="button" onClick={handleSave}>
+                          Salvar
+                        </button>
+                      </>
+                    ) : (
+                      <button type="button" onClick={handleNext}>
+                        Continuar
+                      </button>
+                    )}
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <button type="button" onClick={() => setIsSecondPartVisible(false)}>
-                    Cancelar
-                  </button>
-                  <button type="submit">
-                    Salvar
-                  </button>
-                </div>
               </form>
-            ) : (
-              <form>
-                {/* Adicione os campos existentes aqui */}
-                <h1>Edite seus dados (Parte 1)</h1>
-                <div className="form-group">
-                  <label htmlFor="nome">Nome</label>
-                  <input type="text" id="nome" name="nome" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="cpf">CPF</label>
-                  <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="genero">Gênero</label>
-                  <input type="text" id="genero" name="genero" placeholder="Masculino/Feminino" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="orientacao-sexual">Orientação Sexual</label>
-                  <input type="text" id="orientacao-sexual" name="orientacao-sexual" />
-                </div>
-                <div className="form-group">
-                  <button type="button" onClick={closeModal}>
-                    Cancelar
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setIsSecondPartVisible(true)}
-                  >
-                    Continuar
-                  </button>
-                </div>
-              </form>
-            )}
-
+            </div>
           </div>
-        </div>
 
-      </div>
-    </div>
-  </div>
+        </div>
+      </div >
+    </div >
 
   );
 }

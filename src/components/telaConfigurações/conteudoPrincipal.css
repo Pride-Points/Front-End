@@ -123,19 +123,26 @@ body {
     border-radius: 5px;
     margin-top: 5px; /* Adiciona espaço entre a label e a entrada */
   }
-  button {
+  .button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center; 
+    margin-top: 20px; 
+  }
+  
+  .button-container button {
+    /* Remova 'margin: 0 auto;' do botão para que 'justify-content: center;' funcione corretamente */
     background-color: #5800D6;
     color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
-    margin-top: 20px; /* Adiciona mais espaço acima do botão */
-    margin: 0 auto; /* Centraliza horizontalmente o botão */
     width: 10vw;
     height: 6vh;
-   
   }
+  
+  
 
   /* Upload */
 
@@ -148,14 +155,14 @@ body {
   }
   
   .imagem-upload {
-    background-color: rgba(155, 165, 183, 0.60); /* ou a cor desejada para o fundo */
+    background-color: rgba(155, 165, 183, 0.60); 
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%; /* para tornar a div circular */
-    width: 30%; /* ou o tamanho desejado para a div circular */
-    height: 100%; /* ou o tamanho desejado para a div circular */
-    margin-right: 10px; /* ajuste conforme necessário */
+    border-radius: 50%; 
+    width: 30%; 
+    height: 100%; 
+    margin-right: 10px; 
     cursor: pointer;
   }
   
@@ -170,6 +177,7 @@ body {
 
   .modal {
     position: fixed;
+    z-index: 900;
     top: 0;
     left: 0;
     width: 100%;
@@ -244,3 +252,27 @@ body {
     max-width: 50px;
     max-height: 50px;
   }
+
+  
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  cursor: pointer;
+}
+
+#input_cpf input{
+  background-color: #E8E8E8 ;
+
+}
+
+/* ... (seu código existente) */
