@@ -6,6 +6,12 @@ import IconImage from '../../assets/ion_image-outline.png';
 
 function ConteudoPrincipal() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [isSecondPartVisible, setIsSecondPartVisible] = useState(false);
+
+  const openModalForm = () => {
+    setModalVisible(true);
+    setIsSecondPartVisible(false); // Certifique-se de que a primeira parte seja exibida ao abrir o modal
+  };
 
   const openModal = () => {
     setModalVisible(true);
@@ -62,8 +68,41 @@ function ConteudoPrincipal() {
           <div class="container-baixo">
             <div className="form-container">
 
+       
+            {isSecondPartVisible ? ( // Verifica se a segunda parte deve ser exibida
               <form>
-                <h1>Edite seus dados</h1>
+                {/* Adicione os campos de email, senha atual, nova senha e confirmação de senha aqui */}
+                <h1>Edite seus dados (Parte 2)</h1>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" name="email" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="senha-atual">Senha Atual</label>
+                  <input type="password" id="senha-atual" name="senha-atual" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="nova-senha">Nova Senha</label>
+                  <input type="password" id="nova-senha" name="nova-senha" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="confirmacao-senha">Confirmação de Senha</label>
+                  <input type="password" id="confirmacao-senha" name="confirmacao-senha" />
+                </div>
+
+                <div className="form-group">
+                  <button type="button" onClick={() => setIsSecondPartVisible(false)}>
+                    Cancelar
+                  </button>
+                  <button type="submit">
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <form>
+                {/* Adicione os campos existentes aqui */}
+                <h1>Edite seus dados (Parte 1)</h1>
                 <div className="form-group">
                   <label htmlFor="nome">Nome</label>
                   <input type="text" id="nome" name="nome" />
@@ -81,16 +120,25 @@ function ConteudoPrincipal() {
                   <input type="text" id="orientacao-sexual" name="orientacao-sexual" />
                 </div>
                 <div className="form-group">
-                  <button type="submit">Salvar</button>
+                  <button type="button" onClick={closeModal}>
+                    Cancelar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsSecondPartVisible(true)}
+                  >
+                    Continuar
+                  </button>
                 </div>
               </form>
-            </div>
+            )}
+
           </div>
-
-
         </div>
+
       </div>
     </div>
+  </div>
 
   );
 }
