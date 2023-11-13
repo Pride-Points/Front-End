@@ -10,6 +10,7 @@ import retanguloBranco from "../../assets/retangulo-branco.png"
 import logoPride from "../../assets/logo.png";
 import imgLogin from "../../assets/img-login.png";
 import CardAlterarSenha from "../CardAlterarSenha/CardAlterarSenha";
+import api from "../../api/api";
 
 const customStyles = {
     content: {
@@ -48,6 +49,25 @@ function Login(){
   const closeModalSenha = () => setModalSenhaIsOpen(false);
 
  
+  const loginBack = (e) => {
+    e.preventDefault();
+
+    // Dados de login
+    const dadosLogin = {
+      email: e.target.email ? e.target.email.value : '',
+      senha: e.target.senha ? e.target.senha.value : ''
+    };
+
+    console.log(dadosLogin);
+
+    api.post("/", dadosLogin)
+      .then((res) => {
+        alert("Login efetuado com sucesso!");
+      })
+      .catch((erro) => {
+        alert("Erro ao fazer login!");
+      })
+  };
 
   const handleCadastroClick = () => {
     openModal();
@@ -70,7 +90,6 @@ function Login(){
           heightImgForm={441}
         />
         <CadastroDire 
-        quantity={2}
         inputTitles={['Email','Senha']}
         barraProgresso={retanguloBranco}
         barraProgressoMT={"60px"}
@@ -81,6 +100,7 @@ function Login(){
         textoFinalUm="Não possui uma conta?"
         tagTextoFinal={minhaTag}
         alterarSenha={alterarSenha}
+        handleButtonClick={loginBack}
         />
               <Modal
         isOpen={modalIsOpen}
