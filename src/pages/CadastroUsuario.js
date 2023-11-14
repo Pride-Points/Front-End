@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import Cadastro from "../components/Cadastros/Cadastro";
 import api from '../api/api';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function CadastroUsuario() {
     const [mostrarSegundaParteCad, setMostrarSegundaParteCad] = useState(false);
     const [dadosPrimeiraParte, setDadosPrimeiraParte] = useState(null);
 
-
+    const navigate = useNavigate();
 
     const cadastrarDois = (e) => {
         e.preventDefault();
+
+        
 
         // Dados da segunda parte
         const dadosSegundaParteLocal = {
@@ -28,12 +33,29 @@ function CadastroUsuario() {
         console.log(cadastroCompleto);
 
         api.post("/", cadastroCompleto)
-            .then((res) => {
-                alert("Cadastrado com sucesso!");
-            })
-            .catch((erro) => {
-                alert("Erro ao cadastrar!");
-            });
+        .then((res) => {
+          // Cadastro bem-sucedido
+          Swal.fire({
+            title: 'Cadastro bem-sucedido!',
+            text: 'Deseja fazer login agora?',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Não',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Redirecionar para a página de login ou executar a lógica de login
+              navigate('/')
+            } else {
+              // Lógica a ser executada se o usuário escolher "Não"
+              navigate('/')
+            }
+          });
+        })
+        .catch((erro) => {
+          // Erro no cadastro
+          toast.error("Erro ao cadastrar!");
+        });
     };
 
     const cadastrarUm = (e) => {

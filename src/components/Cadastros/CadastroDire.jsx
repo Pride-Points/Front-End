@@ -63,6 +63,13 @@ function CadastroDire(props) {
           value={inputValues[index]}
           onChange={(e) => handleInputChange(index, e.target.value)}
         />
+      ) : title.toLowerCase().includes('numero') ? (
+        <input
+          type="number"
+          name={removeSpacesAndAccents(title)}
+          value={inputValues[index]}
+          onChange={(e) => handleInputChange(index, e.target.value)}
+        />
       ) : title.toLowerCase().includes('cnpj') ? (
         <InputMask
           mask="99.999.999/9999-99"

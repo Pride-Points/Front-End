@@ -11,6 +11,9 @@ import logoPride from "../../assets/logo.png";
 import imgLogin from "../../assets/img-login.png";
 import CardAlterarSenha from "../CardAlterarSenha/CardAlterarSenha";
 import api from "../../api/api";
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { injectStyle } from "react-toastify/dist/inject-style";
 
 const customStyles = {
     content: {
@@ -48,6 +51,10 @@ function Login(){
   const openModalSenha = () => setModalSenhaIsOpen(true);
   const closeModalSenha = () => setModalSenhaIsOpen(false);
 
+  injectStyle();
+
+  const navigate = useNavigate();
+
  
   const loginBack = (e) => {
     e.preventDefault();
@@ -60,13 +67,28 @@ function Login(){
 
     console.log(dadosLogin);
 
-    api.post("/", dadosLogin)
-      .then((res) => {
-        alert("Login efetuado com sucesso!");
+    api.post('/login', {
+      email: dadosLogin.email,
+      senha: dadosLogin.senha
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.status === 200 && response.data?.token) {
+          sessionStorage.setItem('authToken', response.data.token);
+          sessionStorage.setItem('usuario', response.data.nome);
+
+          toast.success('Login realizado com sucesso!');
+          navigate('/');
+        } else {
+          throw new Error('Ops! Ocorreu um erro interno.');
+        }
       })
-      .catch((erro) => {
-        alert("Erro ao fazer login!");
-      })
+      .catch(error => {
+        toast.error(error.message);
+      });
   };
 
   const handleCadastroClick = () => {
