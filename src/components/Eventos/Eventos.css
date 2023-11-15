@@ -95,7 +95,7 @@ position: relative;
 }
 
 .titulo{
-    padding: 100px;
+    padding: 90px 0 40px 100px;
 }
 
 .titulo h1{
@@ -108,18 +108,49 @@ position: relative;
 }
 
 .search-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.bar-input {
+  padding: 15px;
+  width: 80%;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+
+.search-icon{
+    width: 15%;
+}
+
+.itens{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    padding: 40px 0;
+
+    gap: 10px;
 }
 
-.search-bar input {
-    width: 60%;
-    box-sizing: border-box;
+.calendario{
+    transform: scale(0.8);
 }
 
-.search-bar button {
-    padding: 8px;
-    background-color: #4CAF50;
+.itens h1 {
+    font-size: 20px;
+}
+
+.butao {
+    background-color: #4200A1;
     color: #fff;
-}
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 6px;
+    border: #4200A1;
+    cursor: pointer;
+    height: 50px;
+    padding: 0 80px;
+  }

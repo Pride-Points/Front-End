@@ -10,6 +10,9 @@ import avatar from "../../assets/avatar.png";
 import iconPerson from "../../assets/icon-person.svg";
 import iconHelp from "../../assets/icon-help.svg";
 import iconSair from "../../assets/icon-sair.svg";
+import searchIcon from '../../assets/search-icon.svg';
+import calendarIcon from '../../assets/icon-calendar.svg';
+
 
 function Evento() {
     return (
@@ -82,10 +85,25 @@ function Evento() {
                     <h1>Eventos</h1>
                     <h2>Crie e veja seus eventos!</h2>
                 </div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Pesquisar"/>
-                        <button type="button">Buscar</button>
+                <div className="search-bar">
+                    <input type="text" placeholder="Pesquisar" className="bar-input" />
+                    <span className="search-icon">
+                        <img src={searchIcon} alt=" ícone de busca" />
+                    </span>
                 </div>
+                <div className='itens'>
+                    <span className='calendario'>
+                        <img src={calendarIcon} alt="icone de calendario" />
+                    </span>
+                    <h1>Crie seus eventos!</h1>
+
+                    <button className='butao'>
+                        Criar
+                    </button>
+
+                </div>
+
+
             </div>
         </div>
     );
