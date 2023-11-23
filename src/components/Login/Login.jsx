@@ -10,6 +10,10 @@ import retanguloBranco from "../../assets/retangulo-branco.png"
 import logoPride from "../../assets/logo.png";
 import imgLogin from "../../assets/img-login.png";
 import CardAlterarSenha from "../CardAlterarSenha/CardAlterarSenha";
+import api from "../../api/api";
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { injectStyle } from "react-toastify/dist/inject-style";
 
 const customStyles = {
     content: {
@@ -47,7 +51,45 @@ function Login(){
   const openModalSenha = () => setModalSenhaIsOpen(true);
   const closeModalSenha = () => setModalSenhaIsOpen(false);
 
+  injectStyle();
+
+  const navigate = useNavigate();
+
  
+  const loginBack = (e) => {
+    e.preventDefault();
+
+    // Dados de login
+    const dadosLogin = {
+      email: e.target.email ? e.target.email.value : '',
+      senha: e.target.senha ? e.target.senha.value : ''
+    };
+
+    console.log(dadosLogin);
+
+    api.post('/login', {
+      email: dadosLogin.email,
+      senha: dadosLogin.senha
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.status === 200 && response.data?.token) {
+          sessionStorage.setItem('authToken', response.data.token);
+          sessionStorage.setItem('usuario', response.data.nome);
+
+          toast.success('Login realizado com sucesso!');
+          navigate('/');
+        } else {
+          throw new Error('Ops! Ocorreu um erro interno.');
+        }
+      })
+      .catch(error => {
+        toast.error(error.message);
+      });
+  };
 
   const handleCadastroClick = () => {
     openModal();
@@ -70,7 +112,6 @@ function Login(){
           heightImgForm={441}
         />
         <CadastroDire 
-        quantity={2}
         inputTitles={['Email','Senha']}
         barraProgresso={retanguloBranco}
         barraProgressoMT={"60px"}
@@ -81,6 +122,7 @@ function Login(){
         textoFinalUm="Não possui uma conta?"
         tagTextoFinal={minhaTag}
         alterarSenha={alterarSenha}
+        handleButtonClick={loginBack}
         />
               <Modal
         isOpen={modalIsOpen}
