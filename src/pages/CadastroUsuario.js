@@ -30,6 +30,11 @@ function CadastroUsuario() {
           return;
         }
 
+        if(dadosSegundaParteLocal.cpf === "000.000.000-00"){
+          toast.error("CPF inválido")
+          return;
+        }
+
         // Validar a senha
         const senhaValida = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(dadosSegundaParteLocal.senha);
   
