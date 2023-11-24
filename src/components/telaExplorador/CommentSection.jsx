@@ -1,8 +1,9 @@
 import React from 'react';
 import StarRating from './starRating'; // Importa o componente de avaliação
 import LogoImg from '../../assets/logo-dark.svg';
-import IconBack from '../../assets/icon-back.svg';
+import IconBack from '../../assets/icon-back.png';
 import SearchIcon from '../../assets/search-icon.svg';
+import { useNavigate } from 'react-router-dom';
 
 
 function CommentSection() {
@@ -14,11 +15,18 @@ function CommentSection() {
         { nome: 'Bar do zé', avaliacao: 4, conteudo: 'Temos cachaça por 1 real e muita experiencia.' }
     ];
 
+    const navigate = useNavigate();
+
+    // Função para voltar para a página anterior
+    const voltarParaPaginaAnterior = () => {
+        navigate(-1); // Navegar para trás no histórico
+    };
+
     return (
         <div className='container-coments'>
             <header className='header'>
                 <button className='button'>
-                    <img src={IconBack} alt="botão de retornar a pagina inicial" className='icon-back' />
+                    <img src={IconBack} width="18px" height="26px" alt="botão de retornar a pagina inicial" onClick={voltarParaPaginaAnterior} />
                 </button>
                 <img src={LogoImg} alt=" logo da pride points (bandeira lgbt e frase pride points)" className="logo-pride" />
             </header>
@@ -37,8 +45,8 @@ function CommentSection() {
                 <div className='description'>
                     {comentarios.map((comentario, index) => (
                         <div key={index} className="comments-description">
-                                <h4>{comentario.nome}</h4>
-                                <StarRating rating={comentario.avaliacao} />
+                            <h4>{comentario.nome}</h4>
+                            <StarRating rating={comentario.avaliacao} />
                             <p>{comentario.conteudo}</p>
                         </div>
                     ))}
@@ -47,7 +55,7 @@ function CommentSection() {
                 <h3>© 2023 PridePoints. Todos os direitos reservados.</h3>
 
             </div>
-       
+
         </div>
     );
 }

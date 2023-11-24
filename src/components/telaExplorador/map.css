@@ -1,5 +1,6 @@
 .main {
   display: flex;
+  height: 100vh;
   justify-content: space-between;
 }
 
@@ -13,7 +14,7 @@
 .header {
   position: relative;
   height: 10%;
-  width: 407px;
+  width: 100%;
   padding: 15px;
   background-color: #fff;
   color: #222;
@@ -85,7 +86,7 @@
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .search-input::placeholder {
@@ -126,7 +127,7 @@
 }
 
 .description {
-  height: 475px;
+  height: 75vh;
   overflow-y: auto;
 }
 

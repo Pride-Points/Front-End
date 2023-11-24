@@ -42,6 +42,29 @@ function CadastroDire(props) {
     setInputValues(newInputValues);
   };
 
+  const generosSexuais = [
+    'Homem cis',
+    'Mulher cis',
+    'Mulher Trans',
+    'Homem Trans',
+    'Não-Binário',
+    'Agênero',
+    'Bigênero',
+    'Gênero Fluido',
+    'Questionando',
+    'Outro',
+  ];
+
+  const orientacoesSexuais = [
+    'Hetero',
+    'Gay',
+    'Lésbica',
+    'Bissexual',
+    'Pansexual',
+    'Assexual',
+    'Outro',
+  ];
+
   const inputs = props.inputTitles.map((title, index) => (
     <div key={index} className='input'>
       <label>{title}</label>
@@ -56,6 +79,36 @@ function CadastroDire(props) {
             onBlur={handleBlur}
           />
         </>
+      ) : title.toLowerCase().includes('gênero') ? (
+        <select
+          name={removeSpacesAndAccents(title)}
+          value={inputValues[index]}
+          onChange={(e) => handleInputChange(index, e.target.value)}
+        >
+          <option value="" disabled hidden>
+            Selecione o gênero
+          </option>
+          {generosSexuais.map((genero) => (
+            <option key={genero} value={genero}>
+              {genero}
+            </option>
+          ))}
+        </select>
+      ) : title.toLowerCase().includes('orientação sexual') ? (
+        <select
+          name={removeSpacesAndAccents(title)}
+          value={inputValues[index]}
+          onChange={(e) => handleInputChange(index, e.target.value)}
+        >
+          <option value="" disabled hidden>
+            Selecione a orientação sexual
+          </option>
+          {orientacoesSexuais.map((orientacao) => (
+            <option key={orientacao} value={orientacao}>
+              {orientacao}
+            </option>
+          ))}
+        </select>
       ) : title.toLowerCase().includes('email') ? (
         <input
           type="email"
