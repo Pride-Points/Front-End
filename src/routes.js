@@ -9,7 +9,6 @@ import Map from './pages/TelaExplorador';
 // import TelaConfiguracoes from './pages/Configuracoes';
 import Eventos from "./components/TelasUsuario/Eventos"
 import Avaliacoes from "./components/TelasUsuario/Avaliacoes"
-import Home from './pages/Home';
 import HomeEventos from './components/TelasUsuario/Home-eventos';
 
 
@@ -25,7 +24,6 @@ const Rotas = () => {
         <Route path="/explorador" element={<Map />} /> 
         <Route path="/eventos" element={<Eventos />} />
         <Route path="/avaliacoes" element={<Avaliacoes />} />
-        <Route path="/home-locais" element={<Home />} />
         <Route path="/home-eventos" element={<HomeEventos />} />
 
       </Routes>
