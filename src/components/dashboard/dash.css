@@ -129,15 +129,24 @@ h4 {
 
 .dash-bar {
     display: flex;
-    padding: 25px;
+    padding: 5px;
     height: 95%;
-    width: 34vw;
+    width: 45vw;
     justify-content: center;
     align-items: center;
 }
 
 .dash-pizza {
     height: 95%;
-    padding: 16px;
+    padding: 24px;
     width: 22vw;
+    display: flex;
+    justify-content: center;
+}
+
+
+.genero{
+    margin: 0px 0px 0 48px;
+    font-size: 17px;
+    font-weight: 400;
 }

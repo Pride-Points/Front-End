@@ -50,11 +50,11 @@ const DashboardPizza = () => {
     chartInstance.current = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['Gays', 'Lesbicas', 'Bissexuais'],
+        labels: ['Gays', 'Lesbicas', 'Bissexuais', 'Transgeneros', 'Outros'],
         datasets: [
           {
-            data: [30, 40, 30],
-            backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 205, 86, 0.7)'],
+            data: [30, 40, 30, 50, 100],
+            backgroundColor: ['rgba(59, 000, 237, 0.7)', 'rgba(156, 39, 176, 0.7)', 'rgba(216, 27, 96, 0.7)', 'rgba(255, 152, 0, 0.7)', 'rgba(215, 215, 215, 0.7)'],
             hoverBackgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 205, 86, 1)'],
             borderWidth: 0, // Define a grossura da borda como 0 para remover as bordas
           },
@@ -72,7 +72,13 @@ const DashboardPizza = () => {
     };
   }, []);
 
-  return <canvas ref={chartRef} width="400" height="200" />;
+  return (
+    <div>
+      <div className='genero'>Gênero da comunidade</div>
+      <canvas ref={chartRef} width="400" height="200" />
+    </div>
+
+  );
 };
 
 export default DashboardPizza;

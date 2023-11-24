@@ -96,4 +96,4 @@ No objeto cardsData, você pode usar a referência direta à função dynamicTit
     </div>
   );
    
-         */
+   */

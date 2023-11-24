@@ -12,7 +12,6 @@ const DashboardBar = () => {
     }
 
     const ctx = chartRef.current.getContext('2d');
-
     chartInstance.current = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -20,8 +19,9 @@ const DashboardBar = () => {
         datasets: [
           {
             label: 'Avaliações',
-            backgroundColor: '#EFA9FF',
+            backgroundColor: ['#EFA9FF', '#FFB5D6', '#BAADCC', '#BE70CB', '#B638D3'], 
             borderWidth: 2,
+            borderRadius: 2.917,
             hoverBackgroundColor: 'rgba(75,192,192,0.4)',
             hoverBorderColor: 'rgba(75,192,192,1)',
             data: [65, 52, 80, 81, 56],
@@ -44,8 +44,7 @@ const DashboardBar = () => {
   }, []); // O array vazio como segundo argumento garante que o useEffect é executado apenas uma vez, sem dependências
 
   return (
-      <canvas ref={chartRef} width="300" height="200" />
-  
+    <canvas ref={chartRef} />
   );
 };
 
