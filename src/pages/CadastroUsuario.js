@@ -11,6 +11,58 @@ function CadastroUsuario() {
 
   const navigate = useNavigate();
 
+  // Função para validar CPF
+  function validarCPF(cpf) {
+    // Remover caracteres não numéricos
+    const cpfNumerico = cpf.replace(/\D/g, '');
+
+    // Verificar se o CPF tem 11 dígitos
+    if (cpfNumerico.length !== 11) {
+      return false;
+    }
+
+    // Verificar se todos os dígitos são iguais (ex: 000.000.000-00)
+    if (/^(\d)\1+$/.test(cpfNumerico)) {
+      return false;
+    }
+
+    // Algoritmo de validação do CPF
+    let soma = 0;
+    let resto;
+
+    for (let i = 1; i <= 9; i++) {
+      soma = soma + parseInt(cpfNumerico.substring(i - 1, i)) * (11 - i);
+    }
+
+    resto = (soma * 10) % 11;
+
+    if (resto === 10 || resto === 11) {
+      resto = 0;
+    }
+
+    if (resto !== parseInt(cpfNumerico.substring(9, 10))) {
+      return false;
+    }
+
+    soma = 0;
+
+    for (let i = 1; i <= 10; i++) {
+      soma = soma + parseInt(cpfNumerico.substring(i - 1, i)) * (12 - i);
+    }
+
+    resto = (soma * 10) % 11;
+
+    if (resto === 10 || resto === 11) {
+      resto = 0;
+    }
+
+    if (resto !== parseInt(cpfNumerico.substring(10, 11))) {
+      return false;
+    }
+
+    return true;
+  }
+
   const cadastrarDois = (e) => {
     e.preventDefault();
 
@@ -22,33 +74,34 @@ function CadastroUsuario() {
       confirmacaoSenha: e.target.confirmacao_de_senha ? e.target.confirmacao_de_senha.value : ''
     };
 
-        // Validar se todos os campos estão preenchidos
-        const camposPreenchidos = Object.values(dadosSegundaParteLocal).every(value => value.trim() !== '');
-  
-        if (!camposPreenchidos) {
-          toast.error("Por favor, preencha todos os campos.");
-          return;
-        }
+    // Validar se todos os campos estão preenchidos
+    const camposPreenchidos = Object.values(dadosSegundaParteLocal).every(value => value.trim() !== '');
 
-        if(dadosSegundaParteLocal.cpf === "000.000.000-00"){
-          toast.error("CPF inválido")
-          return;
-        }
+    if (!camposPreenchidos) {
+      toast.error("Por favor, preencha todos os campos.");
+      return;
+    }
 
-        // Validar a senha
-        const senhaValida = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(dadosSegundaParteLocal.senha);
-  
-        // Validar se a senha e a confirmação de senha são iguais
-        if (!senhaValida) {
-          toast.error("A senha deve ter pelo menos uma letra maiúscula, uma letra minúscula, um número e ter no mínimo 8 caracteres.");
-          return;
-        }
-      
-        if (dadosSegundaParteLocal.senha !== dadosSegundaParteLocal.confirmacaoSenha) {
-          toast.error("A senha e a confirmação de senha devem ser iguais.");
-          return;
-        }
-      
+    // Validar o CPF
+    if (!validarCPF(dadosSegundaParteLocal.cpf)) {
+      toast.error("CPF inválido");
+      return;
+    }
+
+    // Validar a senha
+    const senhaValida = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(dadosSegundaParteLocal.senha);
+
+    // Validar se a senha e a confirmação de senha são iguais
+    if (!senhaValida) {
+      toast.error("A senha deve ter pelo menos uma letra maiúscula, uma letra minúscula, um número e ter no mínimo 8 caracteres.");
+      return;
+    }
+
+    if (dadosSegundaParteLocal.senha !== dadosSegundaParteLocal.confirmacaoSenha) {
+      toast.error("A senha e a confirmação de senha devem ser iguais.");
+      return;
+    }
+
 
     // Unir os dados das duas partes
     const cadastroCompleto = {
@@ -101,7 +154,11 @@ function CadastroUsuario() {
       return;
     }
 
-
+    // Validar o formato do nome (apenas caracteres alfabéticos e espaços)
+    if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(dadosPrimeiraParte.nome)) {
+      toast.error("Por favor, insira um nome válido.");
+      return;
+    }
     // Armazenar os dados
     setDadosPrimeiraParte(dadosPrimeiraParte);
 

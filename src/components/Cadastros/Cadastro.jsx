@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import "./Cadastro.css";
 import CadastroEsq from "./CadastroEsq";
 import CadastroDire from "./CadastroDire";
