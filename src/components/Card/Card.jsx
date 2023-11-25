@@ -12,13 +12,13 @@ function Card(props){
             </div>
         <h1>{props.titulo}</h1>
         <div className="container-cards">
-        <Link to="/cadastro" className="link-style">
+        <Link to={props.linkUm} className="link-style">
           <div className="card-modal">
             <h2>{props.tituloFirstCard}</h2>
             <img src={props.imgFirstCard} width="150px" height="150px" />
           </div>
           </Link>
-          <Link to="/cadastro-empresa" className="link-style">
+          <Link to={props.linkDois} className="link-style">
           <div className="card-modal border-color">
             <h2>{props.tituloSecondCard}</h2>
             <img src={props.imgSecondCard} width="150px" height="150px" />

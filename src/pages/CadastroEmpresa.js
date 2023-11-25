@@ -48,13 +48,27 @@ function CadastroEmpresa() {
   
     // Unir os dados das duas partes
     const cadastroCompleto = {
-      ...dadosPrimeiraParte,
-      ...dadosSegundaParteLocal,
+      empresa: {
+        nomeFantasia: dadosPrimeiraParte.nomeFantasia,
+        cnpj: dadosPrimeiraParte.cnpj,
+        cep: dadosPrimeiraParte.cep,
+        numero: dadosSegundaParteLocal.numero,
+        cidade: dadosSegundaParteLocal.cidade,
+        estado: dadosPrimeiraParte.estado
+      },
+      funcionario: {
+        nome: dadosPrimeiraParte.nomeResponsavel,
+        email: dadosSegundaParteLocal.email,
+        senha: dadosSegundaParteLocal.senha,
+        cargo: dadosPrimeiraParte.cargo,
+        tipoFuncionario: "Admin",
+        isGerente: true
+      }
     };
   
     console.log(cadastroCompleto);
   
-    api.post("/empresas/", cadastroCompleto)
+    api.post("/empresas", cadastroCompleto)
       .then((res) => {
         // Cadastro bem-sucedido
         Swal.fire({

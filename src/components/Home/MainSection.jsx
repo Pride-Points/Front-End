@@ -2,6 +2,7 @@ import "./home.css";
 import ImgHome from "../../assets/img-home.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import { Link as ScrollLink} from 'react-scroll';
 AOS.init();
 
 function MainSection() {
@@ -15,9 +16,7 @@ function MainSection() {
           o público do seu estabelecimento e o torne um lugar inclusivo.
         </p>
 
-        <button>
-          Conheça
-        </button>
+        <ScrollLink to="WelcomeSection" smooth={true} duration={500} offset={-500}><button>Conheça</button></ScrollLink>
       </div>
 
       <div data-aos="fade-up" data-aos-delay="600" className="imgHome">
