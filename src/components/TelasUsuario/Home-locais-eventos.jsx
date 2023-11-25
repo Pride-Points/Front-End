@@ -4,7 +4,7 @@ import MenuLateral from "./MenuLateral/MenuLateral.jsx"
 import HeaderUsuario from "./HeaderUsuario/HeaderUsuario.jsx"
 import Pointer from "../../assets/icone-Pointer.png"
 import MapSection from './MapSection.jsx';
-import PopUpLocais from './PopUp/PopUpLocais.jsx'
+import PopUpLocais from './PopUp/popUpLocaisEventos.jsx'
 
 
 

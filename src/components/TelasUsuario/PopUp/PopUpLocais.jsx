@@ -2,7 +2,6 @@
 import "./popUpLocais.css"
 import IconePesquisa from '../../../assets/IconePesquisa.png';
 import estrelas from '../../../assets/estrela.png';
-import Home from '../Home-locais'
 
 
 import React, { useState, useEffect } from 'react';
@@ -27,13 +26,13 @@ function PopUpLocais() {
 
                 </div>
                 <div className="opcoes">
-                <Link to="/home-eventos" style={{ textDecoration: 'none', color: 'black' }}>Eventos</Link>
+                <Link to="/home-usuario-eventos-locais" style={{ textDecoration: 'none', color: 'black' }}>Eventos</Link>
 
                 </div>
                 </div>
                 <div className="containesLocais">
              
-                  <div className="containerLocal">
+                  <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }} className="containerLocal">
                     <div className="containerlocalCima">
                     <div className="tituloLocal">
                           empresa.nome
@@ -45,8 +44,8 @@ function PopUpLocais() {
                       <div className="descricaoLocal">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, deserunt.
                       </div>
-                  </div>
-                  <div className="containerLocal">
+                  </Link>
+                  <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }} className="containerLocal">
                     <div className="containerlocalCima">
                     <div className="tituloLocal">
                           empresa.nome
@@ -58,8 +57,8 @@ function PopUpLocais() {
                       <div className="descricaoLocal">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, deserunt.
                       </div>
-                  </div>
-                  <div className="containerLocal">
+                  </Link>
+                  <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }} className="containerLocal">
                     <div className="containerlocalCima">
                     <div className="tituloLocal">
                           empresa.nome
@@ -71,8 +70,8 @@ function PopUpLocais() {
                       <div className="descricaoLocal">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, deserunt.
                       </div>
-                  </div>
-                  <div className="containerLocal">
+                  </Link>
+                  <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }} className="containerLocal">
                     <div className="containerlocalCima">
                     <div className="tituloLocal">
                           empresa.nome
@@ -84,8 +83,8 @@ function PopUpLocais() {
                       <div className="descricaoLocal">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, deserunt.
                       </div>
-                  </div>
-                  <div className="containerLocal">
+                  </Link>
+                           <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }} className="containerLocal">
                     <div className="containerlocalCima">
                     <div className="tituloLocal">
                           empresa.nome
@@ -97,20 +96,7 @@ function PopUpLocais() {
                       <div className="descricaoLocal">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, deserunt.
                       </div>
-                  </div>
-                  <div className="containerLocal">
-                    <div className="containerlocalCima">
-                    <div className="tituloLocal">
-                          empresa.nome
-                      </div>
-                      <div className="estrelasLocal">
-                      <img src={estrelas} alt="Quantidade de estrelas, esse estabelecimento tem 3 estrelas" />
-                      </div>
-                    </div>
-                      <div className="descricaoLocal">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, deserunt.
-                      </div>
-                  </div>
+                  </Link>
                   
                 </div>
               </div>
