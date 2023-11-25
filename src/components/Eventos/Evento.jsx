@@ -15,6 +15,11 @@ import calendarIcon from '../../assets/icon-calendar.svg';
 
 
 function Evento() {
+    const [modalAberto, setModalAberto] = useState(false);
+
+    const abrirModal = () => setModalAberto(true);
+    const fecharModal = () => setModalAberto(false);
+
     return (
         <div className='corpo'>
             <header className='header-pos-logon'>
@@ -97,12 +102,41 @@ function Evento() {
                     </span>
                     <h1>Crie seus eventos!</h1>
 
-                    <button className='butao'>
+                    <button className='botaoPadraoEmpresa' onClick={abrirModal}>
                         Criar
                     </button>
 
                 </div>
 
+                {modalAberto && (
+                    <div className="modalEmpresa">
+
+
+                        <div className="modalContainer">
+                            <div className='boxModal'>
+                                <div className="modalHeader">
+                                    <h1>Criar evento</h1>
+                                    <button onClick={fecharModal}>X</button>
+                                </div>
+                                <div className="modalBody">
+                                    <form className="formModal">
+                                        <label>Nome do evento</label>
+                                        <input type="text" placeholder="Nome do evento" />
+                                        <label>Descrição</label>
+                                        <textarea type="text" placeholder="Descrição" />
+                                        <label>Local</label>
+                                        <input type="text" placeholder="Local" />
+                                        <label>Data</label>
+                                        <input type="date" placeholder="Data" />
+                                    </form>
+                                </div>
+                                <div className="modalFooter">
+                                    <button className='botaoPadraoEmpresa' onClick={fecharModal}>Criar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
             </div>
         </div>

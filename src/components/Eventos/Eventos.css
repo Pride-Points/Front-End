@@ -95,6 +95,10 @@ position: relative;
 }
 
 .titulo{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 90px 0 40px 100px;
 }
 
@@ -130,8 +134,7 @@ position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 0;
-
+    height: 50vh;
     gap: 10px;
 }
 
@@ -143,7 +146,7 @@ position: relative;
     font-size: 20px;
 }
 
-.butao {
+.botaoPadraoEmpresa {
     background-color: #4200A1;
     color: #fff;
     font-size: 20px;
@@ -154,3 +157,26 @@ position: relative;
     height: 50px;
     padding: 0 80px;
   }
+
+  .modalEmpresa{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; 
+  }
+
+  .boxModal{
+    background-color: white;
+    width: 500px;
+  }
+  .modalContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  } 
+
+  

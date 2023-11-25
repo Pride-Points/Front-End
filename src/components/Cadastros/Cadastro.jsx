@@ -7,6 +7,7 @@ import barraProgressoInicio from "../../assets/progress-inicio.png";
 import barraProgressoDois from "../../assets/progress-dois.png";
 import imgFormUser from "../../assets/img-form-usuario.png";
 import { Link } from 'react-router-dom';
+
 function Cadastro(props) {
   
   const [mostrarSegundaParteCad, setMostrarSegundaParteCad] = useState(false);
