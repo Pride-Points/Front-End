@@ -22,8 +22,8 @@ function MenuLateral() {
           <ul>
             <li>
               <Link
-                to="/home "
-                className={location.pathname === "/home" ? "active" : ""}>
+                to="/home-usuario "
+                className={location.pathname === "/home-usuario" ? "active" : ""}>
                 <img src={iconMapa} alt="icone mapa" /> Mapa
               </Link>
             </li>
