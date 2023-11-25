@@ -1,9 +1,9 @@
 import React from "react";
-import Evento from "../components/Eventos/Evento";
+import EventoEmpresa from "../components/Eventos/EventosEmpresa.jsx";
 
 function Eventos() {
     return(
-    <Evento/>
+    <EventoEmpresa/>
     );  
 }
 
