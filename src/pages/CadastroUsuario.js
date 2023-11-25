@@ -111,7 +111,7 @@ function CadastroUsuario() {
 
     console.log(cadastroCompleto);
 
-    api.post("/", cadastroCompleto)
+    api.post("/users/", cadastroCompleto)
       .then((res) => {
         // Cadastro bem-sucedido
         Swal.fire({
@@ -124,7 +124,7 @@ function CadastroUsuario() {
         }).then((result) => {
           if (result.isConfirmed) {
             // Redirecionar para a página de login ou executar a lógica de login
-            navigate('/')
+            navigate('/login')
           } else {
             // Lógica a ser executada se o usuário escolher "Não"
             navigate('/')

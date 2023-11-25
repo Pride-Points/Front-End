@@ -50,7 +50,7 @@ function MenuLateral() {
         <Link to="/Mapa">
           <img src={iconHelpDesk} alt="icone de help desk" /> Help
         </Link>
-        <Link to="/Mapa">
+        <Link to="/">
           <img src={iconSair} alt="icone sair" /> Sair
         </Link>
       </div>

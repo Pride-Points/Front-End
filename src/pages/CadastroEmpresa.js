@@ -54,7 +54,7 @@ function CadastroEmpresa() {
   
     console.log(cadastroCompleto);
   
-    api.post("/", cadastroCompleto)
+    api.post("/empresas/", cadastroCompleto)
       .then((res) => {
         // Cadastro bem-sucedido
         Swal.fire({
