@@ -26,7 +26,7 @@ function Home() {
         <main className="content-up">
           <div className="tituloHome">
             <div className="containerTitulo">
-              <h1>Olá, usuario</h1>
+              <h1>Olá, {sessionStorage.usuario}</h1>
               <div className="subtituloHome">Encontre lugares inclusivos para você</div></div>
 
             <div className="botaoPaulista">

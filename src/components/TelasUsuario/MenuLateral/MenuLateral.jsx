@@ -50,8 +50,10 @@ function MenuLateral() {
         <Link to="/Mapa">
           <img src={iconHelpDesk} alt="icone de help desk" /> Help
         </Link>
-        <Link to="/">
-          <img src={iconSair} alt="icone sair" /> Sair
+        <Link to="/" onClick={() => 
+            sessionStorage.clear()
+          }>
+          <img src={iconSair} alt="icone sair"/> Sair
         </Link>
       </div>
     </aside>

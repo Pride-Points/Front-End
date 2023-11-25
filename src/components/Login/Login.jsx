@@ -81,7 +81,7 @@ function Login(){
           sessionStorage.setItem('usuario', response.data.nome);
 
           toast.success('Login realizado com sucesso!');
-          navigate('/');
+          navigate('/home-usuario');
         } else {
           throw new Error('Ops! Ocorreu um erro interno.');
         }

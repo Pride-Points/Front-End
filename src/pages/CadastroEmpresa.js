@@ -51,7 +51,7 @@ function CadastroEmpresa() {
       empresa: {
         nomeFantasia: dadosPrimeiraParte.nomeFantasia,
         cnpj: dadosPrimeiraParte.cnpj,
-        cep: dadosPrimeiraParte.cep,
+        cep: dadosPrimeiraParte.cep.replace('-', ''),
         numero: dadosSegundaParteLocal.numero,
         cidade: dadosSegundaParteLocal.cidade,
         estado: dadosPrimeiraParte.estado
@@ -62,7 +62,8 @@ function CadastroEmpresa() {
         senha: dadosSegundaParteLocal.senha,
         cargo: dadosPrimeiraParte.cargo,
         tipoFuncionario: "Admin",
-        isGerente: true
+        isGerente: true,
+        isAtivo: true
       }
     };
   
@@ -81,7 +82,7 @@ function CadastroEmpresa() {
         }).then((result) => {
           if (result.isConfirmed) {
             // Redirecionar para a página de login ou executar a lógica de login
-            navigate('/');
+            navigate('/dash');
           } else {
             // Lógica a ser executada se o usuário escolher "Não"
             navigate('/');
