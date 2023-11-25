@@ -13,7 +13,7 @@ function ModalAvaliacao({ onClose, mostrarModal }) {
         <div>
             {/* Modal */}
             {mostrarModal && (
-                <div className="modal">
+                <div className="modal2">
                     <div className="conteudoModal">
                         <div className="headerModal">
                             <img onClick={fecharModal} src={closeModal} alt="Botão para fechar modal" />

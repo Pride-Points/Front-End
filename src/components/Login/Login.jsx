@@ -137,6 +137,8 @@ function Login(){
         imgFirstCard={imgUser}
         tituloSecondCard="Um participante dono de um negócio"
         imgSecondCard={imgNegocio}
+        linkUm={"/cadastro"}
+        linkDois={"/cadastro-empresa"}
         />
       </Modal>
       <Modal

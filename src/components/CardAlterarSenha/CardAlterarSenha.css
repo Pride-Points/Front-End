@@ -1,23 +1,23 @@
-.container{
+.container-senha{
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 }
 
-.container h1{
+.container-senha h1{
     margin-bottom: 2px;
 }
 
-.container p{
+.container-senha p{
     margin-bottom: 15.51px;
 }
 
-.container hr{
+.container-senha hr{
     margin-bottom: 16.49px;
 }
 
-.container button{
+.container-senha button{
     background-color: #4200A1;
     color: #ffff;
     width: 412px;

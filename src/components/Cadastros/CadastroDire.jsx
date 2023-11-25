@@ -20,6 +20,8 @@ function CadastroDire(props) {
     numero: '',
     // Adicione outros campos da segunda parte conforme necessário
   });
+  const [cepFilled, setCepFilled] = useState(false); // Novo estado para verificar se o CEP foi preenchido
+
 
   const navigate = useNavigate();
 
@@ -45,10 +47,10 @@ function CadastroDire(props) {
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
     setInputValues(newInputValues);
-  
+
     if (removeSpacesAndAccents(props.inputTitles[index]) === 'cep') {
       const cepDetails = await fetchCepDetails(value.replace(/\D/g, ''));
-  
+
       if (cepDetails) {
         // Preencha os campos com os detalhes do CEP
         setInputValues((prevValues) => ({
@@ -63,6 +65,9 @@ function CadastroDire(props) {
           numero: cepDetails.numero,
           // Adicione outros campos conforme necessário
         }));
+
+        // Atualiza o estado para indicar que o CEP foi preenchido
+        setCepFilled(true);
       }
     }
   };
@@ -205,10 +210,11 @@ function CadastroDire(props) {
             <input
               type="text"
               name={removeSpacesAndAccents(title)}
-              value={inputValues.estado || ''}
+              value={cepFilled ? inputValues.estado || '' : ''}
               onChange={(e) => handleInputChange(index, e.target.value)}
+              disabled={cepFilled} // Define o campo como desabilitado se o CEP foi preenchido
             />
-          ) :  (
+          ) : (
             <input
               type="text"
               name={removeSpacesAndAccents(title)}
