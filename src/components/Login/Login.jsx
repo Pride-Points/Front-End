@@ -67,7 +67,7 @@ function Login(){
 
     console.log(dadosLogin);
 
-    api.post('/login', {
+    api.post('/users/login', {
       email: dadosLogin.email,
       senha: dadosLogin.senha
     }, {

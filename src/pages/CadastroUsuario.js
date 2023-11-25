@@ -105,13 +105,18 @@ function CadastroUsuario() {
 
     // Unir os dados das duas partes
     const cadastroCompleto = {
-      ...dadosPrimeiraParte,
-      ...dadosSegundaParteLocal
+      nome: dadosPrimeiraParte.nome,
+      senha: dadosSegundaParteLocal.senha,
+      email: dadosSegundaParteLocal.email,
+      orientacaoSexual: dadosPrimeiraParte.orientacaoSexual,
+      genero: dadosPrimeiraParte.genero,
+      cpf: dadosSegundaParteLocal.cpf,
+      dtNascimento: dadosPrimeiraParte.dataDeNascimento,
     };
 
     console.log(cadastroCompleto);
 
-    api.post("/users/", cadastroCompleto)
+    api.post("/users", cadastroCompleto)
       .then((res) => {
         // Cadastro bem-sucedido
         Swal.fire({
@@ -144,7 +149,8 @@ function CadastroUsuario() {
     const dadosPrimeiraParte = {
       nome: e.target.nome ? e.target.nome.value : '',
       genero: e.target.genero ? e.target.genero.value : '',
-      orientacaoSexual: e.target.orientacao_sexual ? e.target.orientacao_sexual.value : ''
+      orientacaoSexual: e.target.orientacao_sexual ? e.target.orientacao_sexual.value : '',
+      dataDeNascimento: e.target.data_de_nascimento ? e.target.data_de_nascimento.value : ''
     };
     console.log(dadosPrimeiraParte)
 
@@ -175,7 +181,7 @@ function CadastroUsuario() {
     <Cadastro
       MTbarraUm={"92.77px"}
       MBbarraUm={"80px"}
-      inputTitlesUm={['Nome', 'Gênero', 'Orientação Sexual']}
+      inputTitlesUm={['Nome', 'Gênero', 'Orientação Sexual', 'Data de Nascimento']}
       tituloUm="Seja Membro!"
       subtituloUm="Faça parte do projeto e aproveite benefícios exclusivos."
       tituloBotaoUm="Continuar"
