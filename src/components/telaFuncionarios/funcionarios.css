@@ -1,355 +1,435 @@
 /* Estilo para o conteúdo principal */
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 /*-----------------Header-----------------*/
 
 .header-pos-logon {
-    background-color: #ffffff;
-    /* Cor de fundo do cabeçalho */
-    color: #000000;
-    /* Cor do texto no cabeçalho */
-    height: 50px;
-    /* Altura do cabeçalho fino */
-    display: flex;
-    justify-content: right;
-    /* Centraliza o texto horizontalmente */
-    align-items: center;
-    /* Centraliza o texto verticalmente */
-    border-bottom: 1px solid #E6EDFF;
+  background-color: #ffffff;
+  /* Cor de fundo do cabeçalho */
+  color: #000000;
+  /* Cor do texto no cabeçalho */
+  height: 50px;
+  /* Altura do cabeçalho fino */
+  display: flex;
+  justify-content: right;
+  /* Centraliza o texto horizontalmente */
+  align-items: center;
+  /* Centraliza o texto verticalmente */
+  border-bottom: 1px solid #e6edff;
 }
 
 .header-pos-logon h1 {
-    margin-bottom: 15px;
-    padding: 0;
-    font-size: 16px;
-
+  margin-bottom: 15px;
+  padding: 0;
+  font-size: 16px;
 }
 
 .imgheader {
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
-    margin-bottom: 15px;
-    vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-bottom: 15px;
+  vertical-align: middle;
 }
 
 /*--------------Menu lateral--------------*/
 
 .menu-lateral {
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    padding: 20px;
-    color: #fff;
-    border-right: 1px solid #E6EDFF;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  padding: 20px;
+  color: #fff;
+  border-right: 1px solid #e6edff;
 }
 
 .logo-container {
-    padding: 5px;
+  padding: 5px;
 }
 
 .logo {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .menu-lateral ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .menu-lateral ul li {
-    margin-bottom: 20px;
-    margin-left: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 
-
-
 .menu-lateral a {
-    text-decoration: none;
-    color: #000000;
-    display: flex;
-    /*flex para manter o ícone e o texto lado a lado */
-    align-items: center;
+  text-decoration: none;
+  color: #000000;
+  display: flex;
+  /*flex para manter o ícone e o texto lado a lado */
+  align-items: center;
 }
 
 .logo-item {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
-    vertical-align: middle;
-    color: #1e1e1e;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+  color: #1e1e1e;
 }
 
-
-
-
 .primeiro-menu {
-    position: relative;
+  position: relative;
 }
 
 .segundo-menu {
-    position: absolute;
-    bottom: 0;
+  position: absolute;
+  bottom: 0;
 }
-
 
 /*-----------------Página-----------------*/
 .conteudo {
-    margin-left: 250px;
+  margin-left: 250px;
 }
 
 .titulo {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 90px 0 40px 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 90px 0 40px 100px;
 }
 
 .titulo h1 {
-    color: #5800D6;
-    font-size: 35px;
+  color: #5800d6;
+  font-size: 35px;
 }
 
 .titulo h2 {
-    font-size: 15px;
+  font-size: 15px;
 }
 
-
 .search-icon {
-    width: 15%;
+  width: 15%;
 }
 
 .itens {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50vh;
+  gap: 10px;
+  margin: 0 100px;
 }
 
 .calendario {
-    transform: scale(0.8);
+  transform: scale(0.8);
 }
 
 .itens h1 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .botaoPadraoEmpresa {
-    background-color: #4200A1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 700;
-    width: 10%;
-    border-radius: 6px;
-    border: #4200A1;
-    cursor: pointer;
-    height: 50px;
-    padding: 0 80px;
-    margin-top: 20px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #5800d6;
+  font-size: 20px;
+  font-weight: 700;
+  width: 10%;
+  border-radius: 12px;
+  border: 1px solid #5800d6;
+  cursor: pointer;
+  height: 50px;
+  padding: 0 80px;
+  margin-top: 20px;
 }
 
 .SearchContent {
-    display: flex;
-    margin-left: 90px;
-    margin-right: 20px;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
+  display: flex;
+  margin: 0 100px;
+  justify-content: center;
+  align-items: center;
 }
 
 .SearchContent .top {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-bottom: 56px;
-    gap: 35px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 56px;
+  gap: 35px;
 }
 
 .SearchContent .top .search {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
 }
 
 .SearchContent .top .search input {
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid #9ba5b7;
-    height: 51px;
-    background: #fff;
-    padding: 14px 42px;
-    font-size: 15px;
-    font-weight: 400;
-    color: #7b7575;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #9ba5b7;
+  height: 51px;
+  background: #fff;
+  padding: 14px 42px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #7b7575;
 }
 
 .SearchContent .top .search img {
-    position: absolute;
-    right: 20px;
-    top: 20%;
+  position: absolute;
+  right: 20px;
+  top: 20%;
 }
 
 .SearchContent .top .filtro button {
-    border-radius: 12px;
-    border: 1px solid #9ba5b7;
-    background-color: transparent;
-    display: flex;
-    height: 51px;
-    padding: 0 10px;
-    font-size: 20px;
-    font-weight: 400;
-    color: #1e1e1e;
-    line-height: 150%;
-    /* 30px */
-    margin-right: 66px;
-    cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid #9ba5b7;
+  background-color: transparent;
+  display: flex;
+  height: 51px;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #1e1e1e;
+  line-height: 150%;
+  /* 30px */
+  margin-right: 0;
+  cursor: pointer;
 }
 
-
 .modalEmpresa {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
-    /* fundo escuro translúcido */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  /* fundo escuro translúcido */
 }
 
 .modalContainer {
-    width: 685px;
-height: 535px;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
+  width: 685px;
+  height: 535px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .boxModal {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .modalHeader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    color: #1e1e1e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding: 1rem;
+  color: #1e1e1e;
+  position: relative;
 }
 
+.modalHeader button{
+    background-color: transparent;
+    border: 0;
+    font-size: 25px;
+    position: absolute;
+    right: 50px;
+    top: 20px;
+  }
+
 .modalHeader h1 {
-    margin: 0;
+  margin: 0;
 }
 
 .modalBody {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .formModal {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .formModal label {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
 }
 
 .formModal input {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .botoes-formulario {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
 
 .botoes-formulario button {
-    background-color: #4200A1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 700;
-    width: 10%;
-    border-radius: 6px;
-    border: #4200A1;
-    cursor: pointer;
-    height: 50px;
-    padding: 0 80px;
-    margin-top: 20px;
+  background-color: #4200a1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  width: 10%;
+  border-radius: 6px;
+  border: #4200a1;
+  cursor: pointer;
+  height: 50px;
+  padding: 0 80px;
+  margin-top: 20px;
 }
-
-
 
 /* cards */
 
 .card {
-   height: 40%;
-   width: 50%;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 16px;
-    text-align: center;
-    gap: 10%;
+  width: 100%;
+  height: fit-content;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  gap: 10%;
+  margin-bottom: 23px;
+  justify-content: space-between;
 }
 
 .card-image {
-    width: 125px;
-    height: 116px;
-    border-radius: 10px;
+  width: 125px;
+  height: 116px;
+  border-radius: 10px;
 }
 
 .card-content {
-    text-align: left;
-    /* Alinhamento do texto à esquerda */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* Alinhamento do texto à esquerda */
 }
 
 .card-title {
-    margin: 8px 0;
-    font-size: 1.5em;
+  margin: 8px 0;
+  font-size: 1.5em;
 }
 
 .card-paragraph {
-    margin: 8px 0;
+  margin: 8px 0;
 }
 
 .card-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
 }
 
-.edit-button,
-.delete-button {
-    flex: 1;
-    padding: 8px;
-    margin: 4px;
-    background-color: #4200A1;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
+.edit-button {
+  flex: 1;
+  padding: 8px;
+  margin-right: 15px;
+  border-radius: 12px;
+  background: #5800d6;
+  height: 36px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.modal-cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    max-width: 800px;
+    padding: 40px 80px;
+}
+
+.modal-cadastro-overlay{
+    position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-cadastro h1{
+    font-size: 40px;
+    margin-bottom: 45px;
+}
+
+.close{
+    display: flex;
+    width: 100%;
+    align-items: end;
+    justify-content: end;
     cursor: pointer;
+}
+
+.container-cards{
+    display: flex;
+    flex-direction: row;
+    gap: 120.91px;
+}
+
+.card-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 222.55px;
+    height: 300px;
+    text-align: center;
+
+    border: 4px solid #000;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.border-color{
+    border: 4px solid #000;
+}
+
+.card-modal h2{
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.link-style{
+    text-decoration: none;
+    color: inherit;
 }

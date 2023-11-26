@@ -114,7 +114,7 @@ function Evento() {
 
                         <div className="modalContainer">
                             <div className='boxModal'>
-                                <div className="modalHeader">
+                                <div className="modalHeaderEventos">
                                     <h1>Criar evento</h1>
                                     <button onClick={fecharModal}>X</button>
                                 </div>
