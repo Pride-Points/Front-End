@@ -5,6 +5,7 @@ import Logo from "../../assets/logo.png";
 import IconFacebook from "../../assets/icon-facebook.svg";
 import IconTwitter from "../../assets/icon-twitter.svg";
 import IconInstagram from "../../assets/icon-instagram.svg";
+import { Link as ScrollLink} from 'react-scroll';
 
 function Footer() {
   return (
@@ -48,9 +49,9 @@ function Footer() {
         <div className="center">
           <nav>
             <ul>
-              <li>Sobre o projeto</li>
-              <li>Para você</li>
-              <li>Para seu negócio</li>
+            <li><ScrollLink to="WelcomeSection" smooth={true} duration={500} offset={-250}>Sobre o projeto</ScrollLink></li>
+            <li><ScrollLink to="ParaVoce" smooth={true} duration={500} offset={-240}>Para você</ScrollLink></li>
+            <li><ScrollLink to="ParaSeuNegocio" smooth={true} duration={500} offset={-220}>Para seu negócio</ScrollLink></li>
             </ul>
           </nav>
         </div>

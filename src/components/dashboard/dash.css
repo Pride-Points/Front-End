@@ -28,6 +28,7 @@
 
 
 .card-dad {
+    width: 94%;
     padding: 0px;
     border-radius: 12px;
     border: 1px solid var(--Secondary, #9BA5B7);

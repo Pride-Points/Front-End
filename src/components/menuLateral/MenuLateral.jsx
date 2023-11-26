@@ -27,7 +27,7 @@ function MenuLateral() {
             </li>
             <li>
               <Link to="/eventos" className={location.pathname === '/eventos' ? 'active' : ''}>
-                <img src={iconEventos} alt="icone eventos" /> eventos
+                <img src={iconEventos} alt="icone eventos" /> Eventos
               </Link>
             </li>
             <li>
@@ -43,7 +43,7 @@ function MenuLateral() {
         <Link to="/Mapa">
           <img src={iconHelpDesk} alt="icone de help desk" /> Help
         </Link>
-        <Link to="/Mapa">
+        <Link to="/" onClick={() => sessionStorage.clear()}>
           <img src={iconSair} alt="icone sair" /> Sair
         </Link>
       </div>

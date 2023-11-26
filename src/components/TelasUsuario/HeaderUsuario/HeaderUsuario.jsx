@@ -7,7 +7,7 @@ function HeaderUsuario(){
   return(
     <header className="headerUsuario">
       <div className="usuario">
-        <label> usuario.nome</label>
+        <label> {sessionStorage.usuario}</label>
         <img src={imgUser} alt=" imagem usuário" />
       </div>
       

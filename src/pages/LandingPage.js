@@ -7,6 +7,8 @@ import Card from "../components/Card/Card";
 import Modal from "react-modal";
 import imgUser from "../assets/img-usuario.png"
 import imgNegocio from "../assets/img-negocio.png"
+import imgExplorar from "../assets/image-explorar.png"
+import imgLogin from "../assets/image-login.png"
 import ScrollToTop from "react-scroll-up";
 
 
@@ -28,9 +30,16 @@ const customStyles = {
 
 function LandingPage() {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpenDois, setIsOpenDois] = useState(false);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+
+    // Função de callback para o clique do botão em Home
+    const handleHomeButtonClick = (valor) => {
+      // Faça algo com o valor recebido de Home
+      setIsOpenDois(valor);
+    };
 
   return (
     <div className="App">
@@ -47,7 +56,9 @@ function LandingPage() {
 }}>
         <span>UP</span>
       </ScrollToTop>
-      <Home />
+      <Home
+      onButtonClickLandingPage={handleHomeButtonClick} 
+      />
       <Footer />
       <Modal
         isOpen={modalIsOpen}
@@ -62,9 +73,29 @@ function LandingPage() {
         imgFirstCard={imgUser}
         tituloSecondCard="Um participante dono de um negócio"
         imgSecondCard={imgNegocio}
+        linkUm={"/cadastro"}
+        linkDois={"/cadastro-empresa"}
         />
       </Modal>
 
+      <Modal
+        isOpen={modalIsOpenDois}
+        contentLabel="Example Modal"
+        style={customStyles}
+        onRequestClose={closeModal}
+      >
+        <Card
+        isOpen={() => {setIsOpenDois(false)}}
+        titulo="Como deseja seguir?"
+        tituloFirstCard="Explorar sem fazer login"
+        imgFirstCard={imgExplorar}
+        tituloSecondCard="Fazer login ou se cadastrar"
+        imgSecondCard={imgLogin}
+        linkUm={"/explorador"}
+        linkDois={"/login"}
+        />
+      </Modal>
+    
     </div>
   );
 }

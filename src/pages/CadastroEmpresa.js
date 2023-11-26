@@ -48,13 +48,28 @@ function CadastroEmpresa() {
   
     // Unir os dados das duas partes
     const cadastroCompleto = {
-      ...dadosPrimeiraParte,
-      ...dadosSegundaParteLocal,
+      empresa: {
+        nomeFantasia: dadosPrimeiraParte.nomeFantasia,
+        cnpj: dadosPrimeiraParte.cnpj,
+        cep: dadosPrimeiraParte.cep.replace('-', ''),
+        numero: dadosSegundaParteLocal.numero,
+        cidade: dadosSegundaParteLocal.cidade,
+        estado: dadosPrimeiraParte.estado
+      },
+      funcionario: {
+        nome: dadosPrimeiraParte.nomeResponsavel,
+        email: dadosSegundaParteLocal.email,
+        senha: dadosSegundaParteLocal.senha,
+        cargo: dadosPrimeiraParte.cargo,
+        tipoFuncionario: "Admin",
+        isGerente: true,
+        isAtivo: true
+      }
     };
   
     console.log(cadastroCompleto);
   
-    api.post("/empresas/", cadastroCompleto)
+    api.post("/empresas", cadastroCompleto)
       .then((res) => {
         // Cadastro bem-sucedido
         Swal.fire({
@@ -67,7 +82,7 @@ function CadastroEmpresa() {
         }).then((result) => {
           if (result.isConfirmed) {
             // Redirecionar para a página de login ou executar a lógica de login
-            navigate('/');
+            navigate('/login');
           } else {
             // Lógica a ser executada se o usuário escolher "Não"
             navigate('/');
