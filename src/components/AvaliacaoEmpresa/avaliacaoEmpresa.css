@@ -1,0 +1,310 @@
+.conteudo {
+    margin-left: 250px;
+}
+
+.titulo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 90px 0 40px 100px;
+}
+
+.titulo h1 {
+    color: #5800D6;
+    font-size: 35px;
+}
+
+.titulo h2 {
+    font-size: 15px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.bar-input {
+    padding: 15px;
+    width: 80%;
+    font-size: 17px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.search-icon {
+    width: 15%;
+}
+
+.itens {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    gap: 10px;
+}
+
+.calendario {
+    transform: scale(0.8);
+}
+
+.itens h1 {
+    font-size: 20px;
+}
+
+.botaoPadraoEmpresa {
+    background-color: #4200A1;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 6px;
+    border: #4200A1;
+    cursor: pointer;
+    height: 50px;
+    padding: 0 80px;
+}
+
+.modalEmpresa {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.boxModal {
+    background-color: white;
+    width: 500px;
+}
+
+.modalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.conteudo {
+    margin-left: 250px;
+    margin-top: 48px;
+}
+
+/*----------------------------meu css----------------------------------*/
+
+.titulo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 55px 0 40px 100px;
+}
+
+.titulo h1 {
+    color: #5800D6;
+    font-size: 35px;
+}
+
+.titulo h2 {
+    font-size: 15px;
+}
+
+.titles {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    margin: 1% 0 1% 60%;
+    display: flex;
+    gap: 15px;
+    height: 48px;
+    width: 141px;
+    cursor: pointer;
+    border-radius: 12px;
+    border: 1px solid var(--Secondary, #9BA5B7);
+    justify-content: center;
+    align-items: center;
+}
+
+.filtro {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.coments {
+    margin-left: 10%;
+    font-weight: 400;
+    font-size: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.locais {
+    text-decoration: underline;
+    width: 15%;
+    font-size: 20px;
+}
+
+.star-container {
+    font-size: 25px;
+    margin-left: 45%;
+    margin-right: 7px;
+}
+
+.star-filled {
+    color: gold;
+}
+
+.comments-description {
+    width: 85%;
+    border-radius: 10px;
+    display: flex;
+    margin: 13px 13px 13px 90px;
+    border: 1px solid black;
+    padding: 3%;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.comments-description p {
+    margin-top: 7px;
+}
+
+.comments-description h5 {
+    font-size: 12px;
+    color: #999;
+    margin: 0 0 0 86%;
+}
+
+.comments-description .answered {
+    padding: 7px;
+    border-left: 1px solid #9BA5B7;
+}
+
+.description {
+    overflow-y: auto;
+    width: 65%;
+    height: 60vh;
+}
+
+.container-coments h3 {
+    color: rgba(30, 30, 30, 0.60);
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-size: 10px;
+}
+
+.comments-description .perfil {
+    width: 71px;
+    height: 71px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.notas {
+    display: flex;
+}
+
+.overview {
+    width: 35%;
+    height: 62vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.overview .media {
+    color: #000;
+    font-size: 42px;
+    height: 6%;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.stars {
+    display: flex;
+    width: 30%;
+    padding: 10px;
+    flex-direction: row-reverse;
+}
+
+.mediaComentarios {
+    color: rgba(0, 0, 0, 0.67);
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 15px */
+    margin-bottom: 5px;
+    width: 50%;
+}
+
+.overview h4 {
+    color: #000;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 18px */
+}
+
+.quantidade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.coluna {
+    display: flex;
+    width: 21vw;
+    border-radius: 15px;
+    background-color: #efa9ffa2;
+
+}
+
+.preenchido {
+    background-color: #EFA9FF;
+    border-radius: 15px;
+    width: 23%;
+ 
+}
+
+.quantidade-comentarios p{
+    margin: 4% 0 0 0;
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 15px */
+}
+
+.stats{
+    gap: 70%;
+    display: flex;
+}
+
+.quantidade-comentarios h3{
+    height: 10px;
+    margin-top: 14px;
+    color: #000;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 116%;
+}
+
