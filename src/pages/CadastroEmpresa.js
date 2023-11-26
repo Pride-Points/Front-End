@@ -82,7 +82,7 @@ function CadastroEmpresa() {
         }).then((result) => {
           if (result.isConfirmed) {
             // Redirecionar para a página de login ou executar a lógica de login
-            navigate('/dash');
+            navigate('/login');
           } else {
             // Lógica a ser executada se o usuário escolher "Não"
             navigate('/');

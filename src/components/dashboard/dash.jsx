@@ -9,16 +9,15 @@ function Dash() {
 
         <div className="container">
 
-            <div className="content-right">
-                <HeaderUsuario />
-            </div>
+
 
             <div className="content-left">
                 <MenuLateral />
             </div>
 
             <div className="container-widdle">
-                <DashContent />
+            <HeaderUsuario />
+            <DashContent />
             </div>
 
         </div>
