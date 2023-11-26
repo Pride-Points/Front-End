@@ -12,6 +12,8 @@ import { Element } from 'react-scroll';
 function Home() {
   return (
     <main>
+
+
       <MainSection />
       <Element name="WelcomeSection">
         <WelcomeSection />

@@ -29,6 +29,7 @@ function SearchContentEmpresa(props) {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  console.log(props.eventos);
 
 
   return (
@@ -46,7 +47,7 @@ function SearchContentEmpresa(props) {
       </div>
 
       <div className="bottom">
-        {props.eventos &&
+        {props.eventos.length > 0 && (
           props.eventos.map((evento, index) =>
             props.isClickable ? (
               <button onClick={openModal}>
@@ -70,7 +71,9 @@ function SearchContentEmpresa(props) {
                 isClickable={false}
               />
             )
-          )}
+          )
+        )}
+          
       </div>
 
       <Modal
