@@ -180,14 +180,14 @@
   overflow-y: scroll;
 }
 
-.boxModal .modalHeaderEventos {
+.boxModal .modalHeader {
   background-color: #1e1e1e;
   width: 100%;
   height: 185px;
   position: relative;
 }
 
-.boxModal .modalHeaderEventos button {
+.boxModal .modalHeader button {
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -219,12 +219,10 @@ textarea {
   flex-direction: column;
   align-items: center;
 }
-
 .boxModal .modalBody img {
   margin-top: -60px;
   z-index: 1;
 }
-
 
 .boxModal .modalBody form {
   width: 100%;
@@ -251,5 +249,4 @@ textarea {
 .boxModal .modalFooter button {
   border-radius: 12px;
   background-color: #5800d6;
-  color: #fff;
 }
