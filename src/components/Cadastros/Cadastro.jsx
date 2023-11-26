@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import "./Cadastro.css";
 import CadastroEsq from "./CadastroEsq";
 import CadastroDire from "./CadastroDire";
@@ -7,18 +6,14 @@ import barraProgressoInicio from "../../assets/progress-inicio.png";
 import barraProgressoDois from "../../assets/progress-dois.png";
 import imgFormUser from "../../assets/img-form-usuario.png";
 import { Link } from 'react-router-dom';
-function Cadastro(props) {
-  
-  const [mostrarSegundaParteCad, setMostrarSegundaParteCad] = useState(false);
 
-  const handleContinuarClick = () => {
-    setMostrarSegundaParteCad(true);
-  };
+function Cadastro(props) {
+
 
   const renderizarComponente = () => {
+    const minhaTag = <Link className="login" to="/login">Faça login</Link>;
 
-  const minhaTag = <Link className="login" to="/login">Faça login</Link>
-    if (mostrarSegundaParteCad) {
+    if (props.mostrarSegundaParteCad) {
       return (
         <CadastroDire
           quantity={props.quantityDois}
@@ -31,6 +26,7 @@ function Cadastro(props) {
           subtitulo={props.subtituloDois}
           textoFinalUm="Já possui conta?"
           tagTextoFinal={minhaTag}
+          handleButtonClick={props.cadastrarDois}
         />
       );
     } else {
@@ -44,9 +40,9 @@ function Cadastro(props) {
           titulo={props.tituloUm}
           subtitulo={props.subtituloUm}
           tituloBotao={props.tituloBotaoUm}
-          onButtonClick={handleContinuarClick}
           textoFinalUm="Já possui conta?"
           tagTextoFinal={minhaTag}
+          handleButtonClick={props.cadastrarUm}
         />
       );
     }

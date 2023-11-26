@@ -4,10 +4,10 @@ import MapSection from "./MapSection";
 
 function Map() {
   return (
-    <main className="main">
+    <div className="main">
       <CommentSection />
       <MapSection />
-    </main>
+    </div>
   );
 }
 

@@ -1,4 +1,5 @@
 import "./home.css";
+import { useNavigate } from 'react-router-dom'; 
 
 function UserSectionDefault({
   title,
@@ -6,13 +7,25 @@ function UserSectionDefault({
   textButton,
   imgSrc,
   imgPosition,
+  onButtonClick
 }) {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    // Verifica se o título é "Para você!" ou "Para seu estabelecimento!"
+    if (title === "Para você!") {
+      onButtonClick(true);
+    } else if (title === "Para seu estabelecimento!") {
+      // Redireciona para a página de cadastro da empresa
+      navigate('/cadastro-empresa');
+    }
+  };
+
   return imgPosition === "right" ? (
     <div className="userSectionDefault">
       <div className="text">
         <h2>{title}</h2>
         <p>{description}</p>
-        <button>{textButton}</button>
+        <button onClick={handleButtonClick}>{textButton}</button>
       </div>
 
       <div className="imgHome">
@@ -36,7 +49,7 @@ function UserSectionDefault({
       <div className="text">
         <h2>{title}</h2>
         <p>{description}</p>
-        <button>{textButton}</button>
+        <button onClick={handleButtonClick}>{textButton}</button>
       </div>
     </div>
   );

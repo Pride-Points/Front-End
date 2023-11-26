@@ -9,9 +9,20 @@ import Card from "./Card";
 import { Element } from 'react-scroll';
 
 
-function Home() {
+function Home(props) {
+  // Função de callback para o clique do botão em UserSectionDefault
+  const handleUserSectionButtonClick = (valor) => {
+    // Faça algo com o valor recebido de UserSectionDefault
+    console.log("Valor recebido de UserSectionDefault:", valor);
+
+    // Passe o valor para a LandingPage
+    props.onButtonClickLandingPage(valor);
+  };
+
   return (
     <main>
+
+
       <MainSection />
       <Element name="WelcomeSection">
         <WelcomeSection />
@@ -24,6 +35,7 @@ function Home() {
           textButton="Encontre"
           imgSrc={ImgUser}
           imgPosition="right"
+          onButtonClick={handleUserSectionButtonClick}
         />
       </Element>
 

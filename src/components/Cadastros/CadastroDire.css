@@ -43,7 +43,7 @@
     margin-bottom: 10px;
 }
 
-.input input{
+.input input, select{
     width: 520.52px;
     height: 64px;
     border-radius: 6px;
@@ -73,3 +73,16 @@
 .buttonClass p{
     margin-top: 13px;
 }
+
+.password-info {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    width: 300px;
+    top: 56%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
