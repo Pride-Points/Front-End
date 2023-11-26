@@ -62,7 +62,7 @@ function MenuLateral() {
       <div className='segundo-menu'>
           <ul>
               <li>
-                  <a href="#">
+                  <a href="/configuracoes">
                       <img src={iconPerson} alt="" className="logo-item" />
                       Minha conta
                   </a>
