@@ -10,6 +10,7 @@ import Eventos from "./components/TelasUsuario/Eventos"
 import Avaliacoes from "./components/TelasUsuario/Avaliacoes"
 import EventosEmpresa from "./pages/EventosEmpresa";
 import Dash from "./components/dashboard/dash.jsx";
+import Funcionarios from "./pages/Funcionarios"
 import HomeLocais from "./pages/Home";
 import HomeLocaisAvalicoes from "./components/TelasUsuario/Home-avaliacoes"
 import HomeLocaisEventos from "./components/TelasUsuario/Home-eventos.jsx"
@@ -31,11 +32,11 @@ const Rotas = () => {
         <Route path="*" element={<h1>Not Found 404</h1>} /> 
         <Route path="/eventos-empresa" element={<EventosEmpresa />} />
         <Route path="/dash" element={<Dash />} />
+        <Route path="/funcionarios" element={<Funcionarios />} />
         <Route path="/home-usuario" element={<HomeLocais />} />
         <Route path="/home-usuario-avaliacoes" element={<HomeLocaisAvalicoes />} />
         <Route path="/home-usuario-eventos" element={<HomeLocaisEventos />} />
         <Route path="/home-usuario-eventos-locais" element={<HomeUsuarioEventos />} />
-
       </Routes>
     </Router>
    )
