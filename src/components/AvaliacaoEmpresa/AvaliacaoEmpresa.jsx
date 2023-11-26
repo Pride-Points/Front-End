@@ -115,7 +115,7 @@ function AvaliacaoEmpresa() {
                      <div className="checkbox">
                        <input type="checkbox" id="verde" />
                        <label htmlFor="verde" className="verde"  onClick={fecharModal}>
-                       Agradecemos pelo seu feedback positivo! Esperamos vê-lo novamente em breve!"
+                       Agradecemos pelo seu feedback positivo! Esperamos vê-lo novamente em breve!
                        </label>
                      </div>
                      <div className="checkbox">
