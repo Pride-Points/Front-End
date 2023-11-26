@@ -66,27 +66,7 @@
     padding: 0 80px;
 }
 
-.modalEmpresa {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
 
-.boxModal {
-    background-color: white;
-    width: 500px;
-}
-
-.modalContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
 .conteudo {
     margin-left: 250px;
@@ -259,7 +239,8 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 18px */
+    line-height: 150%;
+    /* 18px */
 }
 
 .quantidade {
@@ -281,24 +262,25 @@
     background-color: #EFA9FF;
     border-radius: 15px;
     width: 23%;
- 
+
 }
 
-.quantidade-comentarios p{
+.quantidade-comentarios p {
     margin: 4% 0 0 0;
     color: rgba(0, 0, 0, 0.60);
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 15px */
+    line-height: 150%;
+    /* 15px */
 }
 
-.stats{
+.stats {
     gap: 70%;
     display: flex;
 }
 
-.quantidade-comentarios h3{
+.quantidade-comentarios h3 {
     height: 10px;
     margin-top: 14px;
     color: #000;
@@ -306,5 +288,87 @@
     font-style: normal;
     font-weight: 400;
     line-height: 116%;
+}
+
+/* modal */
+
+.modal-resposta-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 20%;
+    height: 60%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.modalBody {
+    padding: 20px;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+  }
+  
+  
+
+/* 
+.verde {
+    color: #27ae60;
+}
+
+.amarela {
+    color: #f39c12;
+}
+
+.vermelha {
+    color: #e74c3c;
+} */
+
+.modalFooter {
+    padding: 10px;
+    text-align: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+}
+
+.modalFooter .button-close{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #4200A1;
+    
+}
+
+
+.modalHeader p{
+    color: #000;
 }
 
