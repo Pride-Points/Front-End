@@ -95,17 +95,17 @@ function PopUpLocais(props) {
           </div>
         </div>
       </div>
+      {!mostrarComentarios && (
+        <div className="containerOpcoes">
+          <div className={`opcoes ${opcaoSelecionada === 'locais' ? 'selecionada' : ''}`} onClick={fecharModalEventos}>
+            <p style={{ textDecoration: 'none', color: 'black' }}>Locais</p>
+          </div>
 
-      <div className="containerOpcoes">
-        <div className={`opcoes ${opcaoSelecionada === 'locais' ? 'selecionada' : ''}`} onClick={fecharModalEventos}>
-          <p style={{ textDecoration: 'none', color: 'black' }}>Locais</p>
+          <div className={`opcoes ${opcaoSelecionada === 'eventos' ? 'selecionada' : ''}`} onClick={abrirModalEventos}>
+            <p style={{ textDecoration: 'none', color: 'black' }}>Eventos</p>
+          </div>
         </div>
-
-        <div className={`opcoes ${opcaoSelecionada === 'eventos' ? 'selecionada' : ''}`} onClick={abrirModalEventos}>
-          <p style={{ textDecoration: 'none', color: 'black' }}>Eventos</p>
-        </div>
-      </div>
-
+      )}
       <div className="containesLocais">
 
 
@@ -133,7 +133,9 @@ function PopUpLocais(props) {
                   </div>
                 </p>
               )}
-
+              {mostrarComentarios && (
+                <img src={IconBack} alt="voltar" width="18px" height="26px" onClick={fecharModalComentarios}/>
+              )}
               {mostrarComentarios &&
                 avaliacao.map((avaliacao) => (
                   <div key={avaliacao.id} className="containerLocalE">
@@ -155,20 +157,22 @@ function PopUpLocais(props) {
                     </div>
                   </div>
                 ))}
-                <h3>© 2023 PridePoints. Todos os direitos reservados.</h3>
+              <h3>© 2023 PridePoints. Todos os direitos reservados.</h3>
             </div>
-            
+
           ))
         )}
 
         {opcaoSelecionada === 'eventos' && (
-          <div className="modalEventos">
-            <p>Para ver os eventos e outros benefícios, cadastre-se!</p>
-            <Link to="/cadastro">
-              <button className="button-close">Cadastrar</button>
-            </Link>
-            <h3>© 2023 PridePoints. Todos os direitos reservados.</h3>
+          <div>
+            <div className="modalEventos">
+              <p>Para ver os eventos e outros benefícios, cadastre-se!</p>
+              <Link to="/cadastro">
+                <button className="button-close">Cadastrar</button>
+              </Link>
+              <h3>© 2023 PridePoints. Todos os direitos reservados.</h3>
 
+            </div>
           </div>
         )}
 
