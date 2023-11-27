@@ -15,7 +15,7 @@ const StarRating = ({ rating }) => {
   }
 
   return (
-    <div className="star-container">
+    <div className="star-cont">
       {stars}
     </div>
   );
