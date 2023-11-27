@@ -7,4 +7,4 @@ function TelaFuncionarios() {
     );  
 }
 
-export default Funcionarios;
+export default TelaFuncionarios;
