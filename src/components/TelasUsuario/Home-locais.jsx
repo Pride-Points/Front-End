@@ -22,7 +22,9 @@ function Home() {
         const response = await api.get('/empresas');
         if (response.status === 200 && response.data) {
           setListaEmpresa(response.data);
-        } else {
+        } else if(response.data === ""){
+          return;
+        }else {
           throw new Error('Ops! Ocorreu um erro interno.');
         }
       } catch (error) {
