@@ -6,6 +6,7 @@ import LandingPage from "./pages/LandingPage";
 import CadastroUsuario from "./pages/CadastroUsuario";
 import CadastroEmpresa from "./pages/CadastroEmpresa";
 import Login from "./components/Login/Login";
+//import MapEvento from './pages/TelaExploradorEvento';
 import Map from './pages/TelaExplorador';
 import AvaliacaoEmpresa from './pages/AvaliacaoEmpresa';
 import Eventos from "./components/TelasUsuario/Eventos"
@@ -29,7 +30,8 @@ const Rotas = () => {
         <Route path="/cadastro" element={<CadastroUsuario />} />
         <Route path="/cadastro-empresa" element={<CadastroEmpresa />}/>
         <Route path="/login" element={<Login />}/>
-        <Route path="/explorador" element={<Map />} /> 
+        <Route path="/explorador" element={<Map />} />
+        {/*<Route path="/explorador-evento" element={<MapEvento />} /> */}
         <Route path="/avaliacao-empresa" element={<AvaliacaoEmpresa />} />
         <Route path="/eventos" element={<Eventos />} />
         <Route path="/avaliacoes" element={<Avaliacoes />} />
