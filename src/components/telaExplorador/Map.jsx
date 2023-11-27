@@ -1,10 +1,10 @@
-import "./map.css";
+import "./mapExplorer.css";
 import CommentSection from "./CommentSection";
 import MapSection from "./MapSection";
 
 function Map() {
   return (
-    <div className="main">
+    <div className="mainExplorer">
       <CommentSection />
       <MapSection />
     </div>
