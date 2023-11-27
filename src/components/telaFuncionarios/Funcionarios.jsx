@@ -4,7 +4,7 @@ import logoPride from "../../assets/logo-dark (1).png";
 import peopleIcon from "../../assets/people.svg";
 import checkEvento from "../../assets/Vector.svg";
 import dashIcon from "../../assets/dashBlack.svg";
-import avalBlack from "../../assets/avalBlack.svg";
+import avalBlack from "../../assets/icon-avaliacoes.png";
 import avatar from "../../assets/avatar.png";
 import excel from "../../assets/excel.png";
 import text from "../../assets/text.png";
@@ -229,7 +229,7 @@ const Funcionarios = () => {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/eventos-empresa">
                 <img
                   src={checkEvento}
                   alt="Logo Item 1"
@@ -239,7 +239,7 @@ const Funcionarios = () => {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/avaliacao-empresa">
                 <img src={avalBlack} alt="Logo Item 1" className="logo-item" />
                 Avaliações
               </a>
