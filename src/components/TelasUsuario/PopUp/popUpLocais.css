@@ -89,13 +89,26 @@
 }
 
  .barraPesquisa{
-   height: 20%;
+   height: 30%;
    display: flex;
    align-items: center;
    justify-content: center;
-
+   flex-direction: column;
 }
 
+.sugestoesEnderecos{
+   width: 50%;
+   background-color: red;
+}
+.containerSugestao{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.containerSugestao select{
+   width: 100%;
+}
 .barra{
    display: flex;
    width: 90%;
@@ -194,3 +207,4 @@ opacity: 70%;
    margin-top: 15px;
    margin-left: 30px;
 }
+
