@@ -1,11 +1,10 @@
 import "./home-locais.css"
-
+import axios from 'axios';
 import MenuLateral from "./MenuLateral/MenuLateral.jsx"
 import HeaderUsuario from "./HeaderUsuario/HeaderUsuario.jsx"
 import Pointer from "../../assets/icone-Pointer.png"
 import MapSection from './MapSection.jsx';
 import PopUpEventos from './PopUp/popUpAvaliacoes.jsx'
-
 
 
 
@@ -26,7 +25,7 @@ function Home() {
                 <main className="content-up">
                     <div className="tituloHome">
                         <div className="containerTitulo">
-                            <h1>Olá, usuario</h1>
+                            <h1>Olá, {sessionStorage.usuario}</h1>
                             <div className="subtituloHome">Encontre lugares inclusivos para você</div></div>
 
                         <div className="botaoPaulista">

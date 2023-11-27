@@ -13,3 +13,8 @@
 .content-right{
   width: 100%;
 }
+
+.testee{
+  width: 100%;
+  overflow-y: scroll;
+}
