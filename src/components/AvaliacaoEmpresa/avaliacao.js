@@ -1,22 +1,27 @@
-export const calcularMediaAvaliacoes = (comentarios) => {
+export const calcularMediaAvaliacoes = (avaliacoes) => {
   // Sua lógica para calcular a média aqui
-  const somaAvaliacoes = comentarios.reduce((total, comentario) => total + comentario.avaliacao, 0);
-  const media = somaAvaliacoes / comentarios.length;
+  const somaAvaliacoes = avaliacoes.reduce((total, avaliacao) => total + avaliacao.nota, 0);
+  const media = somaAvaliacoes / avaliacoes.length;
   return media.toFixed(1); // Arredonda para uma casa decimal
 };
 
-export const separarComentariosPorEstrelas = (comentarios) => {
-  const comentariosSeparados = {};
+export const separarComentariosPorEstrelas = (avaliacoes) => {
+  const avaliacoesSeparados = {};
 
-  comentarios.forEach((comentario) => {
-    const quantidadeEstrelas = comentario.avaliacao;
+  // Verifica se 'avaliacoes' é um array antes de usar 'forEach'
+  if (Array.isArray(avaliacoes)) {
+    avaliacoes.forEach((avaliacao) => {
+      const quantidadeEstrelas = avaliacao.nota;
 
-    if (!comentariosSeparados[quantidadeEstrelas]) {
-      comentariosSeparados[quantidadeEstrelas] = [];
-    }
+      if (!avaliacoesSeparados[quantidadeEstrelas]) {
+        avaliacoesSeparados[quantidadeEstrelas] = [];
+      }
 
-    comentariosSeparados[quantidadeEstrelas].push(comentario);
-  });
+      avaliacoesSeparados[quantidadeEstrelas].push(avaliacao);
+    });
+  } else {
+    console.error('A variável "avaliacoes" não é um array.');
+  }
 
-  return comentariosSeparados;
+  return avaliacoesSeparados;
 };

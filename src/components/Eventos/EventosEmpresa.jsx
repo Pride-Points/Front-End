@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import peopleIcon from "../../assets/people.svg";
 import checkEvento from "../../assets/eventosColor.svg";
 import dashIcon from "../../assets/dashBlack.svg";
-import avalBlack from "../../assets/avalBlack.svg";
+import avalBlack from "../../assets/icon-avaliacoes.png";
 import avatar from "../../assets/avatar.png";
 import iconPerson from "../../assets/icon-person.svg";
 import iconHelp from "../../assets/icon-help.svg";
@@ -63,7 +63,7 @@ function Evento() {
   return (
     <div className="corpo">
       <header className="header-pos-logon">
-        <h1 className="textoheader">empresa.nome</h1>
+        <h1 className="textoheader">{sessionStorage.usuario}</h1>
         <img className="imgheader" src={avatar} alt="imagem do usuário" />
       </header>
       <div className="menu-lateral">
@@ -81,7 +81,7 @@ function Evento() {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/eventos-empresa">
                 <img
                   src={checkEvento}
                   alt="Logo Item 1"
@@ -91,13 +91,13 @@ function Evento() {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/avaliacao-empresa">
                 <img src={avalBlack} alt="Logo Item 1" className="logo-item" />
                 Avaliações
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/funcionarios">
                 <img src={peopleIcon} alt="Logo Item 1" className="logo-item" />
                 Funcionários
               </a>
@@ -119,8 +119,8 @@ function Evento() {
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src={iconSair} alt="" className="logo-item" />
+              <a href="/">
+                <img src={iconSair} alt="" className="logo-item" onClick={() => sessionStorage.clear()} />
                 Sair
               </a>
             </li>
