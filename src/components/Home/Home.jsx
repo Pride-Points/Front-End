@@ -21,8 +21,6 @@ function Home(props) {
 
   return (
     <main>
-
-
       <MainSection />
       <Element name="WelcomeSection">
         <WelcomeSection />

@@ -47,7 +47,7 @@ function SearchContent(props) {
         </div>
       </div>
 
-      <div className="bottom">
+      <div className="bottom testee">
         {props.eventos &&
           props.eventos.map((evento, index) =>
             props.isClickable ? (

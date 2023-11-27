@@ -43,12 +43,11 @@ function CommentSection() {
 
     return (
         <div className='container-coments'>
+
                 <div className="testee">
                     <PopUpLocaisExplorador
                         listaEmpresas={listaEmpresa} />
                 </div>
-
-                
 
         </div>
 

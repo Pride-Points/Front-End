@@ -7,8 +7,8 @@ import imagemPerfil from '../../../assets/foto-pride.svg'
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
 
-function PopUpLocais() {
-
+function PopUpLocais(props) {
+console.log(props.listaEventos)
     return (
 
         <div className="popUp">
@@ -31,52 +31,32 @@ function PopUpLocais() {
                 </div>
             </div>
             <div className="containesLocaisE">
+            {props.listaEventos.map((eventos) => (
                 <div className="containerLocalE">
                     <div className="containerImagem">
                         <img src={imagemPerfil} alt="" />
-
                     </div>
                     <div className="containerLocalDireita">
                         <div className="containerLocalCima">
                             <div className="tituloNome">
-                                Inclusão LGBT
+                                {eventos.nome}
                             </div>
                             <div className="estrelasEvento">
-                                Av.Paulista
+                            Av.Paulista 
                             </div>
                         </div>
                         <div className="descricaoAvaliacao">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eum, officiis unde modi deserunt inventore.
+                        {eventos.descricaoEvento}
+
                         </div>
                         <div className="avaliacaoData">
-                            18/09/2023
-                        </div>
+                            {eventos.dtEvento}
+                            </div>
                     </div>
 
                 </div>
-                <div className="containerLocalE">
-                    <div className="containerImagem">
-                        <img src={imagemPerfil} alt="" />
+                    ))}
 
-                    </div>
-                    <div className="containerLocalDireita">
-                        <div className="containerLocalCima">
-                            <div className="tituloNome">
-                                Inclusão LGBT
-                            </div>
-                            <div className="estrelasEvento">
-                                Av.Paulista
-                            </div>
-                        </div>
-                        <div className="descricaoAvaliacao">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eum, officiis unde modi deserunt inventore.
-                        </div>
-                        <div className="avaliacaoData">
-                            18/09/2023
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </div>
 

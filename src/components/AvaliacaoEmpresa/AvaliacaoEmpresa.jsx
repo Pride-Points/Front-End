@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
+import api from "../../api/api";
 import HeaderMenu from "../menuLateral/HeaderMenuLateral";
-import iconData from "../../assets/icon-filtro.svg";
 import StarRating from './starRating';
 import iconAnswered from "../../assets/icon-answered.svg";
 import iconAnsweredFalse from '../../assets/icon-anserwered-false.svg';
@@ -14,7 +15,7 @@ import balaoVermelho from "../../assets/balãoVermelho.svg";
 import "./avaliacaoEmpresa.css";
 
 function AvaliacaoEmpresa() {
-    
+
     const [comentarios, setComentarios] = useState([
         { iconPerfil: iconPerfil, nome: 'Maria', avaliacao: 4, conteudo: 'Bar descontraído e intimista, gostei.', data: '10/10/2020', isShared: false, resp: "" },
         { iconPerfil: iconPerfil, nome: 'Roberto', avaliacao: 5, conteudo: 'Comida boa e muita música, a melhor experiência que eu já tive.', data: '10/10/2020', isShared: false, resp: "" },
@@ -23,6 +24,28 @@ function AvaliacaoEmpresa() {
         { iconPerfil: iconPerfil, nome: 'Taylor Saia', avaliacao: 0, conteudo: 'Bar porco, e experiência ruim, não volto mais', data: '10/10/2020', isShared: false, resp: "" }
     ]);
 
+    const [avaliacoes, setAvaliacoes] = useState([]);
+
+
+    useEffect(() => {
+
+        const buscarComentarios = async () => {
+            try {
+                const response = await api.get(`/avaliacoes/${sessionStorage.idEmpresa}`, {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.authToken}`
+                    }
+                });
+                console.log(response.data)
+                setAvaliacoes(response.data)
+            } catch (error) {
+                toast.error(error.message);
+            }
+        };
+
+        buscarComentarios();
+    }, []);
+
     const respostaPadronizada = [
         { resposta: `Agradecemos pelo seu feedback positivo! Esperamos vê-lo novamente em breve!` },
         { resposta: `Apreciamos sua avaliação, estamos comprometidos em melhorar continuamente.` },
@@ -30,7 +53,7 @@ function AvaliacaoEmpresa() {
 
     ];
 
-    const comentariosPorEstrlas = separarComentariosPorEstrelas(comentarios);
+    const comentariosPorEstrlas = separarComentariosPorEstrelas(avaliacoes);
     const comentariosDe5Estrelas = comentariosPorEstrlas['5'] || [];
     const comentariosDe4Estrelas = comentariosPorEstrlas['4'] || [];
     const comentariosDe3Estrelas = comentariosPorEstrlas['3'] || [];
@@ -48,14 +71,17 @@ function AvaliacaoEmpresa() {
     ];
 
     const calcularMediaAvaliacoes = () => {
-        const somaAvaliacoes = comentarios.reduce((total, comentario) => total + comentario.avaliacao, 0);
-        const media = somaAvaliacoes / comentarios.length;
-        return media.toFixed(1);
+        if (Array.isArray(avaliacoes) && avaliacoes.length > 0) {
+            const somaAvaliacoes = avaliacoes.reduce((total, avaliacao) => total + avaliacao.nota, 0);
+            const media = somaAvaliacoes / avaliacoes.length;
+            return media.toFixed(1);
+        } else {
+            return 'N/A'; // ou qualquer valor padrão desejado se não houver avaliações
+        }
     };
 
-    // PEGANDO RESPOSTA
-    const [respostasUsuarios, setRespostasUsuarios] = useState({});
-    const pegarResposta = (valorResposta) => {
+
+    const pegarResposta = async (valorResposta) => {
         let balaoCor;
 
         switch (valorResposta) {
@@ -69,23 +95,37 @@ function AvaliacaoEmpresa() {
                 balaoCor = balaoVermelho;
                 break;
             default:
-                balaoCor = 'default'; // Defina uma cor padrão ou lógica para casos não correspondentes
+                balaoCor = 'default';
                 break;
         }
 
+      const  objetoEnviado = {
+            resposta: valorResposta,
+            isShared: true,
+            title: balaoCor,
+        }
+
+
         if (usuarioSelecionado) {
-            setRespostasUsuarios((prevState) => ({
-                ...prevState,
-                [usuarioSelecionado]: valorResposta,
-            }));
-            setComentarios((prevComentarios) =>
-                prevComentarios.map((comentario) =>
-                    comentario.nome === usuarioSelecionado
-                        ? { ...comentario, resp: valorResposta, isShared: true, title: balaoCor }
-                        : comentario
-                )
-            );
-            fecharavaliacaoModal();
+            api.post(
+                `/avaliacoes/resposta-empresa/${usuarioSelecionado}`,
+                objetoEnviado, // Corpo da requisição
+                {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.authToken}`,
+                    },
+                }
+            )
+                .then((res) => {
+                    toast.success("Resposta enviada com sucesso!");
+
+                    fecharavaliacaoModal();
+                    window.location.reload();
+                })
+                .catch((erro) => {
+                    // Erro no cadastro
+                    toast.error("Erro ao cadastrar!");
+                });
         }
     };
 
@@ -94,48 +134,53 @@ function AvaliacaoEmpresa() {
     const fecharavaliacaoModal = () => setavaliacaoModalAberto(false);
 
     //PEGANDO O NOME DOS USUÁRIOS E ABRINDO avaliacaoModal
-    const [usuarioSelecionado, setUsuarioSelecionado] = useState("");
+    const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
 
-    const abriravaliacaoModal = (nomeUsuario) => {
-        setUsuarioSelecionado(nomeUsuario); //Pegando o nome da pessoa da vez :3
+    const abriravaliacaoModal = (id) => {
+        console.log(id);
+        setUsuarioSelecionado(id); // Usar o id em vez do nome do usuário
         setavaliacaoModalAberto(true);
     };
 
     return (
         <div className="container">
-            <div className="content-right">
+            <div className="content">
                 <HeaderMenu />
             </div>
 
             <div className="conteudo">
-                <div className='titulo'>
+                <div className='avEmp'>
                     <h1>Avaliações Gerais</h1>
                     <h2>Veja o que seus clientes comentam sobre seu estabelecimento</h2>
                 </div>
 
                 <div className="subtitulo" >
-                    <h4 className="coments">Comentários</h4>    
+                    <h4 className="coments">Comentários</h4>
                 </div>
 
                 <div className="notas">
                     <div className='description'>
-                        {comentarios.map((comentario, index) => (
-                            <div key={index} className="comments-description">
-                                {comentario.iconPerfil && <img src={comentario.iconPerfil} alt="Foto de perfil do usuário" className="perfil" />}
-                                <h4>{comentario.nome}</h4>
-                                <StarRating rating={comentario.avaliacao} />
-                                <a>
-                                    {comentario.isShared ? (
-                                        <img src={iconAnswered} alt="icone de comentario respondido" className="answered" title={comentario.title} onClick={() => abriravaliacaoModal(comentario.nome)} />
-                                    ) : (
-                                        <img src={iconAnsweredFalse} alt="icone de comentario não respondido" className="answered" onClick={() => abriravaliacaoModal(comentario.nome)} />
-                                    )}
-                                </a>
-                                <p>{comentario.conteudo}</p>
-                                {comentario.resp && <p><img src={comentario.title} alt="balão verde" />{comentario.resp}</p>}
-                                <h5>{comentario.data}</h5>
-                            </div>
-                        ))}
+                        {Array.isArray(avaliacoes) && avaliacoes.length > 0 ? (
+                            avaliacoes.map((avaliacao, index) => (
+                                <div key={index} className="comments-description" id={`card-${avaliacao.id}`}>
+                                    {iconPerfil && <img src={iconPerfil} alt="Foto de perfil do usuário" className="perfil" />}
+                                    <h4>{avaliacao.nomeAvaliador}</h4>
+                                    <StarRating rating={avaliacao.nota} />
+                                    <a>
+                                        {avaliacao.shared ? (
+                                            <img src={iconAnswered} alt="icone de avaliacao respondido" className="answered" title={avaliacao.title} onClick={() => abriravaliacaoModal(avaliacao.id)} />
+                                        ) : (
+                                            <img src={iconAnsweredFalse} alt="icone de avaliacao não respondido" className="answered" onClick={() => abriravaliacaoModal(avaliacao.id)} />
+                                        )}
+                                    </a>
+                                    <p>{avaliacao.comentario}</p>
+                                    {avaliacao.resp && <p><img src={avaliacao.title} alt="balão verde" />{avaliacao.resp}</p>}
+                                    <h5>{avaliacao.dtAvaliacao}</h5>
+                                </div>
+                            ))
+                        ) : (
+                            <p>Não há avaliações disponíveis.</p>
+                        )}
                     </div>
 
                     <div className="overview">
@@ -144,7 +189,7 @@ function AvaliacaoEmpresa() {
                             <StarRating rating={calcularMediaAvaliacoes()} />
                         </div>
                         <h5 className="mediaComentarios">Essa nota é a média das avaliações do seu estabelecimento</h5>
-                        <h4>Você tem {comentarios.length} avaliações</h4>
+                        <h4>Você tem {avaliacoes.length} avaliações</h4>
 
                         <div className="quantidade-comentarios">
                             {preenchidoColuna.map((coluna, index) => (

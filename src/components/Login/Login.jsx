@@ -80,6 +80,9 @@ function Login() {
         if (response.status === 200 && response.data?.token) {
           sessionStorage.setItem('authToken', response.data.token);
           sessionStorage.setItem('usuario', response.data.nome);
+          sessionStorage.setItem('id', response.data.userId );
+          sessionStorage.setItem('idEmpresa', response.data.idEmpresa);
+          sessionStorage.setItem('cnpj', response.data.cnpj)
 
           toast.success('Login realizado com sucesso!');
           // Supondo que você tenha o token armazenado em sessionStorage
