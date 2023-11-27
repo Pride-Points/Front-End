@@ -8,10 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
 
 function PopUpLocais(props) {
-  const armazenarIdEmpresa = (idEmpresa) => {
-    // Armazena o ID da empresa no sessionStorage
-    sessionStorage.setItem('idEmpresaClicada', idEmpresa);
-  };
+  
   return (
 
     <div className="popUp">
@@ -36,9 +33,8 @@ function PopUpLocais(props) {
       <div className="containesLocais">
         {props.listaEmpresas.map((empresa) => (
           <Link
-            onClick={() => armazenarIdEmpresa(empresa.id)}
             key={empresa.id}
-            to="/home-usuario-avaliacoes"
+            to={`/home-usuario-avaliacoes/${empresa.id}`}
             style={{ textDecoration: 'none', color: 'black' }}
             className="containerLocal"
           >

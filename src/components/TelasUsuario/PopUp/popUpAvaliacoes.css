@@ -60,6 +60,7 @@
    background-color: white;
    color: black;
    border: 1px solid #5800D6;
+   cursor: pointer;
 }
 
 
@@ -121,6 +122,7 @@
 
 .descricaoAvaliacao{
    padding-left: 5%;
+   
 }
 
 .avaliacaoData{

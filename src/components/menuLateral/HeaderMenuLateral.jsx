@@ -39,20 +39,20 @@ function MenuLateral() {
                   </a>
               </li>
               <li>
-                  <a href="#">
+                  <a href="/">
 
                       <img src={checkEvento} alt="Logo Item 1" className="logo-item" />
                      Eventos
                   </a>
               </li>
               <li>
-                  <a href="#">
+                  <a href="/avaliacao-empresa">
                       <img src={avalBlack} alt="Logo Item 1" className="logo-item" />
                       <p className='pag-atual'>Avaliações</p> 
                   </a>
               </li>
               <li>
-                  <a href="#">
+                  <a href="/funcionarios">
                       <img src={peopleIcon} alt="Logo Item 1" className="logo-item" />
                       Funcionários
                   </a>

@@ -3,49 +3,42 @@ import fecharBar from '../../../assets/Fechar.png';
 import imagemPerfil from '../../../assets/foto-pride.svg'
 import ModalAvaliacao from '../Modal/modal'; // Importe o componente
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import api from "../../../api/api";
 
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
 
-function PopUp() {
+function PopUp(props) {
   const [empresaDetalhes, setEmpresaDetalhes] = useState(null);
 
   useEffect(() => {
-    const buscarEmpresaPorId = async (token) => {
+    const buscarEventosDaEmpresaPorId = async () => {
       try {
-        const userId =  sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
-        token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
-
- 
-        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
-
-        if (!idEmpresa) {
-          throw new Error('ID da empresa não encontrado no sessionStorage');
-        }
-
-        const response = await axios.get(`http://localhost:8080/empresas/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
-        if (response.status === 200 && response.data) {
-          
-          setEmpresaDetalhes(response.data);
+        const token = sessionStorage.authToken;
+  
+        const response = await api.get(`http://localhost:8080/eventos/${props.idEmpresa}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        if (response.status === 200) {
+          if (response.data && response.data.length > 0) {
+            setEmpresaDetalhes(response.data);
+            console.log(response.data);
+          } else {
+            toast.error("Não existem eventos!");
+          }
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
         }
       } catch (error) {
-        console.error('Erro ao buscar detalhes da empresa:', error);
-        toast.error(error.message);
+        toast.error("Não existem eventos!");
       }
     };
-
-    buscarEmpresaPorId();
+  
+    buscarEventosDaEmpresaPorId();
   }, []);
 
   let [modalAberto, setModalAberto] = useState(false);
@@ -92,7 +85,7 @@ function PopUp() {
       </div>
       <div className="containerOpcoes">
         <div className="opcoes ">
-          <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }}>Avalições</Link>
+          <Link to={`/home-usuario-avaliacoes/${props.idEmpresa}`} style={{ textDecoration: 'none', color: 'black' }}>Avalições</Link>
         </div>
         <div className="opcoes selecionada">
           <Link to="/home-eventos" style={{ textDecoration: 'none', color: 'black' }}>Eventos</Link>

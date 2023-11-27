@@ -5,6 +5,7 @@ import HeaderUsuario from "./HeaderUsuario/HeaderUsuario.jsx"
 import Pointer from "../../assets/icone-Pointer.png"
 import MapSection from './MapSection.jsx';
 import PopUpEventos from './PopUp/popUpAvaliacoes.jsx'
+import { useLocation, useParams } from 'react-router-dom';
 
 
 
@@ -12,7 +13,8 @@ import React, { useState, useEffect } from 'react';
 
 function Home() {
 
-
+    const { id } = useParams();
+    
     return (
         <div className="container">
 
@@ -45,7 +47,8 @@ function Home() {
                             <MapSection />
                         </div>
                         <div className="teste">
-                            <PopUpEventos />
+                            <PopUpEventos 
+                            idEmpresa={id}/>
                         </div>
                     </div>
                 </main>

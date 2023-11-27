@@ -6,50 +6,85 @@ import estrelas from '../../../assets/estrela.png';
 import imagemRespondida from '../../../assets/resposta.svg';
 import ModalAvaliacao from '../Modal/modal'; // Importe o componente
 import { toast } from 'react-toastify';
-import axios from 'axios';
-
+import api from "../../../api/api";
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
+import Star from '../../estrela/estrela';
 
-function PopUp() {
+function PopUp(props) {
 
-  const [empresaDetalhes, setEmpresaDetalhes] = useState(null);
+  const [empresaDetalhes, setEmpresaDetalhes] = useState([]);
+  const [nomeEmpresa, setNomeEmpresa] = useState(null);
 
   useEffect(() => {
-    const buscarEmpresaPorId = async (token) => {
+    const buscarNomeDaEmpresaPorId = async () => {
       try {
-        const userId =  sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
-        token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
+        const token = sessionStorage.authToken;
 
- 
-        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
-
-        if (!idEmpresa) {
-          throw new Error('ID da empresa não encontrado no sessionStorage');
-        }
-
-        const response = await axios.get(`http://localhost:8080/empresas/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+        const response = await api.get(`http://localhost:8080/empresas/${props.idEmpresa}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (response.status === 200 && response.data) {
+            setNomeEmpresa(response.data.nomeFantasia);
+            console.log(response.data);
           
-          setEmpresaDetalhes(response.data);
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
         }
       } catch (error) {
-        console.error('Erro ao buscar detalhes da empresa:', error);
-        toast.error(error.message);
+        toast.error("Não existem nome!");
       }
     };
 
-    buscarEmpresaPorId();
+    buscarNomeDaEmpresaPorId();
   }, []);
+
+
+  useEffect(() => {
+    const buscarAvaliacoesDaEmpresaPorId = async () => {
+      try {
+        const token = sessionStorage.authToken;
+
+        const response = await api.get(`http://localhost:8080/avaliacoes/${props.idEmpresa}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status === 200) {
+          if (response.data && response.data.length > 0) {
+            setEmpresaDetalhes(response.data);
+            console.log(response.data);
+          } else {
+            toast.error("Não existem avaliações!");
+          }
+        } else {
+          throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
+        }
+      } catch (error) {
+        toast.error("Não existem avaliações!");
+      }
+    };
+
+    buscarAvaliacoesDaEmpresaPorId();
+  }, []);
+
+  const calcularMediaNotas = () => {
+  
+    if (empresaDetalhes) {
+      console.log("aqui ta avaliacoes " + empresaDetalhes)
+      const notas = empresaDetalhes.map(avaliacao => avaliacao.nota);
+      const totalNotas = notas.length;
+      const somaNotas = notas.reduce((acumulador, nota) => acumulador + nota, 0);
+      const media = totalNotas > 0 ? somaNotas / totalNotas : 0;
+      return media.toFixed(2); // Limita para duas casas decimais
+    }
+    return 0;
+  };
+
 
   let [modalAberto, setModalAberto] = useState(false);
   let abrirModal = () => {
@@ -67,9 +102,9 @@ function PopUp() {
     <div className="popUp">
       <div className="containerBar">
         <div className="nomeBar">
-        {empresaDetalhes && empresaDetalhes.nomeFantasia}
+          {empresaDetalhes && nomeEmpresa}
           <span className="notaBar">
-           empresaDetalhes.nota
+            {empresaDetalhes && nomeEmpresa} - {calcularMediaNotas()}
           </span>
         </div>
         <Link to="/home-usuario" className="fecharBar">
@@ -78,7 +113,7 @@ function PopUp() {
       </div>
       <div className="containerDescricao">
         <div className="descricaoBar">
-  
+
         </div>
       </div>
       <div className="containerInformacoes">
@@ -95,63 +130,54 @@ function PopUp() {
       </div>
       <div className="containerOpcoes">
         <div className="opcoes selecionada">
-          <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }}>Avalições</Link>
+          <Link to={`/home-usuario-avaliacoes/${props.idEmpresa}`} style={{ textDecoration: 'none', color: 'black' }}>Avalições</Link>
 
         </div>
         <div className="opcoes">
-          <Link to="/home-usuario-eventos" style={{ textDecoration: 'none', color: 'black' }}>Eventos</Link>
+          <Link to={`/home-usuario-eventos/${props.idEmpresa}`} style={{ textDecoration: 'none', color: 'black' }}>Eventos</Link>
         </div>
       </div>
       <div className="containesLocaisE">
-        <div className="containerLocalE">
-          <div className="containerImagem">
-            <img src={imagemPerfil} alt="" />
-            <div className="resposta">
-              <img src={imagemRespondida} alt="Um celo de verificação" title="Esta mensagem foi respondida pela empresa" />
-            </div>
-          </div>
-          <div className="containerLocalDireita">
-            <div className="containerLocalCima">
-              <div className="tituloNome">
-                Tamires Janilda
-              </div>
-              <div className="estrelasEvento">
-                <img src={estrelas} alt="Quantidade de estrelas, esse estabelecimento tem 3 estrelas" />
-              </div>
-            </div>
-            <div className="descricaoAvaliacao">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eum, officiis unde modi deserunt inventore.
-            </div>
-            <div className="avaliacaoData">
-              18/09/2023
-            </div>
-          </div>
-
+      {empresaDetalhes.map((detalhe, index) => (
+    <div key={index} className="containerLocalE">
+      <div className="containerImagem">
+        <img src={imagemPerfil} alt="" />
+        <div className="resposta">
+          {detalhe.title !== "" && (
+            <img
+              src={imagemRespondida}
+              alt="Um selo de verificação"
+              title={detalhe.title}
+            />
+          )}
         </div>
-        <div className="containerLocalE">
-          <div className="containerImagem">
-            <img src={imagemPerfil} alt="" />
-            <div className="resposta">
-            </div>
-          </div>
-          <div className="containerLocalDireita">
-            <div className="containerLocalCima">
-              <div className="tituloNome">
-                Tamires Janilda
-              </div>
-              <div className="estrelasEvento">
-                <img src={estrelas} alt="Quantidade de estrelas, esse estabelecimento tem 3 estrelas" />
-              </div>
-            </div>
-            <div className="descricaoAvaliacao">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eum, officiis unde modi deserunt inventore.
-            </div>
-            <div className="avaliacaoData">
-              18/09/2023
-            </div>
-          </div>
+      </div>
 
+      <div className="outraClasse" id={`outroId-${index}`}>
+        <div>
+          <div className="containerLocalCima">
+            <div className="tituloNome">
+              {detalhe.nomeAvaliador}
+            </div>
+            <div className="estrelasEvento">
+              {Array.from({ length: detalhe.nota }, (_, i) => (
+                <Star key={i} filled />
+              ))}
+              {Array.from({ length: 5 - detalhe.nota }, (_, i) => (
+                <Star key={i} filled={false} />
+              ))}
+            </div>
+          </div>
+          <div className="descricaoAvaliacao">
+            {detalhe.comentario.length > 80 ? `${detalhe.comentario.slice(0, 80)}...` : detalhe.comentario}
+          </div>
+          <div className="avaliacaoData">
+            {detalhe.dtAvaliacao}
+          </div>
         </div>
+      </div>
+    </div>
+  ))}
       </div>
     </div>
 

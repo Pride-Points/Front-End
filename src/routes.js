@@ -37,8 +37,8 @@ const Rotas = () => {
         <Route path="/dash" element={<Dash />} />
         <Route path="/funcionarios" element={<Funcionarios />} />
         <Route path="/home-usuario" element={<HomeLocais />} />
-        <Route path="/home-usuario-avaliacoes" element={<HomeLocaisAvalicoes />} />
-        <Route path="/home-usuario-eventos" element={<HomeLocaisEventos />} />
+        <Route path="/home-usuario-avaliacoes/:id" element={<HomeLocaisAvalicoes />} />
+        <Route path="/home-usuario-eventos/:id" element={<HomeLocaisEventos />} />
         <Route path="/home-usuario-eventos-locais" element={<HomeUsuarioEventos />} />
           </Routes>
     </Router>

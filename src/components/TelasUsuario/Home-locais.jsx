@@ -22,6 +22,7 @@ function Home() {
         const response = await api.get('/empresas');
         if (response.status === 200 && response.data) {
           setListaEmpresa(response.data);
+          console.log(response.data)
         } else if(response.data === ""){
           return;
         }else {

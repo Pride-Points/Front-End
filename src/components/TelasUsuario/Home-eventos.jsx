@@ -6,6 +6,7 @@ import MapSection from './MapSection.jsx';
 import PopUpEventos from './PopUp/popUpEventosGeral.jsx'
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useLocation, useParams } from 'react-router-dom';
 
 
 
@@ -13,6 +14,8 @@ import React, { useState, useEffect } from 'react';
 
 function Home() {
     const [empresaDetalhes, setEmpresaDetalhes] = useState(null);
+
+    const { id } = useParams();
 
     useEffect(() => {
       const buscarEmpresaPorId = async (token) => {
@@ -24,10 +27,6 @@ function Home() {
   
    
           const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
-  
-          if (!idEmpresa) {
-            throw new Error('ID da empresa não encontrado no sessionStorage');
-          }
   
           const response = await axios.get(`http://localhost:8080/empresas/${userId}`, {
               headers: {
@@ -82,7 +81,8 @@ function Home() {
                             <MapSection />
                         </div>
                         <div className="teste">
-                            <PopUpEventos />
+                            <PopUpEventos 
+                            idEmpresa={id}/>
                         </div>
                     </div>
                 </main>
