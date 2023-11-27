@@ -31,7 +31,7 @@ function CommentSection() {
                 <img src={LogoImg} alt=" logo da pride points (bandeira lgbt e frase pride points)" className="logo-pride" />
             </header>
 
-            <div className='comments'>
+            <div className='comment'>
                 <div className="search-container">
                     <input type="text" placeholder="Pesquisar" className="search-input" />
                     <span className="search-icon">
@@ -42,10 +42,10 @@ function CommentSection() {
                 <h1 className='locais'>Locais</h1>
 
 
-                <div className='description'>
+                <div className='descript'>
                     {comentarios.map((comentario, index) => (
-                        <div key={index} className="comments-description">
-                            <h4>{comentario.nome}</h4>
+                        <div key={index} className="comments-descript">
+                            <h4 className='coment-name'>{comentario.nome}</h4>
                             <StarRating rating={comentario.avaliacao} />
                             <p>{comentario.conteudo}</p>
                         </div>
