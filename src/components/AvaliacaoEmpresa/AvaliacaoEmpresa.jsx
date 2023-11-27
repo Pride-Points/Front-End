@@ -103,12 +103,12 @@ function AvaliacaoEmpresa() {
 
     return (
         <div className="container">
-            <div className="content-right">
+            <div className="content">
                 <HeaderMenu />
             </div>
 
             <div className="conteudo">
-                <div className='titulo'>
+                <div className='avEmp'>
                     <h1>Avaliações Gerais</h1>
                     <h2>Veja o que seus clientes comentam sobre seu estabelecimento</h2>
                 </div>

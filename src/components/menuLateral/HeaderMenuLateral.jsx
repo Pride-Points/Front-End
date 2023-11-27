@@ -6,7 +6,7 @@ import logoPride from "../../assets/logo-dark (1).png";
 import { Link } from 'react-router-dom';
 import peopleIcon from "../../assets/people.svg";
 import dashIcon from "../../assets/icon-chart.svg";
-import avalBlack from "../../assets/avalBlack.svg";
+import avalBlack from "../../assets/icon-avaliacao.svg";
 import avatar from "../../assets/avatar.svg";
 import iconPerson from "../../assets/icon-person.svg";
 import iconHelp from "../../assets/icon-help.svg";

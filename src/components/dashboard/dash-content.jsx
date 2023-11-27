@@ -27,7 +27,7 @@ function DashContent() {
 
   return (
     <div className="presentation">
-      <h1>Olá SACuda</h1>
+      <h1>Olá</h1>
       <p>Veja as informações do seu negócio!</p>
 
       <div className="card-dad">

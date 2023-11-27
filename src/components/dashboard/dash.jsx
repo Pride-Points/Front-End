@@ -1,7 +1,7 @@
 import React from "react";
 import "./dash.css";
 import HeaderUsuario from "../headerUsuario/HeaderUsuario";
-import MenuLateral from "../menuLateral/MenuLateral";
+import MenuLateral from "../menuLateral/HeaderMenuLateral";
 import DashContent from "./dash-content";
 
 function Dash() {
