@@ -1,7 +1,7 @@
 
 import "./popUpAvaliacoes.css"
 import fecharBar from '../../../assets/Fechar.png';
-import imagemPerfil from '../../../assets/FotoPadrao.png'
+import imagemPerfil from '../../../assets/PESOSOSOA.svg'
 import estrelas from '../../../assets/estrela.png';
 import imagemRespondida from '../../../assets/resposta.svg';
 import ModalAvaliacao from '../Modal/modal'; // Importe o componente
@@ -14,16 +14,18 @@ import { Link } from 'react-router-dom'; // Importe o componente Link do React R
 function PopUp() {
 
   const [empresaDetalhes, setEmpresaDetalhes] = useState(null);
+  const [avaliacoes, setAvaliacoes] = useState(null);
+  const [nota2, setNota2] = useState(null);
 
   useEffect(() => {
     const buscarEmpresaPorId = async (token) => {
       try {
-        const userId =  sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
+        const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
         console.log(token)
         console.log(userId)
 
- 
+
         const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
 
         if (!idEmpresa) {
@@ -31,13 +33,13 @@ function PopUp() {
         }
 
         const response = await axios.get(`http://localhost:8080/empresas/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (response.status === 200 && response.data) {
-          
+
           setEmpresaDetalhes(response.data);
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
@@ -51,6 +53,77 @@ function PopUp() {
     buscarEmpresaPorId();
   }, []);
 
+  useEffect(() => {
+    const buscarAvaliacoes = async (token) => {
+      try {
+        const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
+        token = sessionStorage.authToken
+        console.log(token)
+        console.log(userId)
+
+
+        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
+
+        if (!idEmpresa) {
+          throw new Error('ID da empresa não encontrado no sessionStorage');
+        }
+
+        const response = await axios.get(`http://localhost:8080/avaliacoes/empresa/${idEmpresa}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status === 200 && response.data) {
+            console.log(response.data)
+          setAvaliacoes(response.data);
+        } else {
+          throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar detalhes da empresa:', error);
+        toast.error(error.message);
+      }
+    };
+
+    buscarAvaliacoes();
+  }, []);
+
+  useEffect(() => {
+    const buscarNotas = async (token) => {
+      try {
+        const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
+        token = sessionStorage.authToken
+        console.log(token)
+        console.log(userId)
+
+
+        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
+
+        if (!idEmpresa) {
+          throw new Error('ID da empresa não encontrado no sessionStorage');
+        }
+
+        const response = await axios.get(`http://localhost:8080/empresas/media/${idEmpresa}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status === 200 && response.data) {
+            console.log(response.data)
+          setNota2(response.data);
+        } else {
+          throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar detalhes da empresa:', error);
+        toast.error(error.message);
+      }
+    };
+
+    buscarNotas();
+  }, []);
   let [modalAberto, setModalAberto] = useState(false);
   let abrirModal = () => {
     setModalAberto(true);
@@ -67,9 +140,9 @@ function PopUp() {
     <div className="popUp">
       <div className="containerBar">
         <div className="nomeBar">
-        {empresaDetalhes && empresaDetalhes.nomeFantasia}
+          {empresaDetalhes && empresaDetalhes.nomeFantasia}
           <span className="notaBar">
-           empresaDetalhes.nota
+          {nota2 && nota2}
           </span>
         </div>
         <Link to="/home-usuario" className="fecharBar">
@@ -78,7 +151,7 @@ function PopUp() {
       </div>
       <div className="containerDescricao">
         <div className="descricaoBar">
-  
+
         </div>
       </div>
       <div className="containerInformacoes">
@@ -103,55 +176,35 @@ function PopUp() {
         </div>
       </div>
       <div className="containesLocaisE">
-        <div className="containerLocalE">
-          <div className="containerImagem">
-            <img src={imagemPerfil} alt="" />
-            <div className="resposta">
-              <img src={imagemRespondida} alt="Um celo de verificação" title="Esta mensagem foi respondida pela empresa" />
+        {/* Aqui você vai mapear as avaliações e exibi-las */}
+        {avaliacoes && avaliacoes.map((avaliacao) => (
+          <div className="containerLocalE" key={avaliacao.id}>
+            <div className="containerImagem">
+              <img src={imagemPerfil} alt="" />
+              <div className="resposta">
+                <img src={imagemRespondida} alt="Um celo de verificação" title="Esta mensagem foi respondida pela empresa" />
+              </div>
             </div>
-          </div>
-          <div className="containerLocalDireita">
+            <div className="containerLocalDireita">
             <div className="containerLocalCima">
               <div className="tituloNome">
                 Tamires Janilda
               </div>
               <div className="estrelasEvento">
-                <img src={estrelas} alt="Quantidade de estrelas, esse estabelecimento tem 3 estrelas" />
+                {avaliacao.nota}
               </div>
             </div>
             <div className="descricaoAvaliacao">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eum, officiis unde modi deserunt inventore.
+              {avaliacao.comentario}
             </div>
             <div className="avaliacaoData">
-              18/09/2023
+            {avaliacao.dtAvaliacao}
             </div>
           </div>
+            {/* Adicione o restante das informações da avaliação */}
+          </div>
+        ))}
 
-        </div>
-        <div className="containerLocalE">
-          <div className="containerImagem">
-            <img src={imagemPerfil} alt="" />
-            <div className="resposta">
-            </div>
-          </div>
-          <div className="containerLocalDireita">
-            <div className="containerLocalCima">
-              <div className="tituloNome">
-                Tamires Janilda
-              </div>
-              <div className="estrelasEvento">
-                <img src={estrelas} alt="Quantidade de estrelas, esse estabelecimento tem 3 estrelas" />
-              </div>
-            </div>
-            <div className="descricaoAvaliacao">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eum, officiis unde modi deserunt inventore.
-            </div>
-            <div className="avaliacaoData">
-              18/09/2023
-            </div>
-          </div>
-
-        </div>
       </div>
     </div>
 

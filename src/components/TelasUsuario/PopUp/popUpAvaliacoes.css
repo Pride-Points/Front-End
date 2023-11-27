@@ -52,6 +52,12 @@
    padding-left: 20px;
 }
 
+
+.botaoAvalie button:hover{
+cursor: pointer;
+}
+
+
 .botaoAvalie button {
    width: 150px;
    height: 40px;

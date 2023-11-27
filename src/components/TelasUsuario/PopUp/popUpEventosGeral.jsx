@@ -11,16 +11,18 @@ import { Link } from 'react-router-dom'; // Importe o componente Link do React R
 
 function PopUp() {
   const [empresaDetalhes, setEmpresaDetalhes] = useState(null);
+  const [nota2, setNota2] = useState(null);
+  const [Eventos, setEventos] = useState(null);
 
   useEffect(() => {
     const buscarEmpresaPorId = async (token) => {
       try {
-        const userId =  sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
+        const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
         console.log(token)
         console.log(userId)
 
- 
+
         const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
 
         if (!idEmpresa) {
@@ -28,13 +30,13 @@ function PopUp() {
         }
 
         const response = await axios.get(`http://localhost:8080/empresas/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (response.status === 200 && response.data) {
-          
+
           setEmpresaDetalhes(response.data);
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
@@ -47,6 +49,83 @@ function PopUp() {
 
     buscarEmpresaPorId();
   }, []);
+
+
+  useEffect(() => {
+    const buscarNotas = async (token) => {
+      try {
+        const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
+        token = sessionStorage.authToken
+        console.log(token)
+        console.log(userId)
+
+
+        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
+
+        if (!idEmpresa) {
+          throw new Error('ID da empresa não encontrado no sessionStorage');
+        }
+
+        const response = await axios.get(`http://localhost:8080/empresas/media/${idEmpresa}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status === 200 && response.data) {
+          console.log(response.data)
+          setNota2(response.data);
+        } else {
+          throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar detalhes da empresa:', error);
+        toast.error(error.message);
+      }
+    };
+
+    buscarNotas();
+  }, []);
+
+
+
+
+  useEffect(() => {
+    const buscarEventos = async (token) => {
+      try {
+        const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
+        token = sessionStorage.authToken
+        console.log(token)
+        console.log(userId)
+
+
+        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
+
+        if (!idEmpresa) {
+          throw new Error('ID da empresa não encontrado no sessionStorage');
+        }
+
+        const response = await axios.get(`http://localhost:8080/eventos/empresa/${idEmpresa}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status === 200 && response.data) {
+          console.log(response.data)
+          setEventos(response.data);
+        } else {
+          throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar detalhes da empresa:', error);
+        toast.error(error.message);
+      }
+    };
+
+    buscarEventos();
+  }, []);
+
 
   let [modalAberto, setModalAberto] = useState(false);
   let abrirModal = () => {
@@ -64,9 +143,9 @@ function PopUp() {
     <div className="popUp">
       <div className="containerBar">
         <div className="nomeBar">
-        {empresaDetalhes && empresaDetalhes.nomeFantasia}
+          {empresaDetalhes && empresaDetalhes.nomeFantasia}
           <span className="notaBar">
-            2.9
+            {nota2 && nota2}
           </span>
         </div>
         <Link to="/home-usuario" className="fecharBar">
@@ -75,7 +154,7 @@ function PopUp() {
       </div>
       <div className="containerDescricao">
         <div className="descricaoBar">
-       
+
         </div>
       </div>
       <div className="containerInformacoes">
@@ -99,52 +178,31 @@ function PopUp() {
         </div>
       </div>
       <div className="containesLocaisE">
-        <div className="containerLocalE">
-          <div className="containerImagem">
-            <img src={imagemPerfil} alt="" />
-        
-          </div>
-          <div className="containerLocalDireita">
-            <div className="containerLocalCima">
-              <div className="tituloNome">
-                Inclusão LGBT
-              </div>
-              <div className="estrelasEvento">
-                Av.Paulista
-              </div>
-            </div>
-            <div className="descricaoAvaliacao">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eum, officiis unde modi deserunt inventore.
-            </div>
-            <div className="avaliacaoData">
-              18/09/2023
-            </div>
-          </div>
+        {Eventos && Eventos.map((evento) => (
 
-        </div>
-        <div className="containerLocalE">
-          <div className="containerImagem">
-            <img src={imagemPerfil} alt="" />
-      
-          </div>
-          <div className="containerLocalDireita">
-            <div className="containerLocalCima">
-              <div className="tituloNome">
-                Inclusão LGBT
+          <div className="containerLocalE">
+            <div className="containerImagem">
+              <img src={imagemPerfil} alt="" />
+            </div>
+            <div className="containerLocalDireita">
+              <div className="containerLocalCima">
+                <div className="tituloNome">
+                  {evento.nome}
+                </div>
+                <div className="estrelasEvento">
+                  evento.local
+                </div>
               </div>
-              <div className="estrelasEvento">
-                Av.Paulista
+              <div className="descricaoAvaliacao">
+                {evento.descricaoEvento}
+              </div>
+              <div className="avaliacaoData">
+                {evento.dtEvento}
               </div>
             </div>
-            <div className="descricaoAvaliacao">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum eum, officiis unde modi deserunt inventore.
-            </div>
-            <div className="avaliacaoData">
-              18/09/2023
-            </div>
           </div>
+        ))}
 
-        </div>
       </div>
     </div>
 

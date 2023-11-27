@@ -20,7 +20,7 @@ function Eventos() {
             img: imgEvento1, // Altere para o campo correto se necessário
             titulo: evento.nome,
             descricao: evento.descricaoEvento,
-            info: 'Av.Paulista', // Informação estática, adapte conforme necessário
+            info:  'Av.Paulista', // Informação estática, adapte conforme necessário
             data: evento.dtEvento ? evento.dtEvento : '15/08/2023', // Use a data recebida ou uma data padrão
           }));
 
