@@ -129,6 +129,8 @@ function AvaliacaoEmpresa() {
         }
     };
 
+    console.log("hello")
+
     //avaliacaoModal
     const [avaliacaoModalAberto, setavaliacaoModalAberto] = useState(false);
     const fecharavaliacaoModal = () => setavaliacaoModalAberto(false);
