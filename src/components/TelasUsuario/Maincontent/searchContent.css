@@ -164,6 +164,7 @@
   position: relative;
   color: #fff;
   font-size: 40px;
+  width: 100%;
   font-weight: 700;
   line-height: 13.125px; /* 32.813% */
   display: flex;

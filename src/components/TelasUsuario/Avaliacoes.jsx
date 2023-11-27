@@ -1,92 +1,64 @@
 import "./avaliacoes.css";
-
+import axios from 'axios';
+import { useState, useEffect } from "react";
 import MenuLateral from "./MenuLateral/MenuLateral.jsx";
 import HeaderUsuario from "./HeaderUsuario/HeaderUsuario.jsx";
 import MainContent from "./Maincontent/MainContent.jsx";
 
 import imgAvaliacao1 from "../../assets/img-avaliacao1.png";
 
-import React, { useState, useEffect } from "react";
-
 function Eventos() {
-  const [eventos, setEventos] = useState([]);
+  const [avaliacoes, setAvaliacoes] = useState([]);
+  
+  // Simulação de dados de reviews (supondo que você obtenha esses dados de algum lugar)
 
-  // Simulação de dados de eventos do banco de dados
-  const eventosDoBancoDeDados = [
-    {
-      img: imgAvaliacao1,
-      titulo: "Bar do Jaú",
-      descricao:
-        "Um bar localizado na região da Paulista, possui musica ao vivo.",
-      info: "4.7",
-      data: "20/08/2021",
-    },
-    {
-      img: imgAvaliacao1,
-      titulo: "Zig Club",
-      descricao:
-        "Festa lgbt localizada na republica onde ocorrem eventos sobre artistas e muita musica",
-      info: "4.8",
-      data: "08/09/2023",
-    },
-    {
-      img: imgAvaliacao1,
-      titulo: "Zig Club",
-      descricao:
-        "Festa lgbt localizada na republica onde ocorrem eventos sobre artistas e muita musica",
-      info: "4.8",
-      data: "08/09/2023",
-    },
-    {
-      img: imgAvaliacao1,
-      titulo: "Zig Club",
-      descricao:
-        "Festa lgbt localizada na republica onde ocorrem eventos sobre artistas e muita musica",
-      info: "4.8",
-      data: "08/09/2023",
-    },
-    {
-      img: imgAvaliacao1,
-      titulo: "Zig Club",
-      descricao:
-        "Festa lgbt localizada na republica onde ocorrem eventos sobre artistas e muita musica",
-      info: "4.8",
-      data: "08/09/2023",
-    },
-    // Outros eventos...
-  ];
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    // Aqui seria a lógica para buscar os eventos do banco de dados
-    // Por enquanto, usei os dados acima
-    setEventos(eventosDoBancoDeDados);
-  }, []);
+    const carregarEventosDoUsuario = async (token) => {
+      try {
+        // Simulando um userId (você deve definir isso de acordo com a lógica da sua aplicação)
+        const userId =  sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
+        token = sessionStorage.authToken
+        console.log(token)
+        console.log(userId)
 
-  // Simulação de dados vindo do bacos de dados do modal
-  const reviews = [
-    {
-      title: "Péssima Localização",
-      desc: "Fui desrespeitada, jogaram café na minha cara e ainda riram de mim, como pode isso? Não recomendo a ninguém! ",
-      date: "09/10/2023",
-      resposta: { 
-        resposta: "Lamentamos qualquer inconveniente! Entre em contato em sacBar.com",
-      },
-    },
-    {
-      title: "Horrível!",
-      desc: "Fui nessa cafeteria na semana passada e odiei o atendimento. são muitos mesquinhos",
-      date: "09/10/2023",
-      resposta: {
-        resposta: "Lamentamos qualquer inconveniente! Entre em contato em sacBar.com",
-      },
-    },
-    {
-      title: "Ótima localização",
-      desc: "Fui nessa cafeteria na semana passada e adorei o atendimento :D",
-      date: "09/10/2023"
-    },
-    // Outros eventos...
-  ];
+        const response = await axios.get(`http://localhost:8080/avaliacoes/usuario/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (response.status === 200 && response.data) {
+          // Mapeando as avaliações recebidas da API para o formato desejado
+          console.log(response.data)
+          const avaliacoesFormatadas = response.data.map(avaliacao => ({
+            img: imgAvaliacao1, // Altere para o campo correto se necessário
+            titulo: avaliacao.tag, // Supondo que 'nome' seja o título da avaliação
+            descricao: avaliacao.comentario, // Supondo que 'descricao' seja a descrição da avaliação
+            info: avaliacao.nota, // Supondo que 'avaliacao' seja a informação de avaliação
+            data: avaliacao.dtAvaliacao,  // Supondo que 'data' seja a data da avaliação
+          }
+          ));
+        
+          const reviewsFormatadas = response.data.map(reviews => ({
+            title: reviews.tag,
+            desc: reviews.comentario,
+            date: reviews.dtAvaliacao
+          }));
+  
+          // Atualizando a lista de avaliações do usuário
+          setAvaliacoes(avaliacoesFormatadas);
+          setReviews(reviewsFormatadas)
+        } else {
+          throw new Error('Ops! Ocorreu um erro ao buscar as avaliações do usuário.');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar avaliações do usuário:', error);
+      }
+    };
+  
+    carregarEventosDoUsuario();
+  }, []);
 
   return (
     <div className="container">
@@ -96,15 +68,15 @@ function Eventos() {
 
       <div className="content-right">
         <HeaderUsuario />
-        <main>
+        <div>
           <MainContent
             tituloPgn="Avaliações"
             subtituloPgn="Encontre lugares inclusivos para você"
-            eventos={eventos}
+            eventos={avaliacoes}
             isClickable={true}
             reviews={reviews}
           />
-        </main>
+        </div>
       </div>
     </div>
   );
