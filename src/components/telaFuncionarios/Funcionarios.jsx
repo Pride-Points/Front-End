@@ -356,8 +356,8 @@ const Funcionarios = () => {
         )}
 
         {csvModalAberto && (
-          <div className="modal-cadastro-overlay">
-            <div className="modal-cadastro">
+          <div className="modal-cadastroFuncionario-overlay">
+            <div className="modal-cadastroFuncionario">
               <div className="close">
                 <img
                   src={iconClose}
@@ -371,13 +371,13 @@ const Funcionarios = () => {
               <h1>Como deseja seguir?</h1>
               <div className="container-cards">
                 <Link to={"#"} className="link-style">
-                  <div className="card-modal" onClick={downloadCSV}>
+                  <div className="cardFuncionario-modal" onClick={downloadCSV}>
                     <h2>Fazer a exportação em CSV</h2>
                     <img src={excel} width="100px" height="100px" />
                   </div>
                 </Link>
                 <Link to={"#"} className="link-style">
-                  <div className="card-modal border-color" onClick={exportacaoTXT}>
+                  <div className="cardFuncionario-modal borderFuncionario-color" onClick={exportacaoTXT}>
                     <h2>Fazer a exportaçãoem TXT</h2>
                     <img src={text} width="100px" height="100px" />
                   </div>

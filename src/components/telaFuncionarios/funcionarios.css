@@ -300,9 +300,9 @@
   margin-top: 20px;
 }
 
-/* cards */
+/* cardFuncionarios */
 
-.card {
+.cardFuncionario {
   width: 100%;
   height: fit-content;
   border: 1px solid #ccc;
@@ -315,13 +315,13 @@
   justify-content: space-between;
 }
 
-.card-image {
+.cardFuncionario-image {
   width: 125px;
   height: 116px;
   border-radius: 10px;
 }
 
-.card-content {
+.cardFuncionario-content {
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -329,16 +329,16 @@
   /* Alinhamento do texto à esquerda */
 }
 
-.card-title {
+.cardFuncionario-title {
   margin: 8px 0;
   font-size: 1.5em;
 }
 
-.card-paragraph {
+.cardFuncionario-paragraph {
   margin: 8px 0;
 }
 
-.card-buttons {
+.cardFuncionario-buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
@@ -364,7 +364,7 @@
   font-weight: 700;
 }
 
-.modal-cadastro{
+.modal-cadastroFuncionario{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -374,7 +374,7 @@
     padding: 40px 80px;
 }
 
-.modal-cadastro-overlay{
+.modal-cadastroFuncionario-overlay{
     position: fixed;
   top: 0;
   right: 0;
@@ -400,13 +400,13 @@
     cursor: pointer;
 }
 
-.container-cards{
+.container-cardFuncionarios{
     display: flex;
     flex-direction: row;
     gap: 120.91px;
 }
 
-.card-modal{
+.cardFuncionario-modal{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -420,11 +420,11 @@
     cursor: pointer;
 }
 
-.border-color{
+.borderFuncionario-color{
     border: 4px solid #000;
 }
 
-.card-modal h2{
+.cardFuncionario-modal h2{
     font-size: 20px;
     margin-bottom: 30px;
 }

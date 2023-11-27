@@ -9,7 +9,7 @@ function CardFuncionario(props) {
   const fecharModalFuncionario = () => setModalAbertoFuncionario(false);
 
   return (
-    <div className="card">
+    <div className="cardFuncionario">
       <img src={props.img} alt="Imagem do Card" className="card-image" />
       <div className="card-content">
         <h3 className="card-title">{props.nome}</h3>
