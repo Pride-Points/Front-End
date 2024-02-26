@@ -15,12 +15,6 @@ function removeSpacesAndAccents(str) {
 function CadastroDire(props) {
   const [inputValues, setInputValues] = useState(props.inputTitles.map(() => ''));
   const [showPasswordInfo, setShowPasswordInfo] = useState(false);
-  const [inputValuesSecondPart, setInputValuesSecondPart] = useState({
-    cidade: '',
-    numero: '',
-    // Adicione outros campos da segunda parte conforme necessário
-  });
-  const [cepFilled, setCepFilled] = useState(false); // Novo estado para verificar se o CEP foi preenchido
 
 
   const navigate = useNavigate();
@@ -43,33 +37,11 @@ function CadastroDire(props) {
     setInputValues(props.inputTitles.map(() => ''));
   }, [props.inputTitles]);
 
-  const handleInputChange = async (index, value) => {
+  const handleInputChange = (index, value) => {
+    // Atualiza diretamente o array de inputValues baseado no índice e valor
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
     setInputValues(newInputValues);
-
-    if (removeSpacesAndAccents(props.inputTitles[index]) === 'cep') {
-      const cepDetails = await fetchCepDetails(value.replace(/\D/g, ''));
-
-      if (cepDetails) {
-        // Preencha os campos com os detalhes do CEP
-        setInputValues((prevValues) => ({
-          ...prevValues,
-          estado: cepDetails.uf || '',
-          // Adicione outros campos conforme necessário
-        }));
-
-        setInputValuesSecondPart((prevValues) => ({
-          ...prevValues,
-          cidade: cepDetails.localidade || '',
-          numero: cepDetails.numero,
-          // Adicione outros campos conforme necessário
-        }));
-
-        // Atualiza o estado para indicar que o CEP foi preenchido
-        setCepFilled(true);
-      }
-    }
   };
 
   const generosSexuais = [
@@ -95,17 +67,14 @@ function CadastroDire(props) {
     'Outro',
   ];
 
-
-  const fetchCepDetails = async (cep) => {
-    try {
-      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Erro ao buscar detalhes do CEP', error);
-      return null;
-    }
-  };
+  const estadosBrasileiros = [
+    'AC', 'AL', 'AP', 'AM', 'BA',
+    'CE', 'DF', 'ES', 'GO', 'MA',
+    'MT', 'MS', 'MG', 'PA', 'PB',
+    'PR', 'PE', 'PI', 'RJ', 'RN',
+    'RS', 'RO', 'RR', 'SC', 'SP',
+    'SE', 'TO'
+  ];
 
   const inputs = props.inputTitles.map((title, index) => (
     <div key={index} className='input'>
@@ -162,7 +131,7 @@ function CadastroDire(props) {
         <input
           type="number"
           name={removeSpacesAndAccents(title)}
-          value={inputValuesSecondPart.numero}
+          value={inputValues[index]}
           onChange={(e) => handleInputChange(index, e.target.value)}
         />
       ) : title.toLowerCase().includes('cnpj') ? (
@@ -203,17 +172,20 @@ function CadastroDire(props) {
             <input
               type="text"
               name={removeSpacesAndAccents(title)}
-              value={inputValuesSecondPart.cidade}
+              value={inputValues[index]}
               onChange={(e) => handleInputChange(index, e.target.value)}
             />
           ) : title.toLowerCase().includes('estado') ? (
-            <input
-              type="text"
+            <select
               name={removeSpacesAndAccents(title)}
-              value={cepFilled ? inputValues.estado || '' : ''}
+              value={inputValues[index]}
               onChange={(e) => handleInputChange(index, e.target.value)}
-              disabled={cepFilled} // Define o campo como desabilitado se o CEP foi preenchido
-            />
+            >
+              <option value="" disabled hidden>Selecione o estado</option>
+              {estadosBrasileiros.map(estado => (
+                <option key={estado} value={estado}>{estado}</option>
+              ))}
+            </select>
           ) : (
             <input
               type="text"
