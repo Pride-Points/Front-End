@@ -91,7 +91,7 @@
 .subtitulo {
     display: flex;
     align-items: center;
-    margin-right: 90px;
+    margin-bottom: 20px;
 }
 
 .date {
@@ -161,8 +161,11 @@
 
 
 .description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow-y: auto;
-    width: 65%;
+    width: 60vw;
     height: 60vh;
 }
 
@@ -189,7 +192,7 @@
 }
 
 .overview {
-    width: 35%;
+    width: 50%;
     height: 62vh;
     display: flex;
     flex-direction: column;
@@ -298,14 +301,18 @@
 }
 
 .avaliacaoModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #fff;
     border-radius: 8px;
     width: 20%;
-    height: 60%;
+    height: 50%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .avaliacaoModalHeader {
+    margin-bottom: 70px;
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -408,28 +415,29 @@ input[type="checkbox"][value="vermelha"]:hover+label.vermelha {
 }
 
 .avaliacaoModalFooter {
-    padding-left: 60px;
-    text-align: center;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-
-}
-
-.avaliacaoModalFooter .button-close {
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
-    width: 70%;
-    background-color: #4200A1;
-
+    margin-top: 10px;
 }
 
-
-.avaliacaoModalFooter .button-close:hover {
-    background-color: #280061;
-
+.button-close {
+    background-color: #4200A1;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    border: #4200A1;
+    cursor: pointer;
+    height: 40px;
+    width: 50%;
 }
 
 .avaliacaoModalHeader p {
     color: #000;
+}
+
+.sem-avaliacao {
+    text-align: center;
 }

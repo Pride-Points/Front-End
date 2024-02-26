@@ -193,7 +193,7 @@ function AvaliacaoEmpresa() {
 
                         <div className="quantidade-comentarios">
                             {preenchidoColuna.map((coluna, index) => (
-                                <PreenchidoColuna key={index} {...coluna} />
+                                <PreenchidoColuna key={index} totalAvaliacoes={avaliacoes.length} {...coluna} />
                             ))}
                         </div>
                     </div>
@@ -204,7 +204,7 @@ function AvaliacaoEmpresa() {
                 <div className="avaliacaoModal-resposta-container">
                     <div className="avaliacaoModal">
                         <div className="avaliacaoModalHeader">
-                            <p>Em resposta a: <b>{usuarioSelecionado}</b></p>
+                            <p>Em resposta a avaliação: <b>{usuarioSelecionado}</b></p>
                         </div>
                         <div className="avaliacaoModalBody">
                             <div className="checkbox">
