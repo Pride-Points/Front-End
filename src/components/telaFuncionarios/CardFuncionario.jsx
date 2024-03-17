@@ -1,12 +1,90 @@
 import React, { useState } from "react";
 import trash from "../../assets/trash.svg";
-import defaultIcon from "../../assets/defaultIcon.png";
+import "./CardFuncionario.css";
+import api from "../../api/api";
 
 function CardFuncionario(props) {
   const [modalAbertoFuncionario, setModalAbertoFuncionario] = useState(false);
 
   const abrirModalFuncionario = () => setModalAbertoFuncionario(true);
   const fecharModalFuncionario = () => setModalAbertoFuncionario(false);
+
+  const [nomeFuncionario, setNomeFuncionario] = useState(props.nome);
+  const [cargoFuncionario, setCargoFuncionario] = useState(props.cargo);
+  const [emailFuncionario, setEmailFuncionario] = useState(props.email);
+
+
+  const handleNomeChange = (event) => {
+    setNomeFuncionario(event.target.value);
+  };
+
+  const handleCargoChange = (event) => {
+    setCargoFuncionario(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmailFuncionario(event.target.value);
+  };
+
+  const handleSalvarClick = async () => {
+    const funcionarioAtualizado = {
+      nome: nomeFuncionario,
+      cargo: cargoFuncionario,
+      email: emailFuncionario
+    };
+  
+    try {
+      // Chame o endpoint PUT com o objeto funcionarioAtualizado
+      const responsePUT = await api.put(`/funcionarios/${props.idFuncionario}`, funcionarioAtualizado, {
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.authToken}`,
+        },
+      });
+  
+      if (responsePUT.status === 200) {
+        // Feche o modal
+
+        alert('Funcionário Atualizado com sucesso!')
+        
+        fecharModalFuncionario();
+        // Atualize a página para refletir as alterações
+        window.location.reload();
+      } else {
+        // Tratamento de erro se a resposta não estiver ok
+        console.error("Falha ao atualizar funcionário:", responsePUT.statusText);
+      }
+    } catch (error) {
+      // Tratamento de erro se ocorrer um erro durante a requisição
+      console.error("Erro ao atualizar funcionário:", error);
+    }
+  };
+
+  const deletarFuncionario = async () => {
+    try {
+      // Passo 1: Deletar o funcionário
+      if (props.idFuncionario == 1) {
+        alert("Você não pode deletar o dono da empresa!");
+        return;
+      }
+
+      const responseDelete = await api.delete(`/funcionarios/${sessionStorage.idEmpresa}/${props.idFuncionario}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.authToken}`,
+        },
+      });
+
+      if (responseDelete.status === 200) {
+        alert("Funcionario deletado com sucesso!")
+        window.location.reload()
+      } else {
+        // Tratamento de erro
+        alert("Falha ao deletar o funcionário.");
+      }
+    } catch (error) {
+      console.error("Erro ao deletar funcionário:", error);
+    }
+  };
 
   return (
     <div className="cardFuncionario">
@@ -21,7 +99,7 @@ function CardFuncionario(props) {
           Editar
         </button>
         <div className="delete-button">
-          <img src={trash} alt="Icone Excluir" />
+          <img src={trash} alt="Icone Excluir" onClick={deletarFuncionario} style={{ cursor: 'pointer' }} />
         </div>
       </div>
 
@@ -29,37 +107,40 @@ function CardFuncionario(props) {
         <div className="modalEmpresa">
           <div className="modalContainer">
             <div className="boxModal">
-              <div className="modalHeader">
+              <div className="modalHeaderCard">
+                <h1>Editar Funcionario</h1>
                 <button onClick={fecharModalFuncionario}>X</button>
+
               </div>
               <div className="modalBody ">
                 <form className="formModal">
                   <label>Nome do Funcionário</label>
                   <input
                     type="text"
-                    placeholder="Nome do evento"
-                    defaultValue={props.nome}
+                    placeholder="Nome do funcionário"
+                    value={nomeFuncionario}
+                    onChange={handleNomeChange}
                   />
                   <label>Cargo do Funcionário</label>
-                  <textarea
-                    type="text"
-                    placeholder="Descrição"
-                    defaultValue={props.cargo}
+                  <input
+                    placeholder="Cargo"
+                    value={cargoFuncionario}
+                    onChange={handleCargoChange}
                   />
                   <label>Email do Funcionário</label>
                   <input
                     type="text"
-                    placeholder="Local"
-                    defaultValue={props.email}
+                    placeholder="Email"
+                    value={emailFuncionario}
+                    onChange={handleEmailChange}
                   />
                 </form>
               </div>
               <div className="modalFooter">
                 <button
-                  className="botaoPadraoEmpresa"
-                  onClick={fecharModalFuncionario}
-                >
-                  Salvar
+                  className="botaoPadraoEmpresaCard"
+                  onClick={handleSalvarClick}
+                >Salvar
                 </button>
               </div>
             </div>

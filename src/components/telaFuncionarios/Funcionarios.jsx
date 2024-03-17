@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logoPride from "../../assets/logo-dark (1).png";
-import peopleIcon from "../../assets/people.svg";
+import peopleIcon from "../../assets/icon-people-roxo.png";
 import checkEvento from "../../assets/Vector.svg";
 import dashIcon from "../../assets/dashBlack.svg";
 import avalBlack from "../../assets/icon-avaliacoes.png";
@@ -223,7 +223,7 @@ const Funcionarios = () => {
         <div className="primeiro-menu">
           <ul>
             <li>
-              <a href="#">
+              <a href="/dash">
                 <img src={dashIcon} alt="Logo Item 1" className="logo-item" />
                 Overview
               </a>
@@ -245,21 +245,15 @@ const Funcionarios = () => {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/funcionarios">
                 <img src={peopleIcon} alt="Logo Item 1" className="logo-item" />
-                Funcionários
+                <p className="pag-atual">Funcionários</p>
               </a>
             </li>
           </ul>
         </div>
         <div className="segundo-menu">
           <ul>
-            <li>
-              <a href="#">
-                <img src={iconPerson} alt="" className="logo-item" />
-                Minha conta
-              </a>
-            </li>
             <li>
               <a href="#">
                 <img src={iconHelp} alt="" className="logo-item" />
@@ -283,8 +277,7 @@ const Funcionarios = () => {
           <h1>Funcionários</h1>
           <h2>Cadastre e visualize todos os seus funcionários!</h2>
 
-          <button className="botaoPadraoEmpresa" onClick={abrirModal}>
-            Cadastrar
+          <button className="botaoPadraoEmpresa" onClick={abrirModal}> Cadastrar
           </button>
         </div>
         <div className="SearchContent">
@@ -308,6 +301,7 @@ const Funcionarios = () => {
               nome={evento.nome}
               cargo={evento.cargo}
               email={evento.email}
+              idFuncionario={evento.id}
             />
           ))}
         </div>
@@ -344,7 +338,6 @@ const Funcionarios = () => {
                       <label>Confirmação de senha</label>
                       <input type="password" placeholder="*********" name="confirmacaoSenha" />
                       <div className="botoes-formulario">
-                        <button type='submit'>Voltar</button>
                         <button type='submit'>Finalizar</button>
                       </div>
                     </form>

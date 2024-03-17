@@ -13,53 +13,37 @@ import iconSair from "../../assets/icon-sair.svg";
 import searchIcon from "../../assets/search-icon.svg";
 import calendarIcon from "../../assets/icon-calendar.svg";
 import MainContentEmpresa from "./MainContentEmpresa.jsx";
-import imgEvento from "../../assets/img-evento.png";
+import api from "../../api/api.js";
+import { toast } from 'react-toastify';
 
 function Evento() {
   const [eventos, setEventos] = useState([]);
-
-  const eventosDoBancoDeDados = [
-    {
-      img: imgEvento,
-      titulo: "Inclusão LGBT",
-      descricao:
-        "A comunidade estará reunida para festejar. terá show ao vivo.",
-      info: "Av.Paulista",
-      data: "15/08/2023",
-    },
-    {
-      img: imgEvento,
-      titulo: "Inclusão LGBT",
-      descricao:
-        "A comunidade estará reunida para festejar. terá show ao vivo.",
-      info: "Av.Paulista",
-      data: "15/08/2023",
-    },
-    {
-      img: imgEvento,
-      titulo: "Inclusão LGBT",
-      descricao:
-        "A comunidade estará reunida para festejar. terá show ao vivo.",
-      info: "Av.Paulista",
-      data: "15/08/2023",
-    },
-    {
-      img: imgEvento,
-      titulo: "Inclusão LGBT",
-      descricao:
-        "A comunidade estará reunida para festejar. terá show ao vivo.",
-      info: "Av.Paulista",
-      data: "15/08/2023",
-    },
-    // Outros eventos...
-  ];
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Aqui seria a lógica para buscar os eventos do banco de dados
-    // Por enquanto, usei os dados acima
-    setEventos(eventosDoBancoDeDados);
+    const listarEventos = async () => {
+      try {
+        const response = await api.get(`/eventos/empresa/${sessionStorage.idEmpresa}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.authToken}`
+          }
+        });
+        setEventos(response.data);
+      } catch (error) {
+        if (error.response && error.response.status === 500) {
+          setEventos([]);
+        } else {
+          toast.error(error.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    listarEventos();
   }, []);
 
+  
   return (
     <div className="corpo">
       <header className="header-pos-logon">
@@ -75,7 +59,7 @@ function Evento() {
         <div className="primeiro-menu">
           <ul>
             <li>
-              <a href="#">
+              <a href="/dash">
                 <img src={dashIcon} alt="Logo Item 1" className="logo-item" />
                 Overview
               </a>
@@ -106,12 +90,6 @@ function Evento() {
         </div>
         <div className="segundo-menu">
           <ul>
-            <li>
-              <a href="#">
-                <img src={iconPerson} alt="" className="logo-item" />
-                Minha conta
-              </a>
-            </li>
             <li>
               <a href="#">
                 <img src={iconHelp} alt="" className="logo-item" />
