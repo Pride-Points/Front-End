@@ -47,34 +47,33 @@ function SearchContentEmpresa(props) {
       </div>
 
       <div className="bottom">
-        {props.eventos.length > 0 && (
-          props.eventos.map((evento, index) =>
-            props.isClickable ? (
-              <button onClick={openModal}>
-                <CardUsuario
-                  key={index}
-                  img={evento.img}
-                  titulo={evento.titulo}
-                  descricao={evento.descricao}
-                  info={evento.info}
-                  data={evento.data}
-                />
-              </button>
-            ) : (
-              <CardUsuario
-                key={index}
-                img={evento.img}
-                titulo={evento.titulo}
-                descricao={evento.descricao}
-                info={evento.info}
-                data={evento.data}
-                isClickable={false}
-              />
-            )
-          )
-        )}
-          
-      </div>
+  {props.eventos.length > 0 && (
+    props.eventos.map((evento, index) => (
+      props.isClickable ? (
+        <button onClick={() => console.log(evento)}> {/* Adicione o console.log aqui */}
+          <CardUsuario
+            key={index}
+            id={evento.id}
+            img={evento.imgEvento}
+            titulo={evento.nome}
+            descricao={evento.descricaoEvento}
+            data={evento.dtEvento}
+          />
+        </button>
+      ) : (
+        <CardUsuario
+          key={index}
+          id={evento.id}
+          img={evento.imgEvento}
+          titulo={evento.nome}
+          descricao={evento.descricaoEvento}
+          data={evento.dtEvento}
+          isClickable={false}
+        />
+      )
+    ))
+  )}
+</div>
 
       <Modal
         isOpen={modalIsOpen}

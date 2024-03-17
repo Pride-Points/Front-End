@@ -5,6 +5,8 @@ import MenuLateral from "./MenuLateral/MenuLateral.jsx";
 import HeaderUsuario from "./HeaderUsuario/HeaderUsuario.jsx";
 import MainContent from "./Maincontent/MainContent.jsx";
 import estrelas from "./PopUp/estrelas.js"
+import dashIcon from "../../assets/dashBlack.svg"
+import avalBlack from "../../assets/icon-avaliacoes.svg";
 import imgAvaliacao1 from "../../assets/img-avaliacao1.png";
 
 function Eventos() {
@@ -64,9 +66,13 @@ function Eventos() {
 
   return (
     <div className="container">
-      <div className="content-left">
-        <MenuLateral />
-      </div>
+            <div className="content-left">
+                <MenuLateral 
+                dashIcon= {dashIcon}
+                classColor={"pag-atual"}
+                avalIcon= {avalBlack}
+                classColorAval={""}/>
+            </div>
 
       <div className="content-right">
         <HeaderUsuario />

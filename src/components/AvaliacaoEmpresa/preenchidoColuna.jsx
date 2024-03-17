@@ -1,13 +1,12 @@
 import React from "react";
 
-const PreenchidoColuna = ({ quantidade, estrela }) => {
-    const porcentagem = (quantidade / 5) * 100; // Considerando que o valor seja uma avaliação de 0 a 5
+const PreenchidoColuna = ({ quantidade, estrela, totalAvaliacoes }) => {
+    const porcentagem = totalAvaliacoes ? (quantidade / totalAvaliacoes) * 100 : 0; // Agora calcula a porcentagem baseada no total de avaliações
     return (
-
         <div className="quantidade-comentarios">
             <div className="stats">
-            <p>{`${estrela} estrelas`}</p>
-            <h3>{quantidade} ({porcentagem}%)</h3>
+                <p>{`${estrela} estrelas`}</p>
+                <h3>{quantidade} ({porcentagem.toFixed(2)}%)</h3> {/* Usando toFixed(2) para limitar a duas casas decimais */}
             </div>
             <div className="quantidade">
                 <div className="coluna">
@@ -20,9 +19,6 @@ const PreenchidoColuna = ({ quantidade, estrela }) => {
                 </div>
             </div>
         </div>
-
-
-
     );
 };
 

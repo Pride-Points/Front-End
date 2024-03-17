@@ -1,6 +1,7 @@
 /* --------------- CARDS ---------------- */
 
 .searchBar {
+  width: 96%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -132,7 +133,7 @@
 }
 
 .SearchContentEmpresa .bottom .cardText h3 {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 13.125px;
   color: #1e1e1e;
@@ -141,7 +142,7 @@
 }
 
 .SearchContentEmpresa .bottom .cardText p {
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 400;
   line-height: normal;
   color: #1e1e1e;

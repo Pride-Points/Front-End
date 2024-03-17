@@ -11,6 +11,9 @@ import PreenchidoColuna from "./preenchidoColuna";
 import balaoVerde from "../../assets/balãoVerde.svg";
 import balaoAmarelo from "../../assets/balãoAmarelo.svg";
 import balaoVermelho from "../../assets/balãoVermelho.svg";
+import MenuLateral from "../menuLateral/HeaderMenuLateral";
+import dashIcon from "../../assets/dashBlack.svg"
+import avalRoxo from "../../assets/icon-avaliacao.svg";
 
 import "./avaliacaoEmpresa.css";
 
@@ -145,7 +148,11 @@ function AvaliacaoEmpresa() {
     return (
         <div className="container">
             <div className="content">
-                <HeaderMenu />
+            <MenuLateral 
+                dashIcon= {dashIcon}
+                classColor={""}
+                avalIcon= {avalRoxo}
+                classColorAval={"pag-atual"}/>
             </div>
 
             <div className="conteudo">
@@ -193,7 +200,7 @@ function AvaliacaoEmpresa() {
 
                         <div className="quantidade-comentarios">
                             {preenchidoColuna.map((coluna, index) => (
-                                <PreenchidoColuna key={index} {...coluna} />
+                                <PreenchidoColuna key={index} totalAvaliacoes={avaliacoes.length} {...coluna} />
                             ))}
                         </div>
                     </div>
@@ -204,7 +211,7 @@ function AvaliacaoEmpresa() {
                 <div className="avaliacaoModal-resposta-container">
                     <div className="avaliacaoModal">
                         <div className="avaliacaoModalHeader">
-                            <p>Em resposta a: <b>{usuarioSelecionado}</b></p>
+                            <p>Em resposta a avaliação: <b>{usuarioSelecionado}</b></p>
                         </div>
                         <div className="avaliacaoModalBody">
                             <div className="checkbox">
