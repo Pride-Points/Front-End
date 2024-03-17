@@ -1,39 +1,45 @@
+import React from 'react';
+import axios from 'axios'; // Importe o axios
+
 function CardReview(props) {
+console.log(props)
+  // Função para excluir a avaliação
+  const deleteReview = async (id) => {
+    console.log(id + "IDDDDDDDDDDDDDDDDDDD")
+    try {
+
+      const token = sessionStorage.getItem('authToken');
+
+      await axios.delete(`http://localhost:8080/avaliacoes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });      // Aqui você pode adicionar a lógica para atualizar a UI após a exclusão bem-sucedida
+      alert("Avaliação excluída com sucesso!");
+      window.location.reload();
+    } catch (error) {
+      console.error("Erro ao excluir a avaliação:", error);
+      alert("Não foi possível excluir a avaliação.");
+    }
+  };
   return (
     <div className="modal">
       <div className="modalHeader">
-        <img
-          src={props.backgroundModal}
-          alt="Background Modal"
-          className="backgroundModal"
-        />
+
 
         <div className="modalHeaderText">
           {props.localName}
           <button onClick={props.closeModal}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              viewBox="0 0 30 30"
-              fill="none"
-            >
-              <path
-                d="M7.78122 6.01373C7.54547 5.78603 7.22971 5.66004 6.90197 5.66289C6.57422 5.66574 6.26071 5.7972 6.02895 6.02896C5.79719 6.26072 5.66572 6.57423 5.66288 6.90198C5.66003 7.22973 5.78602 7.54548 6.01372 7.78123L13.2325 15L6.01247 22.2187C5.89308 22.334 5.79785 22.472 5.73234 22.6245C5.66683 22.777 5.63235 22.941 5.63091 23.107C5.62946 23.273 5.66109 23.4376 5.72394 23.5912C5.78679 23.7448 5.87961 23.8844 5.99698 24.0017C6.11434 24.1191 6.25391 24.2119 6.40753 24.2748C6.56115 24.3376 6.72575 24.3692 6.89172 24.3678C7.05769 24.3664 7.22172 24.3319 7.37423 24.2664C7.52673 24.2008 7.66466 24.1056 7.77997 23.9862L15 16.7675L22.2187 23.9862C22.4545 24.2139 22.7702 24.3399 23.098 24.3371C23.4257 24.3342 23.7392 24.2028 23.971 23.971C24.2028 23.7392 24.3342 23.4257 24.3371 23.098C24.3399 22.7702 24.2139 22.4545 23.9862 22.2187L16.7675 15L23.9862 7.78123C24.2139 7.54548 24.3399 7.22973 24.3371 6.90198C24.3342 6.57423 24.2028 6.26072 23.971 6.02896C23.7392 5.7972 23.4257 5.66574 23.098 5.66289C22.7702 5.66004 22.4545 5.78603 22.2187 6.01373L15 13.2325L7.78122 6.01373Z"
-                fill="white"
-              />
-            </svg>
+            x
           </button>
         </div>
       </div>
 
-      <div className="modalMainImage">
-        <img src={props.mainImage} alt="Imagem principal do modal" />
-      </div>
+
 
       <div className="modalCards">
         {props.reviews.map((review) => (
-          <div className="modalCard">
+          <div className="modalCard" key={review.id}> {/* Certifique-se de que `review` tenha um `id` */}
             <div className="modalCardTop">
               <div className="modalCardText">
                 <h4>{review.title}</h4>
@@ -42,8 +48,8 @@ function CardReview(props) {
 
               <div className="modalCardButton">
                 <div className="modalCardButtonAndTrash">
-                  <button>Editar</button>
-                  <button className="modalCardButtonTrash">
+                  <button o>Editar</button>
+                  <button className="modalCardButtonTrash" onClick={() => deleteReview(review.id)}>
                     <svg
                       width="26"
                       height="26"

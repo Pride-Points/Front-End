@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import MenuLateral from "./MenuLateral/MenuLateral.jsx";
 import HeaderUsuario from "./HeaderUsuario/HeaderUsuario.jsx";
 import MainContent from "./Maincontent/MainContent.jsx";
+import estrelas from "./PopUp/estrelas.js"
 import dashIcon from "../../assets/dashBlack.svg"
 import avalBlack from "../../assets/icon-avaliacoes.svg";
-
 import imgAvaliacao1 from "../../assets/img-avaliacao1.png";
 
 function Eventos() {
@@ -30,6 +30,7 @@ function Eventos() {
             Authorization: `Bearer ${token}`,
           },
         });
+        
         if (response.status === 200 && response.data) {
           // Mapeando as avaliações recebidas da API para o formato desejado
           console.log(response.data)
@@ -45,7 +46,8 @@ function Eventos() {
           const reviewsFormatadas = response.data.map(reviews => ({
             title: reviews.tag,
             desc: reviews.comentario,
-            date: reviews.dtAvaliacao
+            date: reviews.dtAvaliacao,
+            id: reviews.id
           }));
   
           // Atualizando a lista de avaliações do usuário

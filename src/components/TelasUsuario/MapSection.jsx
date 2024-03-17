@@ -1,92 +1,94 @@
-import axios from 'axios';
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
-import PontoCinza from "../../assets/PointerLGBT.png"
+import PontoCinza from "../../assets/PointerLGBT.png";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MapSection = () => {
+  const mapContainer = useRef(null);
+
   useEffect(() => {
     mapboxgl.accessToken = 'pk.eyJ1IjoiZHNvdWdsYSIsImEiOiJjbG9tZzJkMTAwdHZiMmpwcDQzNHUwY3BtIn0.Yw5Jia_cH0bDbfHp_XWO7g';
     const map = new mapboxgl.Map({
-      container: 'map',
+      container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-46.660365, -23.555146],
+      center: [-46.660365, -23.555146], // Centro inicial arbitrário
       zoom: 14,
     });
-// ... (seu código)
 
+    const fetchData = async () => {
+     let token = sessionStorage.authToken
+      // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
+      const bearerToken = token;
+      const response = await fetch('http://localhost:8080/empresas/completo', {
+        method: 'GET',
+        headers: new Headers({
+          'Authorization': `Bearer ${bearerToken}`,
+          'Content-Type': 'application/json'
+        }),
+      });
+      const listaEmpresas = await response.json();
 
+      const empresasComCoordenadas = await Promise.all(listaEmpresas.map(async empresa => {
+        const endereco = `${empresa.cep}, ${empresa.cidade}, ${empresa.estado}, ${empresa.numero}`;
+        const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(endereco)}.json?access_token=${mapboxgl.accessToken}`;
+        
+        try {
+          const geocodeResponse = await fetch(geocodeUrl);
+          const geocodeData = await geocodeResponse.json();
+          if (geocodeData.features.length > 0) {
+            const [longitude, latitude] = geocodeData.features[0].center;
+            return { ...empresa, longitude, latitude };
+          }
+          return null; // Endereço não encontrado
+        } catch (error) {
+          console.error("Erro ao geocodificar endereço:", error);
+          return null; // Erro na requisição
+        }
+      }));
 
-map.on('load', () => {
-  map.addSource('pontos', {
-      type: 'geojson',
-      data: {
-          type: 'FeatureCollection',
-          features: [
-              {
-                  type: 'Feature',
-                  properties: {
-                      icon: 'PontoCinza' // Nome do ícone
-                  },
-                  geometry: {
-                      type: 'Point',
-                      coordinates: [-46.660365, -23.555146] // Coordenadas do ponto
-                  }
+      // Carregando a imagem para o marcador
+      map.loadImage(PontoCinza, (error, image) => {
+        if (error) throw error;
+        map.addImage('PontoCinza', image);
+
+        // Adicionando fonte de dados ao mapa
+        map.addSource('pontos', {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: empresasComCoordenadas.filter(e => e !== null).map(empresa => ({
+              type: 'Feature',
+              properties: {
+                description: `${empresa.nomeFantasia}<br>${empresa.cidade}, ${empresa.estado}`
+              },
+              geometry: {
+                type: 'Point',
+                coordinates: [empresa.longitude, empresa.latitude]
               }
-              // Adicione mais pontos se necessário
-          ]
-      }
-  });
-  const buscarSugestoesEnderecos = async (termo) => {
-    try {
-      const accessToken = 'pk.eyJ1IjoiZHNvdWdsYSIsImEiOiJjbG9tZzJkMTAwdHZiMmpwcDQzNHUwY3BtIn0.Yw5Jia_cH0bDbfHp_XWO7g'; // Substitua pelo seu token da Mapbox
-      const countryFilter = '&country=BR'; // Filtro para o Brasil
-      const regionFilter = '&region=SP'; // Filtro para o estado de São Paulo
+            }))
+          }
+        });
 
-      const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(termo)}.json?access_token=${accessToken}${countryFilter}${regionFilter}`);
-  
-   
-      if (response.data && response.data.features) {
-        const sugestoes = response.data.features
-          .filter((feature) => feature.place_type.includes('poi') || feature.place_type.includes('address'))
-          .map((feature) => (
-            
-            
-            {
-            nome: feature.text,
-            endereco: feature.place_name,
-          }));
-  
-        // Atualiza as sugestões de endereços
-      } else {
-      }
-    } catch (error) {
-      console.error('Erro ao buscar sugestões de endereços:', error);
-    }
-  };
-  buscarSugestoesEnderecos()
-  map.loadImage(PontoCinza, (error, image) => {
-      if (error) throw error;
-      map.addImage('PontoCinza', image);
-      map.addLayer({
+        // Adicionando a camada ao mapa com os pontos
+        map.addLayer({
           id: 'pontos',
           type: 'symbol',
           source: 'pontos',
           layout: {
-              'icon-image': 'PontoCinza', // Usa o ícone carregado
-              'icon-size': 0.1 // Ajuste o tamanho do ícone conforme necessário
+            'icon-image': 'PontoCinza',
+            'icon-size': 0.1
           }
+        });
       });
-  });
-});
+    };
 
-// ... (seu código)
+    // Carregando dados quando o mapa estiver pronto
+    map.on('load', fetchData);
 
     return () => map.remove();
   }, []);
 
-  return <div id="map" style={{ width: '100%', height: '600px' }}></div>;
+  return <div ref={mapContainer} style={{ width: '100%', height: '600px' }}></div>;
 };
 
 export default MapSection;

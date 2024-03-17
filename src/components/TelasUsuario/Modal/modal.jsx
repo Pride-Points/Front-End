@@ -7,9 +7,11 @@ import axios from 'axios';
 
 import React, { useState } from 'react';
 
-function ModalAvaliacao({ onClose, mostrarModal }) {
-    const [selectedEmotion, setSelectedEmotion] = useState('');
-    const [estrelasHover, setEstrelasHover] = useState(0);
+function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoParaEditar = {}, onAvaliacaoSalva }) {
+    // Estados iniciais podem vir das props se estiver em modo de edição
+    const [selectedEmotion, setSelectedEmotion] = useState(modoEdicao ? avaliacaoParaEditar.tag : '');
+    const [estrelasHover, setEstrelasHover] = useState(modoEdicao ? avaliacaoParaEditar.nota : 0);
+    const [comentario, setComentario] = useState(modoEdicao ? avaliacaoParaEditar.comentario : '');
 
     const handleMouseEnter = (id) => {
         setEstrelasHover(id);
@@ -26,7 +28,7 @@ function ModalAvaliacao({ onClose, mostrarModal }) {
     let nomeEmpresa = sessionStorage.nomeFantasiaClicada
 
     const [tag, setTag] = useState('');
-    const [comentario, setComentario] = useState('');
+  
 
     const fecharModal = () => {
         setEstrelasHover(0)
@@ -45,38 +47,39 @@ function ModalAvaliacao({ onClose, mostrarModal }) {
     const dataAvaliacao = `${ano}-${mes}-${dia}`;
 
 
-    const enviarAvaliacao = (token) => {
-        const usuarioId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
-        token = sessionStorage.authToken
-        const empresaId = sessionStorage.idEmpresaClicada
-        // Aqui você faz a requisição POST para o endpoint do Spring Boot com os dados capturados do modal
+    const enviarAvaliacao = () => {
+        const usuarioId = sessionStorage.id;
+        const empresaId = sessionStorage.idEmpresaClicada;
+        const token = sessionStorage.authToken;
         const data = {
-            nota: estrelasHover, // Aqui você pode colocar a nota, ou pode ter um estado para isso também
+            nota: estrelasHover,
             tag: selectedEmotion,
-            comentario: comentario,
-            dtAvaliacao: dataAvaliacao
+            comentario,
+            dtAvaliacao: dataAvaliacao, // Considerar se a data deve ser atualizada na edição
+        };
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
         };
 
-        console.log(data)
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        };
-        // Substitua a URL abaixo pela URL do seu endpoint no Spring Boot
-        axios.post(`http://localhost:8080/avaliacoes/${empresaId}/${usuarioId}`, data, config)
+        const urlBase = `http://localhost:8080/avaliacoes`;
+        const url = modoEdicao ? 
+            `${urlBase}/${avaliacaoParaEditar.id}/${usuarioId}/${empresaId}` :
+            `${urlBase}/${empresaId}/${usuarioId}`;
+
+        const metodoHttp = modoEdicao ? axios.put : axios.post;
+
+        metodoHttp(url, data, config)
             .then(response => {
-                // Manipule a resposta aqui se precisar
                 console.log('Avaliação enviada com sucesso!', response.data);
-                fecharModal();
                 window.location.reload();
+
+                onAvaliacaoSalva(); // Callback para atualizar a lista de avaliações no componente pai
+
             })
             .catch(error => {
-                // Manipule os erros aqui se precisar
                 console.error('Erro ao enviar avaliação:', error);
             });
     };
-
 
 
     return (

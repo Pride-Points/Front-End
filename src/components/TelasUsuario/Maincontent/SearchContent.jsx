@@ -1,13 +1,11 @@
-import "./searchContent.css";
 import React, { useState } from "react";
+import "./searchContent.css";
 import CardUsuario from "./CardUsuario.jsx";
-
+import StarRating from "../PopUp/estrelas.js"; // Certifique-se de ajustar o caminho para o seu componente StarRating
 import iconLupa from "../../../assets/lupa-icon.svg";
 import iconFiltro from "../../../assets/icon_filter.svg";
-import background from "../../../assets/backgroundReviews.png";
-import starbucks from "../../../assets/starbucks.png";
-import CardReview from "./CardReview.jsx";
 import Modal from "react-modal";
+import CardReview from "./CardReview.jsx";
 
 const customStyles = {
   content: {
@@ -29,8 +27,6 @@ function SearchContent(props) {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
- 
-
   return (
     <div className="SearchContent">
       <div className="top">
@@ -49,30 +45,29 @@ function SearchContent(props) {
 
       <div className="bottom testee">
         {props.eventos &&
-          props.eventos.map((evento, index) =>
-            props.isClickable ? (
-              <button onClick={openModal}>
+          props.eventos.map((evento, index) => (
+            <div key={index}>
+              {props.isClickable ? (
+                <button onClick={openModal}>
+                  <CardUsuario
+                    img={evento.img}
+                    titulo={evento.titulo}
+                    descricao={evento.descricao}
+                    info={<StarRating rating={evento.info} />} // Aqui modificamos para renderizar o componente StarRating
+                    data={evento.data}
+                  />
+                </button>
+              ) : (
                 <CardUsuario
-                  key={index}
                   img={evento.img}
                   titulo={evento.titulo}
                   descricao={evento.descricao}
-                  info={evento.info}
+                  info={<StarRating rating={evento.info} />} // E aqui também
                   data={evento.data}
                 />
-              </button>
-            ) : (
-              <CardUsuario
-                key={index}
-                img={evento.img}
-                titulo={evento.titulo}
-                descricao={evento.descricao}
-                info={evento.info}
-                data={evento.data}
-                isClickable={false}
-              />
-            )
-          )}
+              )}
+            </div>
+          ))}
       </div>
 
       <Modal
@@ -81,14 +76,7 @@ function SearchContent(props) {
         style={customStyles}
         onRequestClose={closeModal}
       >
-        
-        <CardReview
-          closeModal={closeModal}
-          backgroundModal={background}
-          localName="Starbucks 4.1"
-          mainImage={starbucks}
-          reviews={props.reviews}
-        />
+        <CardReview closeModal={closeModal} reviews={props.reviews} />
       </Modal>
     </div>
   );

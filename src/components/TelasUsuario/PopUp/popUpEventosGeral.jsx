@@ -4,7 +4,7 @@ import imagemPerfil from '../../../assets/foto-pride.svg'
 import ModalAvaliacao from '../Modal/modal'; // Importe o componente
 import { toast } from 'react-toastify';
 import axios from 'axios';
-
+import StarRating from './estrelas'
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
@@ -29,7 +29,7 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://localhost:8080/empresas/${userId}`, {
+        const response = await axios.get(`http://localhost:8080/empresas/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -145,8 +145,8 @@ function PopUp() {
         <div className="nomeBar">
           {empresaDetalhes && empresaDetalhes.nomeFantasia}
           <span className="notaBar">
-            {nota2 && nota2}
-          </span>
+          <StarRating className="DgEstrela" rating={nota2} />
+                      </span>
         </div>
         <Link to="/home-usuario" className="fecharBar">
           <img src={fecharBar} alt="Botão para fechar o estabelecimento e ir para a tela inicial do mapa" />
@@ -189,8 +189,8 @@ function PopUp() {
                 <div className="tituloNome">
                   {evento.nome}
                 </div>
-                <div className="estrelasEvento">
-                  evento.local
+                <div className="estrelasEvento2">
+                  Av.Paulista
                 </div>
               </div>
               <div className="descricaoAvaliacao">

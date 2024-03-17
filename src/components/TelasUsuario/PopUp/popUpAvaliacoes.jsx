@@ -7,6 +7,8 @@ import imagemRespondida from '../../../assets/resposta.svg';
 import ModalAvaliacao from '../Modal/modal'; // Importe o componente
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import StarRating from "./estrelas"
+
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
@@ -32,7 +34,7 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://localhost:8080/empresas/${userId}`, {
+        const response = await axios.get(`http://localhost:8080/empresas/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -68,14 +70,14 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://localhost:8080/avaliacoes/empresa/${idEmpresa}`, {
+        const response = await axios.get(`http://localhost:8080/avaliacoes/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
         if (response.status === 200 && response.data) {
-            console.log(response.data)
+          console.log(response.data)
           setAvaliacoes(response.data);
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
@@ -111,7 +113,7 @@ function PopUp() {
         });
 
         if (response.status === 200 && response.data) {
-            console.log(response.data)
+          console.log(response.data)
           setNota2(response.data);
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
@@ -142,7 +144,7 @@ function PopUp() {
         <div className="nomeBar">
           {empresaDetalhes && empresaDetalhes.nomeFantasia}
           <span className="notaBar">
-          {nota2 && nota2}
+          <StarRating className="DgEstrela" rating={nota2} />
           </span>
         </div>
         <Link to="/home-usuario" className="fecharBar">
@@ -182,25 +184,30 @@ function PopUp() {
             <div className="containerImagem">
               <img src={imagemPerfil} alt="" />
               <div className="resposta">
-                <img src={imagemRespondida} alt="Um celo de verificação" title="Esta mensagem foi respondida pela empresa" />
+                <div className="resposta">
+
+                </div>
+
               </div>
             </div>
             <div className="containerLocalDireita">
-            <div className="containerLocalCima">
-              <div className="tituloNome">
-                Tamires Janilda
+              <div className="containerLocalCima">
+                <div className="tituloNome">
+                  {avaliacao.nomeAvaliador}
+                </div>
+                <div className="estrelasEvento">
+                  {/* Renderizando as estrelas com base na nota da avaliação */}
+                  <StarRating className="DgEstrela" rating={avaliacao.nota} />
+               
+                  </div>
               </div>
-              <div className="estrelasEvento">
-                {avaliacao.nota}
+              <div className="descricaoAvaliacao">
+                {avaliacao.comentario}
+              </div>
+              <div className="avaliacaoData">
+                {avaliacao.dtAvaliacao}
               </div>
             </div>
-            <div className="descricaoAvaliacao">
-              {avaliacao.comentario}
-            </div>
-            <div className="avaliacaoData">
-            {avaliacao.dtAvaliacao}
-            </div>
-          </div>
             {/* Adicione o restante das informações da avaliação */}
           </div>
         ))}

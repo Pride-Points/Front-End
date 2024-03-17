@@ -162,12 +162,12 @@
 
 .modal .modalHeader .modalHeaderText {
   position: relative;
-  color: #fff;
   font-size: 40px;
   width: 100%;
   font-weight: 700;
   line-height: 13.125px; /* 32.813% */
   display: flex;
+  color: black;
   justify-content: space-between;
   align-items: center;
 }
@@ -175,7 +175,7 @@
 .modal .modalHeader .modalHeaderText button {
   background-color: transparent;
   border: 0;
-  color: #fff;
+  color: black;
 }
 
 .modal .modalMainImage {
@@ -256,6 +256,7 @@
   font-size: 12px;
   color: #fff;
   font-weight: 700;
+  cursor: pointer;
   padding: 7px 19px;
 }
 
@@ -269,6 +270,12 @@
   background-color: transparent;
   border: 0;
   padding: 0;
+}
+.modal .modalCards .modalCardButton .modalCardButtonTrash {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 }
 
 .modal .modalCards .modalCardButton {
@@ -289,4 +296,8 @@ path:hover{
 
 a:hover{
 opacity: 30%;
+}
+
+.dgPerfil{
+  background-color: red;
 }

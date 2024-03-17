@@ -38,9 +38,7 @@ function MenuLateral() {
               </Link>
             </li>
             <li>
-              <Link to="/configuracoes" className={location.pathname === '/configuracoes' ? 'active' : ''}>
-                <img src={iconConfiguracoes} alt="icone configuracoes"/> Configurações
-              </Link>
+       
             </li>
           </ul>
         </nav>

@@ -107,17 +107,7 @@ function PopUpLocais(props) {
         </div>
    
       </div>
-      <div className='containerSugestao'>
-      <div className="sugestoesEnderecos">
-          <select onChange={(e) => handleSelecionarSugestao(e.target.value)}>
-            {sugestoesEnderecos.map((sugestao) => (
-              <option key={sugestao.id} value={sugestao.endereco}>
-                {sugestao.endereco}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+
   
       <div className="containerOpcoes">
         <div className="opcoes selecionada">
@@ -141,7 +131,7 @@ function PopUpLocais(props) {
             <div className="containerlocalCima">
               <div className="tituloLocal">{empresa.nomeFantasia}</div>
               <div className="estrelasLocal">
-                <img src={estrelas} alt={`Quantidade de estrelas, esse estabelecimento tem ${empresa.estrelas} estrelas`} />
+                    Av. Paulista
               </div>
             </div>
             <div className="descricaoLocal">
