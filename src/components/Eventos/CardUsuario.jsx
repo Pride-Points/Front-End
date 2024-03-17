@@ -1,13 +1,60 @@
 import React, { useState } from "react";
 import trashIcon from "../../assets/trash.svg";
 import iconModalEvent from "../../assets/icon modal event.png";
-
+import api from "../../api/api.js"; // Importe a instância do axios ou fetch que você está usando para fazer as solicitações HTTP
+import { toast } from 'react-toastify';
 
 function CardUsuario(props) {
 
   const [modalAberto, setModalAberto] = useState(false);
+  const [nomeEvento, setNomeEvento] = useState("");
+  const [descricaoEvento, setDescricaoEvento] = useState("");
+  const [urlImagem, setUrlImagem] = useState("");
+  const [dataEvento, setDataEvento] = useState("");
   const abrirModal = () => () => {
     setModalAberto(true);
+  };
+
+  const handleSalvarEvento = async () => {
+  
+    const novoEvento = {
+      nome: nomeEvento,
+      descricaoEvento: descricaoEvento,
+      imgEvento: urlImagem,
+      dtEvento: dataEvento
+    };
+
+    console.log(novoEvento);
+
+    api.put(`/eventos/${sessionStorage.idEmpresa}/${props.id}`, novoEvento, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.authToken}`
+      }
+    })
+      .then((res) => {
+        toast.success("Sucesso ao atualizar!");
+        window.location.reload();
+      })
+      .catch((erro) => {
+        // Erro no cadastro
+        toast.error("Erro ao atualizar!");
+      });
+
+    fecharModal();
+  };
+
+  const handleExcluirEvento = async () => {
+    try {
+      await api.delete(`/eventos/${props.id}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.authToken}`
+        }
+      });
+      toast.success("Evento excluído com sucesso!");
+      window.location.reload(); // Recarrega a página após a exclusão
+    } catch (error) {
+      toast.error("Erro ao excluir o evento!");
+    }
   };
 
   const fecharModal = () => setModalAberto(false);
@@ -30,46 +77,43 @@ function CardUsuario(props) {
         <div className="cardButtons">
           <button onClick={abrirModal()}>Editar</button>
           <button className="trashButton">
-            <img src={trashIcon} alt="" />
+            <img src={trashIcon} alt="" onClick={handleExcluirEvento} />
           </button>
         </div>
 
         <div className="cardInfo">
-          <span className="info">{props.info}</span>
           <span className="data">{props.data}</span>
         </div>
       </div>
 
       {modalAberto && (
         <div className="modalEmpresa">
-          <div className="modalContainer">
-            <div className="boxModal">
-              <div className="modalHeader">
-                <button onClick={fecharModal}>X</button>
-              </div>
-              <div className="modalBody">
-                <img src={iconModalEvent} alt="" />
-                <form className="formModal">
-                  <label>Nome Evento</label>
-                  <input type="text" placeholder="Nome do evento" defaultValue={props.titulo}/>
-                  <label>Descrição</label>
-                  <textarea type="text" placeholder="Descrição" defaultValue={props.descricao} />
-                  <label>Local</label>
-                  <input type="text" placeholder="Local" defaultValue={props.info}/>
-                  <label>Data</label>
-                  <input type="date" placeholder="Data" id="date" defaultValue={dataISO}/>
-                </form>
-              </div>
-              <div className="modalFooter">
-                <button className="botaoPadraoEmpresa" onClick={fecharModal}>
-                  Salvar
-                </button>
-              </div>
+        <div className="modalContainer">
+          <div className="boxModal">
+            <div className="modalHeader">
+              <button onClick={fecharModal}>X</button>
+            </div>
+            <div className="modalBody">
+              <img src={iconModalEvent} alt="" />
+              <form className="formModal">
+                <label>Nome do evento</label>
+                <input type="text" placeholder="Nome do evento" value={nomeEvento} onChange={(e) => setNomeEvento(e.target.value)} />
+                <label>Descrição</label>
+                <textarea type="text" placeholder="Descrição" value={descricaoEvento}  onChange={(e) => setDescricaoEvento(e.target.value)} defaultValue= {props.descricao} />
+                <label>Url Imagem</label>
+                <input type="text" placeholder="Url Imagem" value={urlImagem}  onChange={(e) => setUrlImagem(e.target.value)} defaultValue={props.img}/>
+                <label>Data</label>
+                <input type="date" placeholder="Data" value={dataEvento} onChange={(e) => setDataEvento(e.target.value)} />
+              </form>
+            </div>
+            <div className="modalFooter">
+              <button className="botaoPadraoEvento" onClick={handleSalvarEvento}>Salvar</button>
             </div>
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    )}
+  </div>
   );
 }
 

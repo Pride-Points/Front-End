@@ -1,0 +1,59 @@
+.modalHeaderCard{
+    width: 100%;
+    height: 10vh;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modalHeaderCard button {
+    height: 80px;
+    margin-right: 20px;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+}
+
+.modalHeaderCard h1{
+    color: white;
+    margin-left:16vw;
+    font-size: 2rem;
+}
+
+.botaoPadraoEmpresaCard{
+    background-color: #4200a1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    width: 10%;
+    border-radius: 6px;
+    border: #4200a1;
+    cursor: pointer;
+    height: 50px;
+    padding: 0 80px;
+    margin-top: 5px;
+}
+
+.cardFuncionario {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-content{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+margin-right: 30px;
+}
+
+.card-buttons {
+    display: flex;
+    flex-direction: row;
+}

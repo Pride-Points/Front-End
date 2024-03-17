@@ -11,6 +11,9 @@ import PreenchidoColuna from "./preenchidoColuna";
 import balaoVerde from "../../assets/balãoVerde.svg";
 import balaoAmarelo from "../../assets/balãoAmarelo.svg";
 import balaoVermelho from "../../assets/balãoVermelho.svg";
+import MenuLateral from "../menuLateral/HeaderMenuLateral";
+import dashIcon from "../../assets/dashBlack.svg"
+import avalRoxo from "../../assets/icon-avaliacao.svg";
 
 import "./avaliacaoEmpresa.css";
 
@@ -145,7 +148,11 @@ function AvaliacaoEmpresa() {
     return (
         <div className="container">
             <div className="content">
-                <HeaderMenu />
+            <MenuLateral 
+                dashIcon= {dashIcon}
+                classColor={""}
+                avalIcon= {avalRoxo}
+                classColorAval={"pag-atual"}/>
             </div>
 
             <div className="conteudo">

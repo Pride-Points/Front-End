@@ -229,7 +229,7 @@
 }
 
 .boxModal {
-  display: flex;
+
   flex-direction: column;
 }
 
@@ -254,6 +254,7 @@
 
 .modalHeader h1 {
   margin: 0;
+  color: white;
 }
 
 .modalBody {

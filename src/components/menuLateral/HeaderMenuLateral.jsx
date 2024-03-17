@@ -5,8 +5,6 @@ import "./headerMenuLateral.css";
 import logoPride from "../../assets/logo-dark (1).png";
 import { Link } from 'react-router-dom';
 import peopleIcon from "../../assets/people.svg";
-import dashIcon from "../../assets/icon-chart.svg";
-import avalBlack from "../../assets/icon-avaliacao.svg";
 import avatar from "../../assets/avatar.svg";
 import iconPerson from "../../assets/icon-person.svg";
 import iconHelp from "../../assets/icon-help.svg";
@@ -16,7 +14,7 @@ import calendarIcon from '../../assets/icon-calendar.svg';
 import checkEvento from "../../assets/icon-eventos.svg";
 
 
-function MenuLateral() {
+function MenuLateral(props) {
   return (  
   <div className='corpo'>
   <header className='header-pos-logon'>
@@ -33,9 +31,9 @@ function MenuLateral() {
       <div className='primeiro-menu'>
           <ul>
               <li>
-                  <a href="#">
-                      <img src={dashIcon} alt="Logo Item 1" className="logo-item" />
-                      Overview
+                  <a href="/dash">
+                      <img src={props.dashIcon} alt="Logo Item 1" className="logo-item" />
+                      <p className={props.classColor}>Overview</p>
                   </a>
               </li>
               <li>
@@ -47,8 +45,8 @@ function MenuLateral() {
               </li>
               <li>
                   <a href="/avaliacao-empresa">
-                      <img src={avalBlack} alt="Logo Item 1" className="logo-item" />
-                      <p className='pag-atual'>Avaliações</p> 
+                      <img src={props.avalIcon} alt="Logo Item 1" className="logo-item" />
+                      <p className={props.classColorAval}>Avaliações</p>
                   </a>
               </li>
               <li>
@@ -61,12 +59,6 @@ function MenuLateral() {
       </div>
       <div className='segundo-menu'>
           <ul>
-              <li>
-                  <a href="/configuracoes">
-                      <img src={iconPerson} alt="" className="logo-item" />
-                      Minha conta
-                  </a>
-              </li>
               <li>
                   <a href="#">
                       <img src={iconHelp} alt="" className="logo-item" />
