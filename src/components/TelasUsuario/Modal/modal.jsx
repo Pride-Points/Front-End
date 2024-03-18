@@ -61,7 +61,7 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        const urlBase = `http://localhost:8080/avaliacoes`;
+        const urlBase = `http://10.0.131.239:8080/avaliacoes`;
         const url = modoEdicao ? 
             `${urlBase}/${avaliacaoParaEditar.id}/${usuarioId}/${empresaId}` :
             `${urlBase}/${empresaId}/${usuarioId}`;
