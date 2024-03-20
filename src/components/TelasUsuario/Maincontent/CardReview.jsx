@@ -10,7 +10,7 @@ console.log(props)
 
       const token = sessionStorage.getItem('authToken');
 
-      await axios.delete(`http://10.0.131.239:8080/avaliacoes/${id}`, {
+      await axios.delete(`http://75.101.208.160:8080/avaliacoes/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
