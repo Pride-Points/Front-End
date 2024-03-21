@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import PontoCinza from "../../assets/PointerLGBT.png";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import api from '../../api/api';
 
 const MapSection = () => {
   const mapContainer = useRef(null);
+  const [listaEmpresas, setListaEmpresas] = useState([]);
 
   useEffect(() => {
     mapboxgl.accessToken = 'pk.eyJ1IjoiZHNvdWdsYSIsImEiOiJjbG9tZzJkMTAwdHZiMmpwcDQzNHUwY3BtIn0.Yw5Jia_cH0bDbfHp_XWO7g';
@@ -15,19 +17,25 @@ const MapSection = () => {
       zoom: 14,
     });
 
-    const fetchData = async () => {
-     let token = sessionStorage.authToken
-      // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
-      const bearerToken = token;
-      const response = await fetch('http://54.166.62.134:8080/empresas/completo', {
-        method: 'GET',
-        headers: new Headers({
-          'Authorization': `Bearer ${bearerToken}`,
-          'Content-Type': 'application/json'
-        }),
-      });
-      const listaEmpresas = await response.json();
+   
 
+    const fetchData = async () => {
+
+        const listarEmpresasCompleta = async () => {
+          try {
+            const response = await api.get(`empresas/completo`, {
+              headers: {
+                Authorization: `Bearer ${sessionStorage.authToken}`
+              }
+            });
+            console.log(response.data)
+            setListaEmpresas(response.data)
+          } catch (error) {
+            toast.error(error.message);
+          }
+        }
+        listarEmpresasCompleta();
+        
       const empresasComCoordenadas = await Promise.all(listaEmpresas.map(async empresa => {
         const endereco = `${empresa.cep}, ${empresa.cidade}, ${empresa.estado}, ${empresa.numero}`;
         const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(endereco)}.json?access_token=${mapboxgl.accessToken}`;
