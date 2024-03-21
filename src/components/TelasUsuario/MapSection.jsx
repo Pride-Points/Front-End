@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import PontoCinza from "../../assets/PointerLGBT.png";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import api from '../../api/api';
+import { toast } from 'react-toastify';
 
 const MapSection = () => {
   const mapContainer = useRef(null);
@@ -20,7 +21,6 @@ const MapSection = () => {
    
 
     const fetchData = async () => {
-
         const listarEmpresasCompleta = async () => {
           try {
             const response = await api.get(`empresas/completo`, {
