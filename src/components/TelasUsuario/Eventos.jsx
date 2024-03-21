@@ -13,7 +13,7 @@ function Eventos() {
   useEffect(() => {
     const carregarEventos = async () => {
       try {
-        const response = await axios.get('http://75.101.208.160:8080/eventos');
+        const response = await axios.get('http://54.166.62.134:8080/eventos');
           if(response.status === 204 && response.data){
             console.log("sem evento")
           }
