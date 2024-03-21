@@ -29,7 +29,7 @@ function Home() {
             throw new Error('ID da empresa não encontrado no sessionStorage');
           }
   
-          const response = await axios.get(`http://54.166.62.134:8080/empresas/${idEmpresa}`, {
+          const response = await axios.get(`http://54.196.3.63:8080/empresas/${idEmpresa}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
