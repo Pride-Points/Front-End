@@ -19,7 +19,7 @@ const MapSection = () => {
      let token = sessionStorage.authToken
       // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
       const bearerToken = token;
-      const response = await fetch('http://3.82.9.113:8080/empresas/completo', {
+      const response = await fetch('http://18.232.132.229:8080/empresas/completo', {
         method: 'GET',
         headers: new Headers({
           'Authorization': `Bearer ${bearerToken}`,
