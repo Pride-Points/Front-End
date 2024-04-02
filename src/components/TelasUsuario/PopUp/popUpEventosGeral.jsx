@@ -29,7 +29,7 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://18.232.132.229:8080/empresas/${idEmpresa}`, {
+        const response = await axios.get(`http://10.0.0.220:8080/empresas/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,7 +66,7 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://18.232.132.229:8080/empresas/media/${idEmpresa}`, {
+        const response = await axios.get(`http://10.0.0.220:8080/empresas/media/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -105,7 +105,7 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://18.232.132.229:8080/eventos/empresa/${idEmpresa}`, {
+        const response = await axios.get(`http://10.0.0.220:8080/eventos/empresa/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
