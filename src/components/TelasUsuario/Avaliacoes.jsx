@@ -25,7 +25,7 @@ function Eventos() {
         console.log(token)
         console.log(userId)
 
-        const response = await axios.get(`http://10.0.0.220:8080/avaliacoes/usuario/${userId}`, {
+        const response = await axios.get(`http://10.0.0.220:8080/api/avaliacoes/usuario/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
