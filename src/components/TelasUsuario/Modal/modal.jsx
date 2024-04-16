@@ -2,6 +2,7 @@ import "./modal.css";
 import closeModal from '../../../assets/closeModal.svg'
 import estrela from '../../../assets/Starrrrr.svg'
 import estrelaP from '../../../assets/starrrpreenchida.svg'
+import api from "../../../api/api";
 
 import axios from 'axios';
 
@@ -61,7 +62,9 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        const urlBase = `http://10.0.0.220:8080/api/avaliacoes`;
+        /*vou precisar de help para entender*/
+        const urlBase = `/avaliacoes`;
+        /*vou precisar de help para entender*/
         const url = modoEdicao ? 
             `${urlBase}/${avaliacaoParaEditar.id}/${usuarioId}/${empresaId}` :
             `${urlBase}/${empresaId}/${usuarioId}`;

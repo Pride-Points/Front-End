@@ -15,17 +15,21 @@ const MapSection = () => {
       zoom: 14,
     });
 
+/*vou precisar de help para entender*/
     const fetchData = async () => {
      let token = sessionStorage.authToken
       // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
       const bearerToken = token;
-      const response = await fetch('http://10.0.0.220:8080/api/empresas/completo', {
+      const response = await fetch('/empresas/completo', {
         method: 'GET',
         headers: new Headers({
           'Authorization': `Bearer ${bearerToken}`,
           'Content-Type': 'application/json'
         }),
       });
+
+/*vou precisar de help para entender*/
+
       const listaEmpresas = await response.json();
 
       const empresasComCoordenadas = await Promise.all(listaEmpresas.map(async empresa => {

@@ -8,6 +8,7 @@ import estrelas from "./PopUp/estrelas.js"
 import dashIcon from "../../assets/dashBlack.svg"
 import avalBlack from "../../assets/icon-avaliacoes.svg";
 import imgAvaliacao1 from "../../assets/img-avaliacao1.png";
+import api from "../../api/api.js";
 
 function Eventos() {
   const [avaliacoes, setAvaliacoes] = useState([]);
@@ -25,7 +26,7 @@ function Eventos() {
         console.log(token)
         console.log(userId)
 
-        const response = await axios.get(`http://10.0.0.220:8080/api/avaliacoes/usuario/${userId}`, {
+        const response = await api.get(`/avaliacoes/usuario/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

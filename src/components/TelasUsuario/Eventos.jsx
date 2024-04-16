@@ -1,6 +1,7 @@
 import "./eventos.css"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import api from "../../api/api.js";
 import { toast } from 'react-toastify';
 import MenuLateral from './MenuLateral/MenuLateral.jsx';
 import HeaderUsuario from './HeaderUsuario/HeaderUsuario.jsx';
@@ -13,7 +14,7 @@ function Eventos() {
   useEffect(() => {
     const carregarEventos = async () => {
       try {
-        const response = await axios.get('http://10.0.0.220:8080/api/eventos');
+        const response = await api.get('/eventos');
           if(response.status === 204 && response.data){
             console.log("sem evento")
           }

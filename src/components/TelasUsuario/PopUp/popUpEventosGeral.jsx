@@ -5,6 +5,7 @@ import ModalAvaliacao from '../Modal/modal'; // Importe o componente
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import StarRating from './estrelas'
+import api from "../../../api/api";
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
@@ -29,7 +30,7 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://10.0.0.220:8080/api/empresas/${idEmpresa}`, {
+        const response = await api.get(`/empresas/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,7 +67,7 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://10.0.0.220:8080/api/empresas/media/${idEmpresa}`, {
+        const response = await api.get(`/empresas/media/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -105,7 +106,7 @@ function PopUp() {
           throw new Error('ID da empresa não encontrado no sessionStorage');
         }
 
-        const response = await axios.get(`http://10.0.0.220:8080/api/eventos/empresa/${idEmpresa}`, {
+        const response = await api.get(`/eventos/empresa/${idEmpresa}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
