@@ -3,7 +3,7 @@ import closeModal from '../../../assets/closeModal.svg'
 import estrela from '../../../assets/Starrrrr.svg'
 import estrelaP from '../../../assets/starrrpreenchida.svg'
 
-import axios from 'axios';
+import api from '../../../api/api'
 
 import React, { useState } from 'react';
 
@@ -61,12 +61,12 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        const urlBase = `http://10.0.0.220:8080/api/avaliacoes`;
+        
         const url = modoEdicao ? 
-            `${urlBase}/${avaliacaoParaEditar.id}/${usuarioId}/${empresaId}` :
-            `${urlBase}/${empresaId}/${usuarioId}`;
+            `/avaliacoes/${avaliacaoParaEditar.id}/${usuarioId}/${empresaId}` :
+            `/avaliacoes/${empresaId}/${usuarioId}`;
 
-        const metodoHttp = modoEdicao ? axios.put : axios.post;
+        const metodoHttp = modoEdicao ? api.put : api.post;
 
         metodoHttp(url, data, config)
             .then(response => {

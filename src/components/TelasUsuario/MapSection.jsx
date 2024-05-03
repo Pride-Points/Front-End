@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import PontoCinza from "../../assets/PointerLGBT.png";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import api from '../../api/api'
 
 const MapSection = () => {
   const mapContainer = useRef(null);
@@ -19,13 +20,13 @@ const MapSection = () => {
      let token = sessionStorage.authToken
       // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
       const bearerToken = token;
-      const response = await fetch('http://10.0.0.220:8080/api/empresas/completo', {
-        method: 'GET',
-        headers: new Headers({
-          'Authorization': `Bearer ${bearerToken}`,
-          'Content-Type': 'application/json'
-        }),
+
+      const response = await api.get('/empresas/completo', {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+        },
       });
+
       const listaEmpresas = await response.json();
 
       const empresasComCoordenadas = await Promise.all(listaEmpresas.map(async empresa => {

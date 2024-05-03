@@ -5,7 +5,7 @@ import Pointer from "../../assets/icone-Pointer.png"
 import MapSection from './MapSection.jsx';
 import PopUpEventos from './PopUp/popUpEventosGeral.jsx'
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import api from '../../api/api.js'
 
 
 
@@ -29,7 +29,7 @@ function Home() {
             throw new Error('ID da empresa não encontrado no sessionStorage');
           }
   
-          const response = await axios.get(`http://10.0.0.220:8080/api/empresas/${idEmpresa}`, {
+          const response = await api.get(`/empresas/${idEmpresa}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },

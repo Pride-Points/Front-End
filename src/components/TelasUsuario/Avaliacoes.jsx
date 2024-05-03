@@ -1,5 +1,5 @@
 import "./avaliacoes.css";
-import axios from 'axios';
+import api from '../../api/api.js'
 import { useState, useEffect } from "react";
 import MenuLateral from "./MenuLateral/MenuLateral.jsx";
 import HeaderUsuario from "./HeaderUsuario/HeaderUsuario.jsx";
@@ -25,7 +25,7 @@ function Eventos() {
         console.log(token)
         console.log(userId)
 
-        const response = await axios.get(`http://10.0.0.220:8080/api/avaliacoes/usuario/${userId}`, {
+        const response = await api.get(`/avaliacoes/usuario/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

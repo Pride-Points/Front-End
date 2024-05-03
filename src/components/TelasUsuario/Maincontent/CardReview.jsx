@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'; // Importe o axios
+import api from '../../../api/api';
 
 function CardReview(props) {
 console.log(props)
@@ -10,7 +10,7 @@ console.log(props)
 
       const token = sessionStorage.getItem('authToken');
 
-      await axios.delete(`http://10.0.0.220:8080/api/avaliacoes/${id}`, {
+      await api.delete(`/avaliacoes/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
