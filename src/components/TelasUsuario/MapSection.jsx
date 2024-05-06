@@ -17,7 +17,7 @@ const MapSection = () => {
     });
 
     const fetchData = async () => {
-     let token = sessionStorage.authToken
+      let token = sessionStorage.authToken
       // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
       const bearerToken = token;
 
@@ -27,12 +27,19 @@ const MapSection = () => {
         },
       });
 
-      const listaEmpresas = await response.json();
+      const listaEmpresas = response.data;
+
+      // Verificando se a lista de empresas está vazia
+      if (!listaEmpresas || listaEmpresas.length === 0) {
+        alert("A lista de empresas está vazia.");
+        // Você pode optar por retornar aqui ou fazer alguma outra ação, como exibir uma mensagem no UI
+        return;
+      }
 
       const empresasComCoordenadas = await Promise.all(listaEmpresas.map(async empresa => {
         const endereco = `${empresa.cep}, ${empresa.cidade}, ${empresa.estado}, ${empresa.numero}`;
         const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(endereco)}.json?access_token=${mapboxgl.accessToken}`;
-        
+
         try {
           const geocodeResponse = await fetch(geocodeUrl);
           const geocodeData = await geocodeResponse.json();
