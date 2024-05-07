@@ -28,6 +28,12 @@ function Evento() {
             Authorization: `Bearer ${sessionStorage.authToken}`
           }
         });
+
+        if(response.status !== 200){
+          toast.error('"Erro ao obter eventos. Por favor, tente novamente mais tarde."')
+          return;
+        }
+        
         setEventos(response.data);
       } catch (error) {
         if (error.response && error.response.status === 500) {

@@ -24,22 +24,21 @@ function MainContentEmpresa(props) {
       dtEvento: dataEvento
     };
 
-    console.log(novoEvento);
-
-    api.post(`/eventos/${sessionStorage.idEmpresa}`, novoEvento, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.authToken}`
+    const cadastrarEvento = async () => {
+      try {
+          await (`/eventos/${sessionStorage.idEmpresa}`, novoEvento, {
+              headers: {
+                  Authorization: `Bearer ${sessionStorage.authToken}`
+              }
+          });
+          toast.success("Sucesso ao cadastrar");
+          window.location.reload();
+      } catch (erro) {
+          toast.error("Erro ao cadastrar!");
       }
-    })
-      .then((res) => {
-        toast.success("Sucesso ao cadastrar");
-        window.location.reload();
-      })
-      .catch((erro) => {
-        // Erro no cadastro
-        toast.error("Erro ao cadastrar!");
-      });
-
+  };
+  
+  cadastrarEvento();
     fecharModal();
   };
 

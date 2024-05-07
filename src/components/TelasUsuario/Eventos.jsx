@@ -14,9 +14,10 @@ function Eventos() {
     const carregarEventos = async () => {
       try {
         const response = await api.get('/eventos');
-          if(response.status === 204 && response.data){
-            console.log("sem evento")
-          }
+        if(response.status !== 200){
+          toast.error('"Erro ao obter eventos. Por favor, tente novamente mais tarde."')
+          return;
+        }
         
         if (response.status === 200 && response.data) {
           // Mapeando os eventos recebidos da API para o formato desejado

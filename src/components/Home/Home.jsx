@@ -12,8 +12,6 @@ import { Element } from 'react-scroll';
 function Home(props) {
   // Função de callback para o clique do botão em UserSectionDefault
   const handleUserSectionButtonClick = (valor) => {
-    // Faça algo com o valor recebido de UserSectionDefault
-    console.log("Valor recebido de UserSectionDefault:", valor);
 
     // Passe o valor para a LandingPage
     props.onButtonClickLandingPage(valor);

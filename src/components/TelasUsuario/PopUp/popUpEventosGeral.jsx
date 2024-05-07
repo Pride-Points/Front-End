@@ -19,8 +19,7 @@ function PopUp() {
       try {
         const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
+
 
 
         const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
@@ -56,8 +55,7 @@ function PopUp() {
       try {
         const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
+
 
 
         const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
@@ -73,7 +71,6 @@ function PopUp() {
         });
 
         if (response.status === 200 && response.data) {
-          console.log(response.data)
           setNota2(response.data);
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
@@ -95,8 +92,7 @@ function PopUp() {
       try {
         const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
+
 
 
         const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
@@ -112,7 +108,6 @@ function PopUp() {
         });
 
         if (response.status === 200 && response.data) {
-          console.log(response.data)
           setEventos(response.data);
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
@@ -130,12 +125,10 @@ function PopUp() {
   let [modalAberto, setModalAberto] = useState(false);
   let abrirModal = () => {
     setModalAberto(true);
-    console.log("apertou1")
   };
 
   let fecharModal = () => {
     setModalAberto(false);
-    console.log("aperto21")
 
   };
   return (

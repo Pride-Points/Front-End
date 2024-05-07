@@ -45,6 +45,11 @@ const Funcionarios = () => {
         responseType: 'blob', // Indica que a resposta é um arquivo binário
       });
 
+      if(response.status !== 200){
+        toast.error('"Erro ao obter informações do arquivo csv. Por favor, tente novamente mais tarde."')
+        return;
+      }
+
       // Cria um URL para o blob (objeto binário) da resposta
       const blob = new Blob([response.data], { type: response.headers['content-type'] });
       const url = window.URL.createObjectURL(blob);
@@ -80,6 +85,11 @@ const Funcionarios = () => {
         responseType: 'blob', // Indica que a resposta é um arquivo binário
       });
 
+      if(response.status !== 200){
+        toast.error('"Erro ao exportar csv. Por favor, tente novamente mais tarde."')
+        return;
+      }
+
       // Cria um URL para o blob (objeto binário) da resposta
       const blob = new Blob([response.data], { type: response.headers['content-type'] });
       const url = window.URL.createObjectURL(blob);
@@ -107,8 +117,6 @@ const Funcionarios = () => {
   };
 
   useEffect(() => {
-    console.log('idEmpresa:', sessionStorage.idEmpresa);
-    console.log('authToken:', sessionStorage.authToken);
 
     const listarFuncionariosAtivos = async () => {
       try {
@@ -117,7 +125,11 @@ const Funcionarios = () => {
             Authorization: `Bearer ${sessionStorage.authToken}`
           }
         });
-        console.log(response.data)
+
+        if(response.status !== 200){
+          toast.error('"Erro ao obter funcionarios. Por favor, tente novamente mais tarde."')
+          return;
+        }
         setListaFuncionarios(response.data)
       } catch (error) {
         toast.error(error.message);
@@ -135,7 +147,6 @@ const Funcionarios = () => {
       cargo: e.target.cargo ? e.target.cargo.value : '',
       email: e.target.email ? e.target.email.value : '',
     };
-    console.log(dados);
     // Verificar se todos os campos estão preenchidos
     if (Object.values(dados).some(value => value === '')) {
       toast.error("Todos os campos do cadastro devem ser preenchidos.");
@@ -161,8 +172,6 @@ const Funcionarios = () => {
       return;
     }
 
-    console.log(dados);
-
     // Validar a senha
     const senhaValida = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(dados.senha);
 
@@ -186,25 +195,26 @@ const Funcionarios = () => {
       isGerente: firstDados.cargo === "Gerente" ? true : false,
     }
 
-    console.log(cadastroCompleto);
-
-    api.post(`/funcionarios/${sessionStorage.idEmpresa}`, cadastroCompleto, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.authToken}`
+    const cadastrarFuncionario = async () => {
+      try {
+          const res = await api.post(`/funcionarios/${sessionStorage.idEmpresa}`, cadastroCompleto, {
+              headers: {
+                  Authorization: `Bearer ${sessionStorage.authToken}`
+              }
+          });
+          // Cadastro bem-sucedido
+          setFuncionarioResponse(res.data);
+          toast.success("Sucesso ao cadastrar");
+          fecharModal();
+          // Recarrega a página
+          window.location.reload();
+      } catch (erro) {
+          // Erro no cadastro
+          toast.error("Erro ao cadastrar!");
       }
-    })
-      .then((res) => {
-        // Cadastro bem-sucedido
-        setFuncionarioResponse(res.data);
-        toast.success("Sucesso ao cadastrar");
-        fecharModal();
-        // Recarrega a página
-        window.location.reload();
-      })
-      .catch((erro) => {
-        // Erro no cadastro
-        toast.error("Erro ao cadastrar!");
-      });
+  };
+  
+  cadastrarFuncionario();
   }
 
   return (

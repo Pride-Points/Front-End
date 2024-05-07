@@ -29,8 +29,6 @@ function SearchContentEmpresa(props) {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  console.log(props.eventos);
-
 
   return (
     <div className="SearchContentEmpresa">

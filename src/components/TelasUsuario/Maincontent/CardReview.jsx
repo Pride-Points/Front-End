@@ -2,10 +2,8 @@ import React from 'react';
 import api from '../../../api/api';
 
 function CardReview(props) {
-console.log(props)
   // Função para excluir a avaliação
   const deleteReview = async (id) => {
-    console.log(id + "IDDDDDDDDDDDDDDDDDDD")
     try {
 
       const token = sessionStorage.getItem('authToken');

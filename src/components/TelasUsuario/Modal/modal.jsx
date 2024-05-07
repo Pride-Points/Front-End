@@ -2,6 +2,7 @@ import "./modal.css";
 import closeModal from '../../../assets/closeModal.svg'
 import estrela from '../../../assets/Starrrrr.svg'
 import estrelaP from '../../../assets/starrrpreenchida.svg'
+import { toast } from "react-toastify";
 
 import api from '../../../api/api'
 
@@ -47,39 +48,43 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
     const dataAvaliacao = `${ano}-${mes}-${dia}`;
 
 
-    const enviarAvaliacao = () => {
-        const usuarioId = sessionStorage.id;
-        const empresaId = sessionStorage.idEmpresaClicada;
-        const token = sessionStorage.authToken;
-        const data = {
-            nota: estrelasHover,
-            tag: selectedEmotion,
-            comentario,
-            dtAvaliacao: dataAvaliacao, // Considerar se a data deve ser atualizada na edição
-        };
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        };
+    const enviarAvaliacao = async () => {
+        try {
+            const usuarioId = sessionStorage.id;
+            const empresaId = sessionStorage.idEmpresaClicada;
+            const token = sessionStorage.authToken;
+            const data = {
+                nota: estrelasHover,
+                tag: selectedEmotion,
+                comentario,
+                dtAvaliacao: dataAvaliacao, // Considerar se a data deve ser atualizada na edição
+            };
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            };
+    
+            const url = modoEdicao ?
+                `/avaliacoes/${avaliacaoParaEditar.id}/${usuarioId}/${empresaId}` :
+                `/avaliacoes/${empresaId}/${usuarioId}`;
+    
+            const metodoHttp = modoEdicao ? api.put : api.post;
+    
+            const response = await metodoHttp(url, data, config);
 
-        
-        const url = modoEdicao ? 
-            `/avaliacoes/${avaliacaoParaEditar.id}/${usuarioId}/${empresaId}` :
-            `/avaliacoes/${empresaId}/${usuarioId}`;
-
-        const metodoHttp = modoEdicao ? api.put : api.post;
-
-        metodoHttp(url, data, config)
-            .then(response => {
-                console.log('Avaliação enviada com sucesso!', response.data);
-                window.location.reload();
-
-                onAvaliacaoSalva(); // Callback para atualizar a lista de avaliações no componente pai
-
-            })
-            .catch(error => {
-                console.error('Erro ao enviar avaliação:', error);
-            });
+            if(response.status !== 200){
+                toast.error('"Erro ao enviar avaliação. Por favor, tente novamente mais tarde."')
+                return;
+              }
+            toast.success('Avaliação enviada com sucesso!', response.data);
+            window.location.reload();
+            onAvaliacaoSalva(); // Callback para atualizar a lista de avaliações no componente pai
+        } catch (error) {
+            console.error('Erro ao enviar avaliação:', error);
+        }
     };
+    
+    enviarAvaliacao();
+    
 
 
     return (

@@ -14,18 +14,11 @@ import balaoVermelho from "../../assets/balãoVermelho.svg";
 import MenuLateral from "../menuLateral/HeaderMenuLateral";
 import dashIcon from "../../assets/dashBlack.svg"
 import avalRoxo from "../../assets/icon-avaliacao.svg";
+import { useNavigate } from 'react-router-dom';
 
 import "./avaliacaoEmpresa.css";
 
 function AvaliacaoEmpresa() {
-
-    const [comentarios, setComentarios] = useState([
-        { iconPerfil: iconPerfil, nome: 'Maria', avaliacao: 4, conteudo: 'Bar descontraído e intimista, gostei.', data: '10/10/2020', isShared: false, resp: "" },
-        { iconPerfil: iconPerfil, nome: 'Roberto', avaliacao: 5, conteudo: 'Comida boa e muita música, a melhor experiência que eu já tive.', data: '10/10/2020', isShared: false, resp: "" },
-        { iconPerfil: iconPerfil, nome: 'Zé', avaliacao: 4, conteudo: 'Muita festa e diversão, foram a minha felicidade em meio aos terrores noturnos.', data: '10/10/2020', isShared: false, resp: "" },
-        { iconPerfil: iconPerfil, nome: 'Bjork', avaliacao: 5, conteudo: 'Experiência única e experimental, eu amei.', data: '10/10/2020', isShared: false, resp: "" },
-        { iconPerfil: iconPerfil, nome: 'Taylor Saia', avaliacao: 0, conteudo: 'Bar porco, e experiência ruim, não volto mais', data: '10/10/2020', isShared: false, resp: "" }
-    ]);
 
     const [avaliacoes, setAvaliacoes] = useState([]);
 
@@ -39,7 +32,12 @@ function AvaliacaoEmpresa() {
                         Authorization: `Bearer ${sessionStorage.authToken}`
                     }
                 });
-                console.log(response.data)
+
+                if (response.status !== 200) {
+                    toast.error("Erro ao obter avaliações. Por favor, tente novamente mais tarde.");
+                    return;
+                }
+            
                 setAvaliacoes(response.data)
             } catch (error) {
                 toast.error(error.message);
@@ -108,27 +106,28 @@ function AvaliacaoEmpresa() {
             title: balaoCor,
         }
 
+        const navigate = useNavigate();
 
         if (usuarioSelecionado) {
-            api.post(
-                `/avaliacoes/resposta-empresa/${usuarioSelecionado}`,
-                objetoEnviado, // Corpo da requisição
-                {
-                    headers: {
-                        Authorization: `Bearer ${sessionStorage.authToken}`,
-                    },
-                }
-            )
-                .then((res) => {
+            const enviarResposta = async () => {
+                try {
+                     await (`/avaliacoes/resposta-empresa/${usuarioSelecionado}`, objetoEnviado, {
+                        headers: {
+                            Authorization: `Bearer ${sessionStorage.authToken}`,
+                        },
+                    });
                     toast.success("Resposta enviada com sucesso!");
-
                     fecharavaliacaoModal();
-                    window.location.reload();
-                })
-                .catch((erro) => {
-                    // Erro no cadastro
-                    toast.error("Erro ao cadastrar!");
-                });
+                    navigate('/avaliacao-empresa')
+                } catch (erro) {
+                    if (erro.response && erro.response.status === 404) {
+                        toast.error("Endpoint não encontrado.");
+                    } else {
+                        toast.error("Erro ao cadastrar. Por favor, tente novamente mais tarde.");
+                    }
+                }
+            };
+            enviarResposta();
         }
     };
 
@@ -140,7 +139,6 @@ function AvaliacaoEmpresa() {
     const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
 
     const abriravaliacaoModal = (id) => {
-        console.log(id);
         setUsuarioSelecionado(id); // Usar o id em vez do nome do usuário
         setavaliacaoModalAberto(true);
     };

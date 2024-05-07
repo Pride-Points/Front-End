@@ -22,8 +22,6 @@ function Eventos() {
         // Simulando um userId (você deve definir isso de acordo com a lógica da sua aplicação)
         const userId =  sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
 
         const response = await api.get(`/avaliacoes/usuario/${userId}`, {
           headers: {
@@ -32,8 +30,7 @@ function Eventos() {
         });
         
         if (response.status === 200 && response.data) {
-          // Mapeando as avaliações recebidas da API para o formato desejado
-          console.log(response.data)
+
           const avaliacoesFormatadas = response.data.map(avaliacao => ({
             img: imgAvaliacao1, // Altere para o campo correto se necessário
             titulo: avaliacao.tag, // Supondo que 'nome' seja o título da avaliação

@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import PontoCinza from "../../assets/PointerLGBT.png";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import api from '../../api/api'
+import { toast } from 'react-toastify';
 
 const MapSection = () => {
   const mapContainer = useRef(null);
@@ -27,11 +28,16 @@ const MapSection = () => {
         },
       });
 
+      if(response.status !== 200){
+        toast.error('"Erro ao obter empresas. Por favor, tente novamente mais tarde."')
+        return;
+      }
+
       const listaEmpresas = response.data;
 
       // Verificando se a lista de empresas está vazia
       if (!listaEmpresas || listaEmpresas.length === 0) {
-        alert("A lista de empresas está vazia.");
+        toast.error("A lista de empresas está vazia.");
         // Você pode optar por retornar aqui ou fazer alguma outra ação, como exibir uma mensagem no UI
         return;
       }

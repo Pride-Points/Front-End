@@ -24,8 +24,6 @@ function CardUsuario(props) {
       dtEvento: dataEvento
     };
 
-    console.log(novoEvento);
-
     api.put(`/eventos/${sessionStorage.idEmpresa}/${props.id}`, novoEvento, {
       headers: {
         Authorization: `Bearer ${sessionStorage.authToken}`
