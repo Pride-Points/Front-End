@@ -79,7 +79,7 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
                     return;
                   }
                 toast.success('Avaliação enviada com sucesso!', response.data);
-                navigate('/home-usuario-avaliacoes')
+                navigate('/home-usuario')
 
                 onAvaliacaoSalva(); // Callback para atualizar a lista de avaliações no componente pai
 

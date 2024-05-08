@@ -18,6 +18,7 @@ function PopUp() {
     const buscarEmpresaPorId = async (token) => {
       try {
         token = sessionStorage.authToken;
+        const userId = sessionStorage.id;
 
         const idEmpresa = sessionStorage.getItem("idEmpresaClicada");
 
