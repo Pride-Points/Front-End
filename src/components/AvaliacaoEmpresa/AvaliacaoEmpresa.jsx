@@ -21,7 +21,7 @@ import "./avaliacaoEmpresa.css";
 function AvaliacaoEmpresa() {
 
     const [avaliacoes, setAvaliacoes] = useState([]);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -106,7 +106,7 @@ function AvaliacaoEmpresa() {
             title: balaoCor,
         }
 
-        const navigate = useNavigate();
+  
 
         if (usuarioSelecionado) {
             const enviarResposta = async () => {
