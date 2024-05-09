@@ -22,7 +22,7 @@ const MapSection = () => {
       // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
       const bearerToken = token;
 
-      const response = await api.get('/empresas/completo', {
+      const response = await api.get(`/empresas/completo`, {
         headers: {
           Authorization: `Bearer ${bearerToken}`,
         },
