@@ -24,7 +24,7 @@ const MapSection = () => {
       const bearerToken = token;
       console.log(token)
       console.log(bearerToken)
-      const response = await api.get(`/empresas/1`, {
+      const response = await api.get(`/empresas`, {
         headers: {
           Authorization: `Bearer ${bearerToken}`,
         },
