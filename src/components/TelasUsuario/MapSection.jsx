@@ -30,7 +30,7 @@ const MapSection = () => {
         },
       });
 
-      console
+
       console.log(response)
       if(response.status !== 200){
         toast.error('"Erro ao obter empresas. Por favor, tente novamente mais tarde."')
