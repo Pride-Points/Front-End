@@ -20,14 +20,18 @@ const MapSection = () => {
     const fetchData = async () => {
       let token = sessionStorage.authToken
       // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
+      console.log("FUNCIONA PFV ___________________________________")
       const bearerToken = token;
-
-      const response = await api.get(`/empresas/completo`, {
+      console.log(token)
+      console.log(bearerToken)
+      const response = await api.get(`/empresas`, {
         headers: {
           Authorization: `Bearer ${bearerToken}`,
         },
       });
 
+      console
+      console.log(response)
       if(response.status !== 200){
         toast.error('"Erro ao obter empresas. Por favor, tente novamente mais tarde."')
         return;
