@@ -29,7 +29,10 @@ function Home() {
           setListaEmpresa(response.data);
         } else if(response.data === ""){
           return;
-        }else {
+        } else if(response.status === 204){
+          console.log("Não tem empresa cadastrada")
+        }
+         else  {
           throw new Error('Ops! Ocorreu um erro interno.');
         }
       } catch (error) {

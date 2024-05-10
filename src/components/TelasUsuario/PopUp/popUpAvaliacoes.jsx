@@ -67,7 +67,10 @@ function PopUp() {
 
         if (response.status === 200 && response.data) {
           setAvaliacoes(response.data);
-        } else {
+        } else if(response.status === 404){
+          console.log("Não eixste avaliações")
+      }   
+        else {
           throw new Error(
             "Ops! Ocorreu um erro ao buscar os detalhes da empresa."
           );
@@ -101,7 +104,10 @@ function PopUp() {
 
         if (response.status === 200 && response.data) {
           setNota2(response.data);
-        } else {
+        } else if(response.status === 404){
+            setNota2(0)
+        }   
+        else {
           throw new Error(
             "Ops! Ocorreu um erro ao buscar os detalhes da empresa."
           );
