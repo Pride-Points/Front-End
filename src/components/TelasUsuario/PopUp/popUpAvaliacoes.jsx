@@ -104,13 +104,10 @@ function PopUp() {
         if (response.status === 200 && response.data) {
           setNota2(response.data);
         } else if(response.status === 404){
-            setNota2(0)
+            setNota2(0.0)
         }   
         else {
-          setNota2(0)
-          throw new Error(
-            "Ops! Ocorreu um erro ao buscar os detalhes da empresa."
-          );
+          setNota2(0.0)
         }
       } catch (error) {
         console.error("Erro ao buscar detalhes da empresa:", error);
