@@ -37,7 +37,9 @@ function PopUp() {
         if (response.status === 200 && response.data) {
 
           setEmpresaDetalhes(response.data);
-        } else {
+        } else if(response.status === 201 || response.status === 204) {
+          console.log("Essa empresa não tem nenhum envento")
+        }else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
         }
       } catch (error) {
@@ -109,6 +111,11 @@ function PopUp() {
 
         if (response.status === 200 && response.data) {
           setEventos(response.data);
+        
+        } else if (response.status === 201 || response.status === 204){
+        console.log(response.data)
+        console.log("Não tem evento na empresa")
+        
         } else {
           throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
         }

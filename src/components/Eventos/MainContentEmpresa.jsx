@@ -21,21 +21,27 @@ function MainContentEmpresa(props) {
       nome: nomeEvento,
       descricaoEvento: descricaoEvento,
       imgEvento: urlImagem,
-      dtEvento: dataEvento
+      dtEvento: formatDate(dataEvento)
     };
 
     const cadastrarEvento = async () => {
       try {
-          await (`/eventos/${sessionStorage.idEmpresa}`, novoEvento, {
+          await api.post(`/eventos/${sessionStorage.idEmpresa}`, novoEvento, {
               headers: {
                   Authorization: `Bearer ${sessionStorage.authToken}`
               }
           });
           toast.success("Sucesso ao cadastrar");
-          window.location.reload();
-      } catch (erro) {
+              console.log(novoEvento)
+              console.log()
+              window.location.reload();
+            } catch (erro) {
+          if(novoEvento.descricaoEvento.length <20 ){
+            toast.error("A descrição do evento tem que ter pelo menos 20 caracters");
+          }else{
           toast.error("Erro ao cadastrar!");
-      }
+          }
+        }
   };
   
   cadastrarEvento();
@@ -85,6 +91,10 @@ function MainContentEmpresa(props) {
       )}
     </div>
   );
+}
+const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split("-");
+  return `${day}/${month}/${year}`;
 }
 
 export default MainContentEmpresa;

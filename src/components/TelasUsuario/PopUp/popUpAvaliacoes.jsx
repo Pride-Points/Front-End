@@ -34,6 +34,7 @@ function PopUp() {
 
         if (response.status === 200 && response.data) {
           setEmpresaDetalhes(response.data);
+          console.log(response)
         } else {
           throw new Error(
             "Ops! Ocorreu um erro ao buscar os detalhes da empresa."
@@ -67,11 +68,13 @@ function PopUp() {
 
         if (response.status === 200 && response.data) {
           setAvaliacoes(response.data);
-        } else if(response.status === 404){
+          console.log(response)
+        } else if(response.status === 204){
           setAvaliacoes(null)
           console.log("Não eixste avaliações")
-      }   
+      }  
         else {
+          console.log(response)
        console.log("deu erro na empresa")
         }
       } catch (error) {
@@ -105,8 +108,11 @@ function PopUp() {
           setNota2(response.data);
         } else if(response.status === 404){
             setNota2(0.0)
-        }   
+          console.log(response)
+          }   
+      
         else {
+          console.log(response)
           setNota2(0.0)
         }
       } catch (error) {
@@ -118,12 +124,14 @@ function PopUp() {
     buscarNotas();
   }, []);
   let [modalAberto, setModalAberto] = useState(false);
+
   let abrirModal = () => {
     setModalAberto(true);
+  };
 
-    let fecharModal = () => {
-      setModalAberto(false);
-    };
+  let fecharModal = () => {
+    setModalAberto(false);
+  };
     return (
       <div className="popUp">
         <div className="containerBar">
@@ -211,6 +219,6 @@ function PopUp() {
       </div>
     );
   };
-}
+
 
 export default PopUp;

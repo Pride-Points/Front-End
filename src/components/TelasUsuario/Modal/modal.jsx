@@ -73,14 +73,14 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
 
         metodoHttp(url, data, config)
             .then(response => {
-
-                if(response.status !== 200){
+                    
+                if(response.status !== 201){
                     toast.error('"Erro ao enviar avaliação. Por favor, tente novamente mais tarde."')
                     return;
                   }
                 toast.success('Avaliação enviada com sucesso!', response.data);
                 navigate('/home-usuario')
-
+                
                 onAvaliacaoSalva(); // Callback para atualizar a lista de avaliações no componente pai
 
             })
