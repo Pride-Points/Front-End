@@ -1,0 +1,153 @@
+.content-left,
+.container-widdle {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}
+
+.container-widdle {
+    width: 78vw;
+    height: 90vh;
+}
+
+.presentation {
+    margin: 25px 0 0 70px;
+}
+
+.presentation h1 {
+    font-size: 2.5em;
+    font-weight: 500;
+    color: #5800D6;
+}
+
+.presentation p {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #000000;
+}
+
+
+.card-dad {
+    width: 94%;
+    padding: 0px;
+    border-radius: 12px;
+    border: 1px solid var(--Secondary, #9BA5B7);
+    margin-top: 17px;
+    gap: 23px;
+    display: flex;
+    align-items: center;
+    align-items: center;
+}
+
+.card-dash {
+    width: 250px;
+    height: 80px;
+    flex-direction: column;
+    border-right: 1px solid var(--Secondary, #9BA5B7);
+
+}
+
+.card-dash.isolate-Imprimir.relatório {
+    display: flex;
+    margin: 33px 33px 33px 59px;
+    flex-direction: row;
+    height: 75px;
+    width: 130px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--Secondary, #9BA5B7);
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.card-dash img {
+    background: fixed;
+    width: 25px;
+    top: -28%;
+    margin: 0px 0 0 176px;
+    position: relative;
+    height: 27px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 0px rgba(22, 29, 43, 0.12);
+}
+
+.card-dash.isolate-Imprimir.relatório img {
+    width: 26px;
+    top: 0%;
+    margin: 0px 0 0 18px;
+    position: relative;
+    height: 27px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 0px rgba(22, 29, 43, 0.12)
+}
+
+.card-dash.card-dash.isolate-Imprimir.relatório h4 {
+    font-weight: 400;
+    margin: 0px 45px 0 13px;
+}
+
+.card-dash h4 {
+    font-weight: 400;
+}
+
+.card-dash h2 {
+    font-size: 40px;
+}
+
+.card-dash h2,
+h4 {
+    margin: 0;
+    height: 33px;
+    margin-left: 30px;
+}
+
+.date {
+    margin: 1% 0 1% 78%;
+    display: flex;
+    gap: 15px;
+    height: 48px;
+    width: 210px;
+    cursor: pointer;
+    border-radius: 12px;
+    border: 1px solid var(--Secondary, #9BA5B7);
+    justify-content: center;
+    align-items: center;
+}
+
+.dash {
+    height: 46vh;
+    display: flex;
+    gap: 69px;
+}
+
+.dash-bar,
+.dash-pizza {
+    border-radius: 12px;
+    border: 1px solid var(--Secondary, #9BA5B7);
+}
+
+.dash-bar {
+    display: flex;
+    padding: 5px;
+    height: 95%;
+    width: 45vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash-pizza {
+    height: 95%;
+    padding: 24px;
+    width: 22vw;
+    display: flex;
+    justify-content: center;
+}
+
+
+.genero{
+    margin: 0px 0px 0 48px;
+    font-size: 17px;
+    font-weight: 400;
+}

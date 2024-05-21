@@ -1,0 +1,25 @@
+.mainContent {
+  padding: 67px 80px 0px;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 55px;
+}
+
+.titulo h1 {
+  color: #5800d6;
+  font-size: 50px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 9px;
+}
+
+.titulo p {
+  color: #1E1E1E;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: normal;
+}
+

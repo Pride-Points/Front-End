@@ -1,0 +1,85 @@
+
+/*-----------------Header-----------------*/
+
+.header-pos-logon {
+    background-color: #ffffff; /* Cor de fundo do cabeçalho */
+    color: #000000; /* Cor do texto no cabeçalho */
+    height: 50px; /* Altura do cabeçalho fino */
+    display: flex;
+    justify-content: right; /* Centraliza o texto horizontalmente */
+    align-items: center; /* Centraliza o texto verticalmente */
+    border-bottom: 1px solid #E6EDFF;
+}
+
+.header-pos-logon h1 {
+    margin-bottom: 15px;
+    padding: 0;
+    font-size: 16px;
+    
+}
+
+.imgheader{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    vertical-align: middle;
+}
+
+/*--------------Menu lateral--------------*/
+
+.menu-lateral {
+    position:fixed;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    padding: 20px;
+    color: #fff;
+    border-right: 1px solid #E6EDFF;
+}
+
+.logo-container{
+    padding: 5px;
+}
+
+.logo{
+    width: 100%;
+    height: auto;
+}
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-lateral ul li {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.menu-lateral a {
+    text-decoration: none;
+    color: #000000;
+    display: flex; /*flex para manter o ícone e o texto lado a lado */
+}
+
+.logo-item{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.pag-atual{
+    color: #5800D6;
+}
+
+.primeiro-menu{
+position: relative;
+}
+.segundo-menu{
+    position: absolute;
+    bottom: 0;
+}

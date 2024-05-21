@@ -1,0 +1,304 @@
+/* --------------- CARDS ---------------- */
+
+.searchBar {
+  width: 96%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.barInput {
+  padding: 15px 0px 15px 10px;
+  width: 100%;
+  margin: 0 100px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 10vw;
+}
+
+.SearchContentEmpresa .top .filtro button {
+  border-radius: 12px;
+  border: 1px solid #9ba5b7;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 51px;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #1e1e1e;
+  line-height: 150%;
+  /* 30px */
+  margin-right: 66px;
+}
+
+/* --------------- CARDS ---------------- */
+
+.SearchContentEmpresa .bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-height: 55vh;
+  margin: 50px 100px 0;
+  padding-bottom: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+.SearchContentEmpresa .bottom .cardRight .cardButtons {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.SearchContentEmpresa .bottom .cardRight button {
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  background: #5800d6;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 700;
+  padding: 0 20px;
+  cursor: pointer;
+  border: 0;
+
+}
+
+.SearchContentEmpresa .bottom .cardRight button.trashButton {
+    background-color: transparent;
+    border: 0;
+    height: 20px;
+    padding: 0;
+}
+
+.SearchContentEmpresa .bottom .cardRight button.trashButton img{
+    min-width: 40px;
+    height: 40px;
+}
+  
+  
+
+.SearchContentEmpresa .bottom::-webkit-scrollbar {
+  width: 12px;
+  right: -100px;
+}
+
+.SearchContentEmpresa .bottom::-webkit-scrollbar-track {
+  background: #fff;
+  /* color of the tracking area */
+}
+
+.SearchContentEmpresa .bottom::-webkit-scrollbar-thumb {
+  background-color: #9ba5b7;
+  /* color of the scroll thumb */
+  border-radius: 10px;
+  /* roundness of the scroll thumb */
+}
+
+.SearchContentEmpresa .bottom .cardUsuario {
+  display: flex;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #9ba5b7;
+  justify-content: space-between;
+  background: #fff;
+  margin-right: 54px;
+}
+
+.SearchContentEmpresa .bottom .cardUsuario .cardImage {
+  margin-right: 42px;
+}
+
+.SearchContentEmpresa .bottom .cardUsuario img {
+  width: 100%;
+  max-width: 108px;
+  min-width: 108px;
+  border-radius: 12px;
+}
+
+.SearchContentEmpresa .bottom .cardText {
+  margin-right: 117px;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.SearchContentEmpresa .bottom .cardText h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 13.125px;
+  color: #1e1e1e;
+  margin-bottom: 23px;
+  text-align: left;
+}
+
+.SearchContentEmpresa .bottom .cardText p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  color: #1e1e1e;
+  max-width: 478px;
+  text-align: left;
+}
+
+.SearchContentEmpresa .bottom .cardInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.SearchContentEmpresa .bottom .cardInfo .info {
+  color: #1e1e1e;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.modal .backgroundModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
+.modal .modalHeader {
+  padding: 29px 56px;
+}
+
+.modal .modalHeader .modalHeaderText {
+  position: relative;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 13.125px;
+  /* 32.813% */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal .modalHeader .modalHeaderText button {
+  background-color: transparent;
+  border: 0;
+  color: #fff;
+}
+
+.modal .modalMainImage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.modal .modalCards {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 50px;
+}
+
+.modal .modalCards .modalCard {
+  border-radius: 12px;
+  border: 1px solid #9ba5b7;
+  background: #fff;
+  padding: 23px;
+  flex-direction: column;
+}
+
+.modal .modalCards .modalCard .modalCardTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modal .modalCards .modalCard .modalCardResponseAndData {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+  align-items: flex-end;
+}
+
+.modal .modalCards .modalCard .modalCardResponseAndDataText {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modal .modalCards .modalCard .modalCardResponseAndData p {
+  max-width: 300px;
+  text-align: left;
+}
+
+.modal .modalCards .modalCard .modalCardResponseAndData span {
+  font-size: 12px;
+}
+
+.modal .modalCards .modalCard h4 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #1e1e1e;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.modal .modalCards .modalCard p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #1e1e1e;
+}
+
+.modal .modalCards .modalCardButton button {
+  border-radius: 6px;
+  background: #5800d6;
+  border: 0;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 700;
+  padding: 7px 19px;
+}
+
+.modal .modalCards .modalCardButton .modalCardButtonAndTrash {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal .modalCards .modalCardButton .modalCardButtonTrash {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.modal .modalCards .modalCardButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal .modalCards .modalCardButton span {
+  font-size: 12px;
+  text-align: end;
+}
+
+path:hover {
+  cursor: pointer;
+}
+
+a:hover {
+  opacity: 30%;
+}
