@@ -15,14 +15,13 @@ function Eventos() {
       try {
         const response = await api.get('/eventos');
           if(response.status === 204 && response.data){
-            console.log("sem evento")
           }
         
         if (response.status === 200 && response.data) {
           // Mapeando os eventos recebidos da API para o formato desejado
 
           const eventosFormatados = response.data.map(evento => ({
-            img: imgEvento1, // Altere para o campo correto se necessário
+            img: evento.imgEvento, // Altere para o campo correto se necessário
             titulo: evento.nome,
             descricao: evento.descricaoEvento,
             info:  'Av.Paulista', // Informação estática, adapte conforme necessário

@@ -29,8 +29,6 @@ function SearchContentEmpresa(props) {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  console.log(props.eventos);
-
 
   return (
     <div className="SearchContentEmpresa">
@@ -50,7 +48,7 @@ function SearchContentEmpresa(props) {
   {props.eventos.length > 0 && (
     props.eventos.map((evento, index) => (
       props.isClickable ? (
-        <button onClick={() => console.log(evento)}> {/* Adicione o console.log aqui */}
+        <button>
           <CardUsuario
             key={index}
             id={evento.id}

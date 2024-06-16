@@ -160,7 +160,6 @@ opacity: 70%;
 .containerlocalCima{
    display: flex;
    height: 30%;
-   align-items: center;
    margin-top: 10px;
 }
 

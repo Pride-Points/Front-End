@@ -14,10 +14,6 @@ import React, { useState, useEffect } from 'react';
 
 function Home() {
   const moveToCoordinates = (latitude, longitude) => {
-    // Aqui você pode definir a lógica para mover o mapa para as coordenadas fornecidas
-    console.log(`Movendo para as coordenadas: Latitude ${latitude}, Longitude ${longitude}`);
-    // Exemplo: chame uma função do MapSection para atualizar as coordenadas
-    // mapSection.moveTo(latitude, longitude);
   };
   const [listaEmpresa, setListaEmpresa] = useState([]);
 

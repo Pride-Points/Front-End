@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import api from "../../api/api";
-import HeaderMenu from "../menuLateral/HeaderMenuLateral";
 import StarRating from './starRating';
 import iconAnswered from "../../assets/icon-answered.svg";
 import iconAnsweredFalse from '../../assets/icon-anserwered-false.svg';
@@ -19,14 +18,6 @@ import "./avaliacaoEmpresa.css";
 
 function AvaliacaoEmpresa() {
 
-    const [comentarios, setComentarios] = useState([
-        { iconPerfil: iconPerfil, nome: 'Maria', avaliacao: 4, conteudo: 'Bar descontraído e intimista, gostei.', data: '10/10/2020', isShared: false, resp: "" },
-        { iconPerfil: iconPerfil, nome: 'Roberto', avaliacao: 5, conteudo: 'Comida boa e muita música, a melhor experiência que eu já tive.', data: '10/10/2020', isShared: false, resp: "" },
-        { iconPerfil: iconPerfil, nome: 'Zé', avaliacao: 4, conteudo: 'Muita festa e diversão, foram a minha felicidade em meio aos terrores noturnos.', data: '10/10/2020', isShared: false, resp: "" },
-        { iconPerfil: iconPerfil, nome: 'Bjork', avaliacao: 5, conteudo: 'Experiência única e experimental, eu amei.', data: '10/10/2020', isShared: false, resp: "" },
-        { iconPerfil: iconPerfil, nome: 'Taylor Saia', avaliacao: 0, conteudo: 'Bar porco, e experiência ruim, não volto mais', data: '10/10/2020', isShared: false, resp: "" }
-    ]);
-
     const [avaliacoes, setAvaliacoes] = useState([]);
 
 
@@ -39,7 +30,6 @@ function AvaliacaoEmpresa() {
                         Authorization: `Bearer ${sessionStorage.authToken}`
                     }
                 });
-                console.log(response.data)
                 setAvaliacoes(response.data)
             } catch (error) {
                 toast.error(error.message);
@@ -140,7 +130,6 @@ function AvaliacaoEmpresa() {
     const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
 
     const abriravaliacaoModal = (id) => {
-        console.log(id);
         setUsuarioSelecionado(id); // Usar o id em vez do nome do usuário
         setavaliacaoModalAberto(true);
     };

@@ -70,7 +70,6 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
 
         metodoHttp(url, data, config)
             .then(response => {
-                console.log('Avaliação enviada com sucesso!', response.data);
                 window.location.reload();
 
                 onAvaliacaoSalva(); // Callback para atualizar a lista de avaliações no componente pai

@@ -8,7 +8,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
 
 function PopUpLocais(props) {
-console.log(props.listaEventos)
     return (
 
         <div className="popUp">

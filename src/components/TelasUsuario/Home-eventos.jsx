@@ -17,10 +17,7 @@ function Home() {
     useEffect(() => {
       const buscarEmpresaPorId = async (token) => {
         try {
-          const userId =  sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
           token = sessionStorage.authToken
-          console.log(token)
-          console.log(userId)
   
    
           const idEmpresa = sessionStorage.getItem('idEmpresaClicada');

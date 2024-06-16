@@ -1,21 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
-const DashboardBar = () => {
+const DashboardBar = ({ labels, data }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
   useEffect(() => {
     if (chartInstance.current) {
-      // Se houver uma instância anterior do Chart, destrua-a antes de criar uma nova
-      chartInstance.current.destroy();
+      chartInstance.current.destroy(); // Destrua a instância anterior antes de criar uma nova
     }
 
     const ctx = chartRef.current.getContext('2d');
     chartInstance.current = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['1', '2', '3', '4', '5'],
+        labels: labels, // Usando as labels passadas por props
         datasets: [
           {
             label: 'Avaliações',
@@ -24,7 +23,7 @@ const DashboardBar = () => {
             borderRadius: 2.917,
             hoverBackgroundColor: 'rgba(75,192,192,0.4)',
             hoverBorderColor: 'rgba(75,192,192,1)',
-            data: [65, 52, 80, 81, 56],
+            data: data, // Usando os dados passados por props
           },
         ],
       },
@@ -32,16 +31,20 @@ const DashboardBar = () => {
         scales: {
           y: {
             beginAtZero: true,
+            ticks: {
+              stepSize: 2
+            }
           },
         },
       },
     });
 
-    // Retorne uma função de limpeza para destruir o gráfico quando o componente for desmontado
     return () => {
-      chartInstance.current.destroy();
+      if (chartInstance.current) {
+        chartInstance.current.destroy(); // Limpeza para destruir o gráfico
+      }
     };
-  }, []); // O array vazio como segundo argumento garante que o useEffect é executado apenas uma vez, sem dependências
+  }, [labels, data]); // Dependências para recriar o gráfico quando os labels ou dados mudarem
 
   return (
     <canvas ref={chartRef} />

@@ -24,8 +24,6 @@ function MainContentEmpresa(props) {
       dtEvento: dataEvento
     };
 
-    console.log(novoEvento);
-
     api.post(`/eventos/${sessionStorage.idEmpresa}`, novoEvento, {
       headers: {
         Authorization: `Bearer ${sessionStorage.authToken}`

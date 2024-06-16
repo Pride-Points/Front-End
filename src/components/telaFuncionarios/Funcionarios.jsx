@@ -107,8 +107,6 @@ const Funcionarios = () => {
   };
 
   useEffect(() => {
-    console.log('idEmpresa:', sessionStorage.idEmpresa);
-    console.log('authToken:', sessionStorage.authToken);
 
     const listarFuncionariosAtivos = async () => {
       try {
@@ -117,7 +115,6 @@ const Funcionarios = () => {
             Authorization: `Bearer ${sessionStorage.authToken}`
           }
         });
-        console.log(response.data)
         setListaFuncionarios(response.data)
       } catch (error) {
         toast.error(error.message);
@@ -135,7 +132,6 @@ const Funcionarios = () => {
       cargo: e.target.cargo ? e.target.cargo.value : '',
       email: e.target.email ? e.target.email.value : '',
     };
-    console.log(dados);
     // Verificar se todos os campos estão preenchidos
     if (Object.values(dados).some(value => value === '')) {
       toast.error("Todos os campos do cadastro devem ser preenchidos.");
@@ -161,8 +157,6 @@ const Funcionarios = () => {
       return;
     }
 
-    console.log(dados);
-
     // Validar a senha
     const senhaValida = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(dados.senha);
 
@@ -185,8 +179,6 @@ const Funcionarios = () => {
       tipoFuncionario: firstDados.cargo === "Gerente" ? "Admin" : "Comum",
       isGerente: firstDados.cargo === "Gerente" ? true : false,
     }
-
-    console.log(cadastroCompleto);
 
     api.post(`/funcionarios/${sessionStorage.idEmpresa}`, cadastroCompleto, {
       headers: {

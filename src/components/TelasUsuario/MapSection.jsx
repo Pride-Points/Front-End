@@ -31,8 +31,6 @@ const MapSection = () => {
 
       // Verificando se a lista de empresas está vazia
       if (!listaEmpresas || listaEmpresas.length === 0) {
-        alert("A lista de empresas está vazia.");
-        // Você pode optar por retornar aqui ou fazer alguma outra ação, como exibir uma mensagem no UI
         return;
       }
 

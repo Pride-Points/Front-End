@@ -114,8 +114,6 @@ function CadastroUsuario() {
       dtNascimento: dadosPrimeiraParte.dataDeNascimento,
     };
 
-    console.log(cadastroCompleto);
-
     api.post("/users", cadastroCompleto)
       .then((res) => {
         // Cadastro bem-sucedido
@@ -152,7 +150,6 @@ function CadastroUsuario() {
       orientacaoSexual: e.target.orientacao_sexual ? e.target.orientacao_sexual.value : '',
       dataDeNascimento: e.target.data_de_nascimento ? e.target.data_de_nascimento.value : ''
     };
-    console.log(dadosPrimeiraParte)
 
     // Verificar se todos os campos estão preenchidos
     if (Object.values(dadosPrimeiraParte).some(value => value === '')) {

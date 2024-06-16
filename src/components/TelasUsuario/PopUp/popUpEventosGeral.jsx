@@ -19,8 +19,6 @@ function PopUp() {
       try {
         const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
 
 
         const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
@@ -38,8 +36,6 @@ function PopUp() {
         if (response.status === 200 && response.data) {
 
           setEmpresaDetalhes(response.data);
-        } else {
-          throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
         }
       } catch (error) {
         console.error('Erro ao buscar detalhes da empresa:', error);
@@ -54,10 +50,7 @@ function PopUp() {
   useEffect(() => {
     const buscarNotas = async (token) => {
       try {
-        const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
 
 
         const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
@@ -73,10 +66,7 @@ function PopUp() {
         });
 
         if (response.status === 200 && response.data) {
-          console.log(response.data)
           setNota2(response.data);
-        } else {
-          throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
         }
       } catch (error) {
         console.error('Erro ao buscar detalhes da empresa:', error);
@@ -93,10 +83,7 @@ function PopUp() {
   useEffect(() => {
     const buscarEventos = async (token) => {
       try {
-        const userId = sessionStorage.id; // Substitua pelo ID do usuário que você quer buscar as avaliações
         token = sessionStorage.authToken
-        console.log(token)
-        console.log(userId)
 
 
         const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
@@ -112,13 +99,9 @@ function PopUp() {
         });
 
         if (response.status === 200 && response.data) {
-          console.log(response.data)
           setEventos(response.data);
-        } else {
-          throw new Error('Ops! Ocorreu um erro ao buscar os detalhes da empresa.');
         }
       } catch (error) {
-        console.error('Erro ao buscar detalhes da empresa:', error);
         toast.error(error.message);
       }
     };
@@ -130,12 +113,10 @@ function PopUp() {
   let [modalAberto, setModalAberto] = useState(false);
   let abrirModal = () => {
     setModalAberto(true);
-    console.log("apertou1")
   };
 
   let fecharModal = () => {
     setModalAberto(false);
-    console.log("aperto21")
 
   };
   return (
@@ -182,7 +163,7 @@ function PopUp() {
 
           <div className="containerLocalE">
             <div className="containerImagem">
-              <img src={imagemPerfil} alt="" />
+              <img src={evento.imgEvento} alt="" />
             </div>
             <div className="containerLocalDireita">
               <div className="containerLocalCima">

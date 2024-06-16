@@ -67,8 +67,6 @@ function CadastroEmpresa() {
       }
     };
   
-    console.log(cadastroCompleto);
-  
     api.post("/empresas", cadastroCompleto)
       .then((res) => {
         // Cadastro bem-sucedido
@@ -114,8 +112,6 @@ function CadastroEmpresa() {
       toast.error("Todos os campos do cadastro devem ser preenchidos.");
       return;
     }
-
-    console.log(dadosPrimeiraParte);
 
     // Armazenar os dados
     setDadosPrimeiraParte(dadosPrimeiraParte);

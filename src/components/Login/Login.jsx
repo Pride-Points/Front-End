@@ -66,8 +66,6 @@ function Login() {
       senha: e.target.senha ? e.target.senha.value : ''
     };
 
-    console.log(dadosLogin);
-
     api.post('/users/login', {
       email: dadosLogin.email,
       senha: dadosLogin.senha
@@ -90,7 +88,6 @@ function Login() {
 
           // Decodificar o token
           const decodedToken = jwtDecode(authToken);
-          console.log('Decoded Token:', decodedToken);
 
           // Verificar as roles do usuário no token
           if (decodedToken && decodedToken.roles) {
@@ -108,11 +105,9 @@ function Login() {
             if(roles.includes("ROLE_FISICA")){
               navigate("/home-usuario")
             }
-          } else {
-            console.log('Token inválido ou não contém informações de roles.');
           }
         } else {
-          throw new Error('Ops! Ocorreu um erro interno.');
+          throw new Error('Token inválido ou não contém informações de roles.');
         }
       })
       .catch(error => {

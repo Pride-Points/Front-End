@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import trash from "../../assets/trash.svg";
 import "./CardFuncionario.css";
 import api from "../../api/api";
+import { toast } from 'react-toastify';
 
 function CardFuncionario(props) {
   const [modalAbertoFuncionario, setModalAbertoFuncionario] = useState(false);
@@ -62,8 +63,8 @@ function CardFuncionario(props) {
   const deletarFuncionario = async () => {
     try {
       // Passo 1: Deletar o funcionário
-      if (props.idFuncionario == 1) {
-        alert("Você não pode deletar o dono da empresa!");
+      if (props.idFuncionario === 1) {
+        toast.error("Você não pode deletar o dono da empresa!");
         return;
       }
 

@@ -26,12 +26,9 @@ function PopUpLocais(props) {
 
       if (response.data && response.data.features && response.data.features.length > 0) {
         const { center } = response.data.features[0];
-        console.log(response.data.features[0])
         // Guarda as coordenadas na variável de estado
         setCoordenadas({ latitude: center[1], longitude: center[0] });
 
-      } else {
-        console.log('Endereço não encontrado.');
       }
     } catch (error) {
       console.error('Erro ao buscar coordenadas:', error);

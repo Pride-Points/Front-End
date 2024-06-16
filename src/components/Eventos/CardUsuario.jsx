@@ -14,6 +14,7 @@ function CardUsuario(props) {
   const abrirModal = () => () => {
     setModalAberto(true);
   };
+  
 
   const handleSalvarEvento = async () => {
   
@@ -23,8 +24,6 @@ function CardUsuario(props) {
       imgEvento: urlImagem,
       dtEvento: dataEvento
     };
-
-    console.log(novoEvento);
 
     api.put(`/eventos/${sessionStorage.idEmpresa}/${props.id}`, novoEvento, {
       headers: {

@@ -79,9 +79,12 @@ cursor: pointer;
 }
 
 .containerLocalE {
-   height: 150px;
    display: flex;
    border: 1px solid #9BA5B7;
+   border-radius: 10px;
+   box-shadow: 10px 11px 17px -10px rgba(0,0,0,0.53);
+   -webkit-box-shadow: 10px 11px 17px -10px rgba(0,0,0,0.53);
+   -moz-box-shadow: 10px 11px 17px -10px rgba(0,0,0,0.53);
 }
 
 
@@ -95,7 +98,10 @@ cursor: pointer;
 }
 
 .containerLocalCima{
+   
    display: flex;
+   justify-content: center;
+   align-items: center;
    padding-bottom: 10px;
 }
 
@@ -126,7 +132,26 @@ cursor: pointer;
 }
 
 .descricaoAvaliacao{
+   margin-right: 10px;
    padding-left: 5%;
+}
+
+.box-resposta-avaliacao{
+   margin-top: 10px;
+   text-align: start;
+}
+
+.box-resposta-avaliacao p{
+   text-align: center;
+}
+
+.box-resposta-avaliacao img{
+   margin-right: 5px;
+}
+
+.icon-resp-avaliacao{
+   display: flex;
+   margin-top: 10px;
 }
 
 .avaliacaoData{
@@ -153,7 +178,7 @@ cursor: pointer;
 
 
 .estrelasEvento{
-
+   margin-right: 10px;
    font-size: 25px;
 }
 
@@ -161,6 +186,16 @@ cursor: pointer;
 .estrelasEvento2{
 font-weight: bold;
    font-size: 20px;
+   margin-right: 10px;
+}
+
+.mensagemVazio {
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   height: 500px;
+   font-size: 1.4rem;
+   width: 100%;
 }
 
 

@@ -104,16 +104,29 @@ h4 {
 }
 
 .date {
-    margin: 1% 0 1% 78%;
+
     display: flex;
-    gap: 15px;
-    height: 48px;
-    width: 210px;
+    justify-content: end;
+    align-items: center;
+    height: 100px;
     cursor: pointer;
     border-radius: 12px;
-    border: 1px solid var(--Secondary, #9BA5B7);
-    justify-content: center;
+}
+
+.date-select{
+    display: flex;
+    gap: 10px;
     align-items: center;
+    width: 400px;
+    margin-right: 50px;
+}
+
+.date-select select{
+    width: 50%;
+}
+
+.date-select p{
+    text-align: center;
 }
 
 .dash {

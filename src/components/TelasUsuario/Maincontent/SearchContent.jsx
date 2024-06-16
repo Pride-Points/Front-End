@@ -50,7 +50,7 @@ function SearchContent(props) {
               {props.isClickable ? (
                 <button onClick={openModal}>
                   <CardUsuario
-                    img={evento.img}
+                    img={evento.imgEvento}
                     titulo={evento.titulo}
                     descricao={evento.descricao}
                     info={<StarRating rating={evento.info} />} // Aqui modificamos para renderizar o componente StarRating
