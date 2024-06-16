@@ -22,7 +22,7 @@ function CardUsuario(props) {
       nome: nomeEvento,
       descricaoEvento: descricaoEvento,
       imgEvento: urlImagem,
-      dtEvento: dataEvento
+      dtEvento: formatDate(dataEvento)
     };
 
     api.put(`/eventos/${sessionStorage.idEmpresa}/${props.id}`, novoEvento, {
@@ -98,11 +98,11 @@ function CardUsuario(props) {
                 <label>Nome do evento</label>
                 <input type="text" placeholder="Nome do evento" value={nomeEvento} onChange={(e) => setNomeEvento(e.target.value)} />
                 <label>Descrição</label>
-                <textarea type="text" placeholder="Descrição" value={descricaoEvento}  onChange={(e) => setDescricaoEvento(e.target.value)} defaultValue= {props.descricao} />
+                <textarea type="text" placeholder="Descrição" value={descricaoEvento}  onChange={(e) => setDescricaoEvento(e.target.value)} />
                 <label>Url Imagem</label>
-                <input type="text" placeholder="Url Imagem" value={urlImagem}  onChange={(e) => setUrlImagem(e.target.value)} defaultValue={props.img}/>
+                <input type="text" placeholder="Url Imagem" value={urlImagem}  onChange={(e) => setUrlImagem(e.target.value)} />
                 <label>Data</label>
-                <input type="date" placeholder="Data" value={dataEvento} onChange={(e) => setDataEvento(e.target.value)} />
+                <input type="date" placeholder="Data" value={dataEvento}onChange={(e) => setDataEvento(e.target.value)} />
               </form>
             </div>
             <div className="modalFooter">
@@ -114,6 +114,11 @@ function CardUsuario(props) {
     )}
   </div>
   );
+}
+
+const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split("-");
+  return `${day}/${month}/${year}`;
 }
 
 export default CardUsuario;

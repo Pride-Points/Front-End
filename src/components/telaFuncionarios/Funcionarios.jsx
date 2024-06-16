@@ -45,6 +45,11 @@ const Funcionarios = () => {
         responseType: 'blob', // Indica que a resposta é um arquivo binário
       });
 
+      if(response.status !== 200){
+        toast.error('"Erro ao obter informações do arquivo csv. Por favor, tente novamente mais tarde."')
+        return;
+      }
+
       // Cria um URL para o blob (objeto binário) da resposta
       const blob = new Blob([response.data], { type: response.headers['content-type'] });
       const url = window.URL.createObjectURL(blob);
@@ -79,6 +84,11 @@ const Funcionarios = () => {
         },
         responseType: 'blob', // Indica que a resposta é um arquivo binário
       });
+
+      if(response.status !== 200){
+        toast.error('"Erro ao exportar csv. Por favor, tente novamente mais tarde."')
+        return;
+      }
 
       // Cria um URL para o blob (objeto binário) da resposta
       const blob = new Blob([response.data], { type: response.headers['content-type'] });

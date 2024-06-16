@@ -13,13 +13,14 @@ import balaoVermelho from "../../assets/balãoVermelho.svg";
 import MenuLateral from "../menuLateral/HeaderMenuLateral";
 import dashIcon from "../../assets/dashBlack.svg"
 import avalRoxo from "../../assets/icon-avaliacao.svg";
+import { useNavigate } from 'react-router-dom';
 
 import "./avaliacaoEmpresa.css";
 
 function AvaliacaoEmpresa() {
 
     const [avaliacoes, setAvaliacoes] = useState([]);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -98,27 +99,28 @@ function AvaliacaoEmpresa() {
             title: balaoCor,
         }
 
+  
 
         if (usuarioSelecionado) {
-            api.post(
-                `/avaliacoes/resposta-empresa/${usuarioSelecionado}`,
-                objetoEnviado, // Corpo da requisição
-                {
-                    headers: {
-                        Authorization: `Bearer ${sessionStorage.authToken}`,
-                    },
-                }
-            )
-                .then((res) => {
+            const enviarResposta = async () => {
+                try {
+                     await (`/avaliacoes/resposta-empresa/${usuarioSelecionado}`, objetoEnviado, {
+                        headers: {
+                            Authorization: `Bearer ${sessionStorage.authToken}`,
+                        },
+                    });
                     toast.success("Resposta enviada com sucesso!");
-
                     fecharavaliacaoModal();
-                    window.location.reload();
-                })
-                .catch((erro) => {
-                    // Erro no cadastro
-                    toast.error("Erro ao cadastrar!");
-                });
+                    navigate('/avaliacao-empresa')
+                } catch (erro) {
+                    if (erro.response && erro.response.status === 404) {
+                        toast.error("Endpoint não encontrado.");
+                    } else {
+                        toast.error("Erro ao cadastrar. Por favor, tente novamente mais tarde.");
+                    }
+                }
+            };
+            enviarResposta();
         }
     };
 

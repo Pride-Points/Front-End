@@ -28,6 +28,17 @@ function Evento() {
             Authorization: `Bearer ${sessionStorage.authToken}`
           }
         });
+        if (response.status == 204) {
+          console.log("nao existe nenhum evento cadastrado")
+          console.log(response)
+        }
+        else if (response.status !== 200) {
+          toast.error('"Erro ao obter eventos. Por favor, tente novamente mais tarde."')
+          console.log(response)
+
+          return;
+        }
+
         setEventos(response.data);
       } catch (error) {
         if (error.response && error.response.status === 500) {
@@ -43,7 +54,7 @@ function Evento() {
     listarEventos();
   }, []);
 
-  
+
   return (
     <div className="corpo">
       <header className="header-pos-logon">

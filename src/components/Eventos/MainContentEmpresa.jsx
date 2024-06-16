@@ -21,7 +21,7 @@ function MainContentEmpresa(props) {
       nome: nomeEvento,
       descricaoEvento: descricaoEvento,
       imgEvento: urlImagem,
-      dtEvento: dataEvento
+      dtEvento: formatDate(dataEvento)
     };
 
     api.post(`/eventos/${sessionStorage.idEmpresa}`, novoEvento, {
@@ -84,6 +84,10 @@ function MainContentEmpresa(props) {
       )}
     </div>
   );
+}
+const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split("-");
+  return `${day}/${month}/${year}`;
 }
 
 export default MainContentEmpresa;

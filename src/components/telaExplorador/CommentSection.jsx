@@ -21,6 +21,7 @@ function CommentSection() {
     const voltarParaPaginaAnterior = () => {
         navigate(-1); // Navegar para trás no histórico
     };
+    
 
     return (
         <div className='container-coments'>

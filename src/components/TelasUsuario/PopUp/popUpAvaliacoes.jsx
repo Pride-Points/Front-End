@@ -8,11 +8,10 @@ import api from '../../../api/api';
 import StarRating from "./estrelas"
 
 
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Importe o componente Link do React Router
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Importe o componente Link do React Router
 
 function PopUp() {
-
   const [empresaDetalhes, setEmpresaDetalhes] = useState(null);
   const [avaliacoes, setAvaliacoes] = useState(null);
   const [nota2, setNota2] = useState(null);
@@ -24,10 +23,10 @@ function PopUp() {
         token = sessionStorage.authToken
 
 
-        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
+        const idEmpresa = sessionStorage.getItem("idEmpresaClicada");
 
         if (!idEmpresa) {
-          throw new Error('ID da empresa não encontrado no sessionStorage');
+          throw new Error("ID da empresa não encontrado no sessionStorage");
         }
 
         const response = await api.get(`/empresas/${idEmpresa}`, {
@@ -37,11 +36,10 @@ function PopUp() {
         });
 
         if (response.status === 200 && response.data) {
-
           setEmpresaDetalhes(response.data);
         }
       } catch (error) {
-        console.error('Erro ao buscar detalhes da empresa:', error);
+        console.error("Erro ao buscar detalhes da empresa:", error);
         toast.error(error.message);
       }
     };
@@ -54,11 +52,10 @@ function PopUp() {
       try {
         token = sessionStorage.authToken
 
-
-        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
+        const idEmpresa = sessionStorage.getItem("idEmpresaClicada");
 
         if (!idEmpresa) {
-          throw new Error('ID da empresa não encontrado no sessionStorage');
+          throw new Error("ID da empresa não encontrado no sessionStorage");
         }
 
         const response = await api.get(`/avaliacoes/${idEmpresa}`, {
@@ -72,7 +69,7 @@ function PopUp() {
           setAvaliacoes(response.data);
         }
       } catch (error) {
-        console.error('Erro ao buscar detalhes da empresa:', error);
+        console.error("Erro ao buscar detalhes da empresa:", error);
         toast.error(error.message);
       }
     };
@@ -86,11 +83,10 @@ function PopUp() {
 
         token = sessionStorage.authToken
 
-
-        const idEmpresa = sessionStorage.getItem('idEmpresaClicada');
+        const idEmpresa = sessionStorage.getItem("idEmpresaClicada");
 
         if (!idEmpresa) {
-          throw new Error('ID da empresa não encontrado no sessionStorage');
+          throw new Error("ID da empresa não encontrado no sessionStorage");
         }
 
         const response = await api.get(`/empresas/media/${idEmpresa}`, {
@@ -103,7 +99,7 @@ function PopUp() {
           setNota2(response.data);
         }
       } catch (error) {
-        console.error('Erro ao buscar detalhes da empresa:', error);
+        console.error("Erro ao buscar detalhes da empresa:", error);
         toast.error(error.message);
       }
     };
@@ -111,6 +107,7 @@ function PopUp() {
     buscarNotas();
   }, []);
   let [modalAberto, setModalAberto] = useState(false);
+
   let abrirModal = () => {
     setModalAberto(true);
   };
@@ -212,9 +209,8 @@ function PopUp() {
         )}
 
       </div>
-    </div>
+    );
+  };
 
-  );
-}
 
 export default PopUp;

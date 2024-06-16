@@ -1,100 +1,122 @@
 import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
-import PontoCinza from "../../assets/PointerLGBT.png";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import api from '../../api/api'
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import api from '../../api/api'; // Ajuste o caminho conforme necessário
+import { toast } from 'react-toastify';
 
 const MapSection = () => {
   const mapContainer = useRef(null);
+  const mapboxAccessToken = 'pk.eyJ1IjoiZHNvdWdsYSIsImEiOiJjbG9tZzJkMTAwdHZiMmpwcDQzNHUwY3BtIn0.Yw5Jia_cH0bDbfHp_XWO7g'; // Substitua pelo seu token
 
   useEffect(() => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZHNvdWdsYSIsImEiOiJjbG9tZzJkMTAwdHZiMmpwcDQzNHUwY3BtIn0.Yw5Jia_cH0bDbfHp_XWO7g';
+    mapboxgl.accessToken = mapboxAccessToken;
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-46.660365, -23.555146], // Centro inicial arbitrário
-      zoom: 14,
+      center: [-46.660365, -23.555146], // São
+      zoom: 14
     });
 
-    const fetchData = async () => {
-      let token = sessionStorage.authToken
-      // Substitua 'SEU_TOKEN_AQUI' pelo seu token de autenticação real
-      const bearerToken = token;
-
-      const response = await api.get('/empresas/completo', {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
+      // Inicializar o geocoder
+      const geocoder = new MapboxGeocoder({
+        accessToken: mapboxAccessToken,
+        mapboxgl: mapboxgl,
+        marker: {
+          color: 'orange'
         },
+        bbox: [-73.982817, -33.750707, -34.729994, 5.271786] // BBox para o Brasil
       });
+  
+      // Adicionar o geocoder ao mapa
+      map.addControl(geocoder, 'top-right');
 
-      const listaEmpresas = response.data;
+    const fetchData = async () => {
+
+      const layers = map.getStyle().layers;
+
+      // Ajustar a cor dos ícones e visibilidade
+      layers.forEach(layer => {
+          if (layer.type === 'symbol' && layer.layout && layer.layout['icon-image']) {
+              // Alterar ícones para cinza
+              map.setPaintProperty(layer.id, 'icon-color', '#cccccc');
+
+              // Configura visibilidade baseada no tipo de ícone
+              if (layer.id.includes('commercial')) {
+                  map.setLayoutProperty(layer.id, 'visibility', 'visible');
+              } else {
+                  map.setLayoutProperty(layer.id, 'visibility', 'none');
+              }
+          }
+      });
+      let token = sessionStorage.getItem('authToken'); // Certifique-se de que o token está armazenado corretamente
+      const bearerToken = `Bearer ${token}`;
+
+      try {
+        const response = await api.get('/empresas/completo', {
+          headers: { Authorization: bearerToken }
+        });
+
+        if (response.status !== 200) {
+          toast.error('Erro ao obter empresas. Por favor, tente novamente mais tarde.');
+          return;
+        }
+
+        const listaEmpresas = response.data;
 
       // Verificando se a lista de empresas está vazia
       if (!listaEmpresas || listaEmpresas.length === 0) {
         return;
       }
 
-      const empresasComCoordenadas = await Promise.all(listaEmpresas.map(async empresa => {
-        const endereco = `${empresa.cep}, ${empresa.cidade}, ${empresa.estado}, ${empresa.numero}`;
-        const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(endereco)}.json?access_token=${mapboxgl.accessToken}`;
+        const empresasComCoordenadas = await Promise.all(listaEmpresas.map(async empresa => {
+          const endereco = `${empresa.cep}, ${empresa.cidade}, ${empresa.estado}, ${empresa.numero}`;
+          const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(endereco)}.json?access_token=${mapboxAccessToken}`;
 
-        try {
-          const geocodeResponse = await fetch(geocodeUrl);
-          const geocodeData = await geocodeResponse.json();
-          if (geocodeData.features.length > 0) {
-            const [longitude, latitude] = geocodeData.features[0].center;
-            return { ...empresa, longitude, latitude };
+          try {
+            const geocodeResponse = await fetch(geocodeUrl);
+            const geocodeData = await geocodeResponse.json();
+            if (geocodeData.features.length > 0) {
+              const [longitude, latitude] = geocodeData.features[0].center;
+              return { ...empresa, longitude, latitude };
+            }
+            return null; // Endereço não encontrado
+          } catch (error) {
+            console.error("Erro ao geocodificar endereço:", error);
+            return null; // Erro na requisição
           }
-          return null; // Endereço não encontrado
-        } catch (error) {
-          console.error("Erro ao geocodificar endereço:", error);
-          return null; // Erro na requisição
-        }
-      }));
+        }));
 
-      // Carregando a imagem para o marcador
-      map.loadImage(PontoCinza, (error, image) => {
-        if (error) throw error;
-        map.addImage('PontoCinza', image);
+        empresasComCoordenadas.filter(e => e !== null).forEach(empresa => {
+          const marker = new mapboxgl.Marker()
+            .setLngLat([empresa.longitude, empresa.latitude])
+            .setPopup(new mapboxgl.Popup().setHTML(`<h4>${empresa.nomeFantasia}</h4><p>${empresa.cidade}, ${empresa.estado}</p>`))
+            .addTo(map);
 
-        // Adicionando fonte de dados ao mapa
-        map.addSource('pontos', {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: empresasComCoordenadas.filter(e => e !== null).map(empresa => ({
-              type: 'Feature',
-              properties: {
-                description: `${empresa.nomeFantasia}<br>${empresa.cidade}, ${empresa.estado}`
-              },
-              geometry: {
-                type: 'Point',
-                coordinates: [empresa.longitude, empresa.latitude]
-              }
-            }))
-          }
+          marker.getElement().addEventListener('click', () => {
+            map.flyTo({
+              center: [empresa.longitude, empresa.latitude],
+              essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+              zoom: 16,
+              speed: 1, // make the flying slow
+              curve: 1, // change the speed at which it zooms out
+            });
+          });
         });
-
-        // Adicionando a camada ao mapa com os pontos
-        map.addLayer({
-          id: 'pontos',
-          type: 'symbol',
-          source: 'pontos',
-          layout: {
-            'icon-image': 'PontoCinza',
-            'icon-size': 0.1
-          }
-        });
-      });
+      } catch (error) {
+        toast.error('Erro ao carregar dados das empresas.');
+        console.error('Erro ao fazer requisições para a API:', error);
+      }
     };
 
-    // Carregando dados quando o mapa estiver pronto
     map.on('load', fetchData);
 
     return () => map.remove();
   }, []);
+  
 
-  return <div ref={mapContainer} style={{ width: '100%', height: '600px' }}></div>;
+  return <div className="map-container" ref={mapContainer} style={{ width: '100%', height: '600px' }} />;
 };
 
 export default MapSection;
