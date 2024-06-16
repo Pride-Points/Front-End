@@ -2,8 +2,6 @@ import "./modal.css";
 import closeModal from '../../../assets/closeModal.svg'
 import estrela from '../../../assets/Starrrrr.svg'
 import estrelaP from '../../../assets/starrrpreenchida.svg'
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 import api from '../../../api/api'
 
@@ -14,7 +12,6 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
     const [selectedEmotion, setSelectedEmotion] = useState(modoEdicao ? avaliacaoParaEditar.tag : '');
     const [estrelasHover, setEstrelasHover] = useState(modoEdicao ? avaliacaoParaEditar.nota : 0);
     const [comentario, setComentario] = useState(modoEdicao ? avaliacaoParaEditar.comentario : '');
-    const navigate = useNavigate();
 
     const handleMouseEnter = (id) => {
         setEstrelasHover(id);
@@ -64,7 +61,7 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
             headers: { Authorization: `Bearer ${token}` }
         };
 
-
+        
         const url = modoEdicao ? 
             `/avaliacoes/${avaliacaoParaEditar.id}/${usuarioId}/${empresaId}` :
             `/avaliacoes/${empresaId}/${usuarioId}`;
@@ -81,7 +78,7 @@ function ModalAvaliacao({ onClose, mostrarModal, modoEdicao = false, avaliacaoPa
             .catch(error => {
                 console.error('Erro ao enviar avaliação:', error);
             });
-        };
+    };
 
 
     return (
