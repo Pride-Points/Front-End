@@ -50,10 +50,16 @@ function SearchContent(props) {
               {props.isClickable ? (
                 <button onClick={openModal}>
                   <CardUsuario
-                    img={evento.imgEvento}
+                    img={evento.img}
                     titulo={evento.titulo}
                     descricao={evento.descricao}
-                    info={<StarRating rating={evento.info} />} // Aqui modificamos para renderizar o componente StarRating
+                    info={
+                      typeof evento.info === 'number' ? (
+                        <StarRating rating={evento.info} />
+                      ) : (
+                        evento.info
+                      )
+                    }
                     data={evento.data}
                   />
                 </button>
@@ -62,7 +68,13 @@ function SearchContent(props) {
                   img={evento.img}
                   titulo={evento.titulo}
                   descricao={evento.descricao}
-                  info={<StarRating rating={evento.info} />} // E aqui também
+                  info={
+                    typeof evento.info === 'number' ? (
+                      <StarRating rating={evento.info} />
+                    ) : (
+                      evento.info
+                    )
+                  }
                   data={evento.data}
                 />
               )}

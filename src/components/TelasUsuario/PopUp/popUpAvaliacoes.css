@@ -136,22 +136,27 @@ cursor: pointer;
    padding-left: 5%;
 }
 
+.descricaoAvaliacao p{
+   text-align: justify;
+}
 .box-resposta-avaliacao{
-   margin-top: 10px;
+   margin-top: 15px;
    text-align: start;
 }
 
 .box-resposta-avaliacao p{
    text-align: center;
+   font-weight: 500;
 }
 
-.box-resposta-avaliacao img{
-   margin-right: 5px;
-}
-
-.icon-resp-avaliacao{
+.box-resp{
    display: flex;
-   margin-top: 10px;
+   gap: 10px;
+   margin-top: 20px;
+}
+
+.box-resp p{
+   text-align: left;
 }
 
 .avaliacaoData{

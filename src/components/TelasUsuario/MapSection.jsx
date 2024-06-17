@@ -5,6 +5,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import api from '../../api/api'; // Ajuste o caminho conforme necessário
 import { toast } from 'react-toastify';
+import logoBandeira from '../../assets/logo-bandeira.png';
 
 const MapSection = () => {
   const mapContainer = useRef(null);
@@ -15,41 +16,24 @@ const MapSection = () => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-46.660365, -23.555146], // São
+      center: [-46.660365, -23.555146], // São Paulo
       zoom: 14
     });
 
-      // Inicializar o geocoder
-      const geocoder = new MapboxGeocoder({
-        accessToken: mapboxAccessToken,
-        mapboxgl: mapboxgl,
-        marker: {
-          color: 'orange'
-        },
-        bbox: [-73.982817, -33.750707, -34.729994, 5.271786] // BBox para o Brasil
-      });
-  
-      // Adicionar o geocoder ao mapa
-      map.addControl(geocoder, 'top-right');
+    // Inicializar o geocoder
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxAccessToken,
+      mapboxgl: mapboxgl,
+      marker: {
+        color: 'orange'
+      },
+      bbox: [-73.982817, -33.750707, -34.729994, 5.271786] // BBox para o Brasil
+    });
+
+    // Adicionar o geocoder ao mapa
+    map.addControl(geocoder, 'top-right');
 
     const fetchData = async () => {
-
-      const layers = map.getStyle().layers;
-
-      // Ajustar a cor dos ícones e visibilidade
-      layers.forEach(layer => {
-          if (layer.type === 'symbol' && layer.layout && layer.layout['icon-image']) {
-              // Alterar ícones para cinza
-              map.setPaintProperty(layer.id, 'icon-color', '#cccccc');
-
-              // Configura visibilidade baseada no tipo de ícone
-              if (layer.id.includes('commercial')) {
-                  map.setLayoutProperty(layer.id, 'visibility', 'visible');
-              } else {
-                  map.setLayoutProperty(layer.id, 'visibility', 'none');
-              }
-          }
-      });
       let token = sessionStorage.getItem('authToken'); // Certifique-se de que o token está armazenado corretamente
       const bearerToken = `Bearer ${token}`;
 
@@ -65,10 +49,10 @@ const MapSection = () => {
 
         const listaEmpresas = response.data;
 
-      // Verificando se a lista de empresas está vazia
-      if (!listaEmpresas || listaEmpresas.length === 0) {
-        return;
-      }
+        // Verificando se a lista de empresas está vazia
+        if (!listaEmpresas || listaEmpresas.length === 0) {
+          return;
+        }
 
         const empresasComCoordenadas = await Promise.all(listaEmpresas.map(async empresa => {
           const endereco = `${empresa.cep}, ${empresa.cidade}, ${empresa.estado}, ${empresa.numero}`;
@@ -89,7 +73,15 @@ const MapSection = () => {
         }));
 
         empresasComCoordenadas.filter(e => e !== null).forEach(empresa => {
-          const marker = new mapboxgl.Marker()
+          const el = document.createElement('div');
+          el.className = 'marker';
+          el.style.backgroundImage = `url(${logoBandeira})`; // Optional: URL to your custom icon
+          el.style.width = '100px';
+          el.style.height = '100px';
+          el.style.backgroundSize = '100%';
+          el.style.backgroundColor = 'transparent'
+
+          const marker = new mapboxgl.Marker(el)
             .setLngLat([empresa.longitude, empresa.latitude])
             .setPopup(new mapboxgl.Popup().setHTML(`<h4>${empresa.nomeFantasia}</h4><p>${empresa.cidade}, ${empresa.estado}</p>`))
             .addTo(map);
@@ -97,10 +89,10 @@ const MapSection = () => {
           marker.getElement().addEventListener('click', () => {
             map.flyTo({
               center: [empresa.longitude, empresa.latitude],
-              essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+              essential: true,
               zoom: 16,
-              speed: 1, // make the flying slow
-              curve: 1, // change the speed at which it zooms out
+              speed: 1,
+              curve: 1,
             });
           });
         });
@@ -114,7 +106,6 @@ const MapSection = () => {
 
     return () => map.remove();
   }, []);
-  
 
   return <div className="map-container" ref={mapContainer} style={{ width: '100%', height: '600px' }} />;
 };

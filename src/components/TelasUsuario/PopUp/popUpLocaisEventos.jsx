@@ -33,7 +33,7 @@ function PopUpLocais(props) {
             {props.listaEventos.map((eventos) => (
                 <div className="containerLocalE">
                     <div className="containerImagem">
-                        <img src={imagemPerfil} alt="" />
+                        <img src={eventos.imgEvento} alt="" />
                     </div>
                     <div className="containerLocalDireita">
                         <div className="containerLocalCima">

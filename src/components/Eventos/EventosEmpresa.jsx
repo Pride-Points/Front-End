@@ -29,12 +29,10 @@ function Evento() {
           }
         });
         if (response.status == 204) {
-          console.log("nao existe nenhum evento cadastrado")
-          console.log(response)
+          toast.error("nao existe nenhum evento cadastrado")
         }
         else if (response.status !== 200) {
           toast.error('"Erro ao obter eventos. Por favor, tente novamente mais tarde."')
-          console.log(response)
 
           return;
         }

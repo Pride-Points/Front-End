@@ -46,7 +46,7 @@ function CardReview(props) {
 
               <div className="modalCardButton">
                 <div className="modalCardButtonAndTrash">
-                  <button o>Editar</button>
+
                   <button className="modalCardButtonTrash" onClick={() => deleteReview(review.id)}>
                     <svg
                       width="26"

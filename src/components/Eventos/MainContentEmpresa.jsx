@@ -87,7 +87,7 @@ function MainContentEmpresa(props) {
 }
 const formatDate = (dateString) => {
   const [year, month, day] = dateString.split("-");
-  return `${day}/${month}/${year}`;
+  return `${year}-${month}-${day}`; // Retornar a data no formato yyyy-MM-dd
 }
 
 export default MainContentEmpresa;

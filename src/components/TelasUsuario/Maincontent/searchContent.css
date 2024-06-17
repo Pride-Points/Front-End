@@ -98,6 +98,10 @@
   width: 100%;
 }
 
+.cardUsuario{
+  cursor: pointer;
+}
+
 .SearchContent .bottom .cardUsuario .cardImage {
   margin-right: 42px;
 }

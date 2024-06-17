@@ -126,25 +126,25 @@ pdf.autoTable({
     
         // Contagem inicial para cada mês do ano
         const monthlyCounts = Array(12).fill(0);
-    
-        response.data.forEach(avaliacao => {
-          const date = new Date(avaliacao.dtAvaliacao.split('-').reverse().join('-'));
-          const month = date.getMonth();
-          monthlyCounts[month]++;
-        });
+          response.data.forEach(avaliacao => {
+            const date = new Date(avaliacao.dtAvaliacao.split('-').reverse().join('-'));
+            const month = date.getMonth();
+            monthlyCounts[month]++;
+          });
+  
+          const avaliacoesDoMes = response.data.filter(av => {
+            if (selectedMonth === -1) return true; // Se "Todos os Meses" for selecionado, incluir todas as avaliações
+            const date = new Date(av.dtAvaliacao.split('-').reverse().join('-'));
+            return date.getMonth() === selectedMonth;
+          });
+      
+          // Tags pré-definidas para o gráfico
+          const tags = ['Humilhade', 'Brave', 'Frustrade', 'Amade', 'Acolhide', 'Feliz'];
+          const tagCounts = tags.map(tag => avaliacoesDoMes.filter(av => av.tag === tag).length);
+      
+          setTagData(tagCounts);  // Atualiza os dados das tags no gráfico de pizza
+          setData(monthlyCounts); // Atualiza o estado com as contagens por mês
 
-        const avaliacoesDoMes = response.data.filter(av => {
-          if (selectedMonth === -1) return true; // Se "Todos os Meses" for selecionado, incluir todas as avaliações
-          const date = new Date(av.dtAvaliacao.split('-').reverse().join('-'));
-          return date.getMonth() === selectedMonth;
-        });
-    
-        // Tags pré-definidas para o gráfico
-        const tags = ['Humilhade', 'Brave', 'Frustrade', 'Amade', 'Acolhide', 'Feliz'];
-        const tagCounts = tags.map(tag => avaliacoesDoMes.filter(av => av.tag === tag).length);
-    
-        setTagData(tagCounts);  // Atualiza os dados das tags no gráfico de pizza
-        setData(monthlyCounts); // Atualiza o estado com as contagens por mês
       } catch (error) {
         toast.error(error.message);
       }

@@ -7,4 +7,4 @@ function avaliacaoEmpresa() {
   );
 }
 
-export default AvaliacaoEmpresa;
+export default avaliacaoEmpresa;

@@ -112,12 +112,13 @@ function PopUp() {
     setModalAberto(true);
   };
 
+  console.log(avaliacoes)
+
   let fecharModal = () => {
     setModalAberto(false);
 
   };
   return (
-
     <div className="popUp">
       <div className="containerBar">
         <div className="nomeBar">
@@ -131,13 +132,11 @@ function PopUp() {
         </Link>
       </div>
       <div className="containerDescricao">
-        <div className="descricaoBar">
-
-        </div>
+        {/* Conteúdo da descrição, se necessário */}
       </div>
       <div className="containerInformacoes">
         <div>
-          Localizado em: <span>{empresaDetalhes && empresaDetalhes.cidade},  Nº{empresaDetalhes && empresaDetalhes.numero}</span>
+          Localizado em: <span>{empresaDetalhes && `${empresaDetalhes.cidade}, Nº${empresaDetalhes.numero}`}</span>
         </div>
         <div>
           Horário de funcionamento: <span>18:00 - 05:00</span>
@@ -149,27 +148,18 @@ function PopUp() {
       </div>
       <div className="containerOpcoes">
         <div className="opcoes selecionada">
-          <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }}>Avalições</Link>
-
+          <Link to="/home-usuario-avaliacoes" style={{ textDecoration: 'none', color: 'black' }}>Avaliações</Link>
         </div>
         <div className="opcoes">
           <Link to="/home-usuario-eventos" style={{ textDecoration: 'none', color: 'black' }}>Eventos</Link>
         </div>
       </div>
       <div className="containesLocaisE">
-        {/* Aqui você vai mapear as avaliações e exibi-las */}
         {avaliacoes && avaliacoes.length > 0 ? (
-
           avaliacoes.map((avaliacao) => (
             <div className="containerLocalE" key={avaliacao.id}>
               <div className="containerImagem">
-                <img src={imagemPerfil} alt="" />
-                <div className="resposta">
-                  <div className="resposta">
-
-                  </div>
-
-                </div>
+                <img src={imagemPerfil} alt="Imagem de perfil do avaliador" />
               </div>
               <div className="containerLocalDireita">
                 <div className="containerLocalCima">
@@ -177,40 +167,31 @@ function PopUp() {
                     {avaliacao.nomeAvaliador}
                   </div>
                   <div className="estrelasEvento">
-                    {/* Renderizando as estrelas com base na nota da avaliação */}
                     <StarRating className="DgEstrela" rating={avaliacao.nota} />
-
                   </div>
                 </div>
                 <div className="descricaoAvaliacao">
                   {avaliacao.comentario}
                   <div className="box-resposta-avaliacao">
-                    <p>Resposta {empresaDetalhes.nomeFantasia}</p>
-                    <div className="icon-resp-avaliacao">
-                    {avaliacao.title && <img src={avaliacao.title} alt="Descrição da Imagem" />}
-                    <div>
-                    {avaliacao.resp}
+                    <p>Resposta de {empresaDetalhes && empresaDetalhes.nomeFantasia}</p>
+                    <div className="box-resp">
+                      <img src={avaliacao.title} alt="" />
+                      <p>{avaliacao.resp}</p>
                     </div>
-                    </div>
-                    
-                    
                   </div>
-
                 </div>
                 <div className="avaliacaoData">
                   {avaliacao.dtAvaliacao}
                 </div>
               </div>
-              {/* Adicione o restante das informações da avaliação */}
             </div>
           ))
         ) : (
           <div className="mensagemVazio">Não há avaliações</div>
         )}
-
       </div>
-    );
-  };
-
+    </div>
+  );
+}
 
 export default PopUp;

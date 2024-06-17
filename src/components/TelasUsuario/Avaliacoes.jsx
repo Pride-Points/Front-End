@@ -50,9 +50,7 @@ function Eventos() {
           // Atualizando a lista de avaliações do usuário
           setAvaliacoes(avaliacoesFormatadas);
           setReviews(reviewsFormatadas)
-          console.log(avaliacoesFormatadas,reviewsFormatadas, response)
         } else {
-          console.log(response)
           throw new Error('Ops! Ocorreu um erro ao buscar as avaliações do usuário.');
         }
       } catch (error) {
